@@ -2,7 +2,6 @@ module.exports = {
   extends: [
     'eslint:recommended',
     'plugin:react/recommended',
-    'plugin:import/recommended',
     'plugin:jsx-a11y/recommended',
     'plugin:@typescript-eslint/recommended',
     'eslint-config-prettier',
@@ -31,5 +30,6 @@ module.exports = {
     'no-param-reassign': 'off',
     'import/no-cycle': 'off',
     'no-console': 'warn',
+    'react/react-in-jsx-scope': 'off',
   },
 }
