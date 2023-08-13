@@ -18,10 +18,17 @@ import {
 import { auth, db } from '@/api'
 import { User, UserDataToSignUp } from '@/types'
 import { createAsyncThunk } from '@reduxjs/toolkit'
+import { TEXT } from '@/constants'
 
 const signUp = createAsyncThunk(
   'user/signUp',
   async ({ user, password }: UserDataToSignUp) => {
+    const usersRef = collection(db, 'users')
+    const userResponse = query(usersRef, where('phone', '==', user.phone))
+    const querySnapshot = await getDocs(userResponse)
+    if (querySnapshot.docs[0]) {
+      throw new Error(TEXT.PHONE_EXIST_ERROR)
+    }
     const response = await createUserWithEmailAndPassword(
       auth,
       user.email,
@@ -59,11 +66,11 @@ const logInWithPhoneNumber = createAsyncThunk(
     const response = query(usersRef, where('phone', '==', phone))
     const querySnapshot = await getDocs(response)
     if (!querySnapshot.docs[0]) {
-      throw new Error('Invalid phone number')
+      throw new Error(TEXT.LOGIN_ERROR)
     }
     const { email } = querySnapshot.docs[0].data() as User
 
-    return dispatch(logInWithEmail({ email, password }))
+    return (await dispatch(logInWithEmail({ email, password }))).payload
   }
 )
 
@@ -80,7 +87,7 @@ const logInWithGoogle = createAsyncThunk('user/logInWithGoogle', async () => {
   }
 
   if (!displayName || !email) {
-    throw new Error('Error with google account')
+    throw new Error(TEXT.GOOGLE_ERROR)
   }
 
   const user: User = {

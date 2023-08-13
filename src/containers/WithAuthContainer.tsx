@@ -6,7 +6,6 @@ import { useTypedSelector } from '@/hooks'
 
 const WithAuth: React.FC = () => {
   const user = useTypedSelector((state) => {
-    console.log('state: ', state)
     return state.user.user
   })
   const navigate = useNavigate()
