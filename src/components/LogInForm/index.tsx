@@ -1,45 +1,68 @@
-import React, { useState } from 'react'
+import { yupResolver } from '@hookform/resolvers/yup'
+import React from 'react'
+import { useForm } from 'react-hook-form'
 import { useNavigate } from 'react-router-dom'
 
-import { logInWithEmail } from '@/api/auth'
-import { ROUTES_NAMES } from '@/constants'
-import { useTypedDispatch } from '@/hooks'
+import logo from '/logo.svg'
+import { logInWithEmail, logInWithPhoneNumber } from '@/api/auth'
+import { ALT, ROUTES_NAMES, TEXT } from '@/constants'
+import { useTypedDispatch, useTypedSelector } from '@/hooks'
 
-const SignUpForm: React.FC = () => {
-  const [email, setEmail] = useState('')
-  const [password, setPassword] = useState('')
-  const navigate = useNavigate()
+import Loader from '../Loader'
+import { loginSchema } from './schema'
+import { Button, Error, Form, Input, LogoImg, SignUp, SubTitle } from './styled'
+import { loginFormType } from './types'
+
+const LogInForm: React.FC = () => {
+  const form = useForm<loginFormType>({
+    resolver: yupResolver(loginSchema),
+  })
   const dispatch = useTypedDispatch()
+  const navigate = useNavigate()
+  const error = useTypedSelector((state) => state.user.error)
+  const loading = useTypedSelector((state) => state.user.loading)
 
-  const handleEmailChange = (event: React.ChangeEvent<HTMLInputElement>) => {
-    const { target } = event
-    setEmail(target.value)
-  }
+  const {
+    register,
+    handleSubmit,
+    formState: { errors },
+  } = form
 
-  const handlePasswordChange = (event: React.ChangeEvent<HTMLInputElement>) => {
-    const { target } = event
-    setPassword(target.value)
-  }
-
-  const handleOnSubmit = async () => {
-    try {
-      await dispatch(logInWithEmail({ email, password }))
-      navigate(ROUTES_NAMES.PROFILE)
-    } catch (error) {
-      console.log(error)
+  const submit = ({ login, password }: loginFormType) => {
+    if (login.includes('@')) {
+      dispatch(logInWithEmail({ email: login, password })).then(
+        ({ payload }) => payload && navigate(ROUTES_NAMES.PROFILE)
+      )
+    } else {
+      dispatch(logInWithPhoneNumber({ phone: login, password })).then(
+        ({ payload }) => payload && navigate(ROUTES_NAMES.PROFILE)
+      )
     }
   }
-  return (
-    <div>
-      <input placeholder="email" value={email} onChange={handleEmailChange} />
-      <input
-        placeholder="password"
-        value={password}
-        onChange={handlePasswordChange}
+
+  return loading ? (
+    <Loader />
+  ) : (
+    <Form onSubmit={handleSubmit(submit)}>
+      <LogoImg src={logo} alt={ALT.LOGO} />
+
+      <SubTitle>{TEXT.LOGIN_HEADER}</SubTitle>
+      <Error>{errors.login?.message}</Error>
+      <Input
+        placeholder={TEXT.LOGIN_PLACEHOLDER}
+        {...register('login')}
+        type="text"
       />
-      <button onClick={handleOnSubmit}>Log in</button>
-    </div>
+      <Error>{errors.password?.message || error}</Error>
+      <Input
+        placeholder={TEXT.PASSWORD_PLACEHOLDER}
+        {...register('password')}
+        type="password"
+      />
+      <Button>{TEXT.LOGIN}</Button>
+      <SignUp to={ROUTES_NAMES.SIGNUP}>{TEXT.SIGN_UP}</SignUp>
+    </Form>
   )
 }
 
-export default SignUpForm
+export default LogInForm

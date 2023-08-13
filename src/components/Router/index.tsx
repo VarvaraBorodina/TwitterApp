@@ -3,7 +3,7 @@ import { Route, Routes } from 'react-router-dom'
 
 import Loader from '@/components/Loader'
 import { ROUTES_NAMES } from '@/constants'
-import WithAuth from '@/middlewares/WithAuth'
+import { WithAuthContainer } from '@/containers'
 
 const { HOME, FEED, LOGIN, SIGNUP, PROFILE } = ROUTES_NAMES
 
@@ -45,7 +45,7 @@ const Router = () => (
       {openRoutes.map(({ path, component }) => (
         <Route key={path} path={path} element={component} />
       ))}
-      <Route element={<WithAuth />}>
+      <Route element={<WithAuthContainer />}>
         {protectedRoutes.map(({ path, component }) => (
           <Route key={path} path={path} element={component} />
         ))}

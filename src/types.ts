@@ -1,6 +1,6 @@
 enum Gender {
-  Man,
-  Woman,
+  Man = 'Man',
+  Woman = 'Woman',
 }
 
 interface User {

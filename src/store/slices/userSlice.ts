@@ -1,5 +1,6 @@
 import { createSlice, PayloadAction } from '@reduxjs/toolkit'
 
+import { ERRORS } from '@/constants'
 import { User } from '@/types'
 
 import { UserSliceType } from './types'
@@ -18,6 +19,12 @@ const userSlice = createSlice({
       return {
         user: null,
         loading: false,
+        error: '',
+      }
+    },
+    resetError: (state) => {
+      return {
+        ...state,
         error: '',
       }
     },
@@ -50,7 +57,7 @@ const userSlice = createSlice({
           return {
             loading: false,
             user: null,
-            error: action.error.message ?? '',
+            error: ERRORS[action.error.message] ?? action.error.message,
           }
         }
       )

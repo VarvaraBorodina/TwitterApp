@@ -2,12 +2,13 @@ import React from 'react'
 import { ThemeProvider } from 'styled-components'
 
 import {
+  BORDER_RADIUS,
   COLOR_THEMES,
   COLORS,
   FONT_SIZE,
   FONT_WEIGHT,
   FONTS,
-  LINE_HEIGHT,
+  OPACITIES,
   SIZES,
   SPACES,
   Z_INDEX,
@@ -21,11 +22,12 @@ const GlobalThemProvider: React.FC<{ children: JSX.Element }> = ({
     COLOR_THEME: COLOR_THEMES['LIGHT'],
     FONT_SIZE,
     FONT_WEIGHT,
-    LINE_HEIGHT,
+    BORDER_RADIUS,
     SIZES,
     SPACES,
     FONTS,
     Z_INDEX,
+    OPACITIES,
   }
 
   return <ThemeProvider theme={theme}>{children}</ThemeProvider>
