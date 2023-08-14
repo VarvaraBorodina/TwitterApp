@@ -15,7 +15,7 @@ const Form = styled.form`
 `
 
 const LogoImg = styled.img`
-  height: ${({ theme: { SIZES } }) => SIZES.LOGO_WIDTH}px;
+  width: ${({ theme: { SIZES } }) => SIZES.LOGO_WIDTH}px;
   margin-bottom: ${({ theme: { SPACES } }) => SPACES.M}px;
 `
 

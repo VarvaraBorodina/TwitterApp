@@ -4,6 +4,9 @@ export const COLOR_THEMES = {
   },
   LIGHT: {
     MAIN_COLOR: '#FFFFFF',
+    LIGHT_TEXT: '#B3B8BB',
+    SEARCH_COLOR: '#EFF3F4',
+    TEXT_COLOR: '#000000',
   },
 }
 
@@ -11,7 +14,7 @@ export const FONT_WEIGHT = {}
 
 export const COLORS = {
   ACCENT: '#1DA1F2',
-  BORDER: '#E4EAED',
+  BORDER: '#D8D8D8',
   HOME_PAGE: '#FFFFFF',
 }
 
@@ -19,6 +22,7 @@ export const SIZES = {
   HOME_PAGE_BUTTON_WIDTH: 360,
   HOME_PAGE_BUTTON_HEIGHT: 55,
   BORDER: 1,
+  PROFILE_BORDER: 2,
   LOGIN_FORM_WIDTH: 400,
   INPUT_WIDTH: 590,
   INPUT_HEIGHT: 45,
@@ -26,11 +30,20 @@ export const SIZES = {
   DROPDOWN: 190,
   DROPDOWN_HEIGHT: 100,
   LOGO_WIDTH: 33,
+  BIG_LOGO_WIDTH: 50,
   MAX_INPUT_WIDTH: 90,
+  LEFT_SIDE_BAR: 280,
+  PROFILE_WIDTH: 900,
+  PROFILE_IMG_WIDTH: 50,
+  BUTTON_WIDTH: 120,
+  BUTTON_HEIGHT: 45,
+  TOP_SHIFT: 30,
+  SEARCH_WIDTH: 200,
 }
 
 export const FONT_SIZE = {
   XS: 14,
+  S: 16,
   M: 20,
   L: 32,
   XL: 64,
@@ -42,6 +55,7 @@ export const SPACES = {
   M: 20,
   L: 30,
   XL: 70,
+  XXL: 90,
 }
 
 export const BORDER_RADIUS = {

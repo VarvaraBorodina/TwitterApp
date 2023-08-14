@@ -7,6 +7,8 @@ import {
   MONTH_NAMES,
   YEARS,
 } from './dates'
+import ICONS from './icons'
+import PAGES from './pages'
 import ROUTES_NAMES from './routesNames'
 import { ALT, ERRORS, TEXT } from './text'
 
@@ -17,8 +19,10 @@ export {
   DayAmountInMonth,
   DAYS,
   ERRORS,
+  ICONS,
   LONG_MONTHES,
   MONTH_NAMES,
+  PAGES,
   ROUTES_NAMES,
   TEXT,
   YEARS,

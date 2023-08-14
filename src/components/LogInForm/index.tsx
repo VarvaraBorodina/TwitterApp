@@ -3,7 +3,7 @@ import React from 'react'
 import { useForm } from 'react-hook-form'
 import { useNavigate } from 'react-router-dom'
 
-import logo from '/logo.svg'
+import logo from '/img/logo.png'
 import { logInWithEmail, logInWithPhoneNumber } from '@/api/auth'
 import { ALT, ROUTES_NAMES, TEXT } from '@/constants'
 import { useTypedDispatch, useTypedSelector } from '@/hooks'

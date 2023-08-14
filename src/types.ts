@@ -19,5 +19,10 @@ type UserDataToSignUp = {
   password: string
 }
 
+type ToggleShowProps = {
+  toggle?: () => void
+  show: boolean
+}
+
 export { Gender }
-export type { User, UserDataToSignUp }
+export type { ToggleShowProps, User, UserDataToSignUp }

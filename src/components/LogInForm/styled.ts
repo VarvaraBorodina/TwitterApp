@@ -9,6 +9,7 @@ const Form = styled.form`
 `
 
 const LogoImg = styled.img`
+  width: ${({ theme: { SIZES } }) => SIZES.BIG_LOGO_WIDTH}px;
   margin-bottom: ${({ theme: { SPACES } }) => SPACES.M}px;
 `
 

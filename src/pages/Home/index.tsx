@@ -1,9 +1,9 @@
 import React from 'react'
 import { useNavigate } from 'react-router-dom'
 
-import backTwitter from '/back-twitter.png'
-import google from '/google.png'
-import logo from '/logo.svg'
+import backTwitter from '/img/back-twitter.png'
+import google from '/img/google.png'
+import logo from '/img/logo.png'
 import { logInWithGoogle } from '@/api/auth'
 import { ALT, ROUTES_NAMES, TEXT } from '@/constants'
 import { useTypedDispatch } from '@/hooks'

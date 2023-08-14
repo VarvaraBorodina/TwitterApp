@@ -3,7 +3,7 @@ import React, { useState } from 'react'
 import { useForm } from 'react-hook-form'
 import { useNavigate } from 'react-router-dom'
 
-import logo from '/logo.svg'
+import logo from '/img/logo.png'
 import { signUp } from '@/api/auth'
 import Dropdown from '@/components/Dropdown'
 import Loader from '@/components/Loader'
