@@ -18,4 +18,7 @@ const getYears = () => {
   return YEARS
 }
 
-export { getDays, getYears }
+const getAge = (birthDate: Date): number =>
+  Math.floor((new Date() - new Date(birthDate).getTime()) / 3.15576e10)
+
+export { getAge, getDays, getYears }

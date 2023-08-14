@@ -29,6 +29,7 @@ const Section = styled.section`
 `
 
 const LogoImg = styled.img`
+  width: ${({ theme: { SIZES } }) => SIZES.BIG_LOGO_WIDTH}px;
   margin-bottom: ${({ theme: { SPACES } }) => SPACES.L}px;
 `
 
@@ -41,6 +42,9 @@ const Title = styled.h1`
   margin-bottom: ${({ theme: { SPACES } }) => SPACES.M}px;
   font-family: ${({ theme: { FONTS } }) => FONTS.XL};
   font-size: ${({ theme: { FONT_SIZE } }) => FONT_SIZE.XL}px;
+  @media (max-width: ${BREAKPOINTS.L}px) {
+    font-size: ${({ theme: { FONT_SIZE } }) => FONT_SIZE.L}px;
+  }
 `
 
 const SubTitle = styled.h1`
@@ -63,12 +67,18 @@ const Button = styled.button`
   font-size: ${({ theme: { FONT_SIZE } }) => FONT_SIZE.M}px;
   font-family: ${({ theme: { FONTS } }) => FONTS.M};
   cursor: pointer;
+  @media (max-width: ${BREAKPOINTS.L}px) {
+    width: 100%;
+  }
 `
 const Info = styled.p`
   width: ${({ theme: { SIZES } }) => SIZES.HOME_PAGE_BUTTON_WIDTH}px;
   margin-top: ${({ theme: { SPACES } }) => SPACES.M}px;
   font-size: ${({ theme: { FONT_SIZE } }) => FONT_SIZE.XS}px;
   font-family: ${({ theme: { FONTS } }) => FONTS.S};
+  @media (max-width: ${BREAKPOINTS.L}px) {
+    width: 100%;
+  }
 `
 
 const InfoLink = styled(Link)`

@@ -1,4 +1,4 @@
-import { getDays, getYears } from './dates'
+import { getAge, getDays, getYears } from './dates'
 import { validateDate, validateEmail, validatePhone } from './validate'
 
-export { getDays, getYears, validateDate, validateEmail, validatePhone }
+export { getAge, getDays, getYears, validateDate, validateEmail, validatePhone }

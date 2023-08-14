@@ -1,23 +1,41 @@
-import React from 'react'
-import { useNavigate } from 'react-router-dom'
+import React, { useState } from 'react'
 
-import { ROUTES_NAMES } from '@/constants'
-import { useTypedDispatch } from '@/hooks'
-import { logOut } from '@/store/slices/userSlice'
+import LeftSideBar from '@/components/LeftSideBar'
+import Search from '@/components/Search'
+import Tweets from '@/components/Tweets'
+import UserInfo from '@/components/UserInfo'
+
+import { Container } from './styled'
 
 const Profile: React.FC = () => {
-  const navigate = useNavigate()
-  const dispatch = useTypedDispatch()
+  const [showMenu, setShowMenu] = useState<boolean>(false)
+  const [showSearch, setShowSearch] = useState<boolean>(false)
 
-  const handleLogOut = () => {
-    dispatch(logOut())
-    navigate(ROUTES_NAMES.HOME)
+  const toggleShowMenu = () => {
+    setShowMenu((prevState) => !prevState)
+  }
+  const toggleShowSearch = () => {
+    setShowSearch((prevState) => !prevState)
+  }
+
+  if (showMenu) {
+    return <LeftSideBar show={showMenu} toggle={toggleShowMenu} />
+  }
+  if (showSearch) {
+    return <Search show={showSearch} toggle={toggleShowSearch} />
   }
   return (
-    <div>
-      Profile
-      <button onClick={handleLogOut}>Log out</button>
-    </div>
+    <Container>
+      <LeftSideBar show={false} />
+      <div>
+        <UserInfo
+          toggleShowMenu={toggleShowMenu}
+          toggleShowSearch={toggleShowSearch}
+        />
+        <Tweets />
+      </div>
+      <Search show={false} />
+    </Container>
   )
 }
 

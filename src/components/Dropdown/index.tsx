@@ -1,9 +1,9 @@
+/// <reference types="vite-plugin-svgr/client" />
 import React, { useState } from 'react'
 
-import arrow from '/arrow.svg'
-import { ALT } from '@/constants'
+import { ReactComponent as Arrow } from '@/assets/icons/arrow.svg'
 
-import { Container, Img, Input, Option, OptionContainer, Title } from './styled'
+import { Container, Input, Option, OptionContainer, Title } from './styled'
 import { DropdownType } from './types'
 
 const Dropdown: React.FC<DropdownType> = ({ title, changeOption, options }) => {
@@ -21,7 +21,7 @@ const Dropdown: React.FC<DropdownType> = ({ title, changeOption, options }) => {
     <Container>
       <Input onClick={() => setIsOpen(true)}>
         <Title>{option}</Title>
-        <Img src={arrow} alt={ALT.ARROW} />
+        <Arrow />
       </Input>
       {isOpen && (
         <OptionContainer>

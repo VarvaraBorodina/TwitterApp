@@ -9,6 +9,7 @@ const TEXT = {
   COOKIE: 'Cookie Use',
   LOGIN_TEXT: `Already have an account? `,
   LOGIN: 'Log in',
+  LOGOUT: 'Log out',
   PASSWORD_ERROR: 'Wrong password',
   LOGIN_ERROR: 'User not found',
   GOOGLE_ERROR: 'Google account error',
@@ -28,6 +29,11 @@ const TEXT = {
   GENDER_PLACEHOLDER: 'Gender',
   USE_EMAIL: 'Use email',
   BIRTH: 'Date of birth',
+  TWEET_BUTTON: 'Tweet',
+  TWEETS: 'Tweets',
+  EDIT: 'Edit profile',
+  SEARCH_TWEET: 'Search Twitter',
+  AGE: 'year old',
   BIRTH_TEXT: `Facilisi sem pulvinar velit nunc, gravida scelerisque amet nibh sit. Quis bibendum ante phasellus metus, magna lacinia sed augue. Odio enim nascetur leo mauris vel eget. Pretium id ullamcorper blandit viverra dignissim eget tellus. Nibh mi massa in molestie a sit. Elit congue.`,
 }
 
@@ -36,6 +42,8 @@ const ALT = {
   GOOGLE: 'google logo',
   BACK_TWITTER: 'back twitter',
   ARROW: 'Dropdown arrow',
+  USER: 'User',
+  COVER: 'Cover',
 }
 
 const ERRORS: { [identifier: string]: string } = {
