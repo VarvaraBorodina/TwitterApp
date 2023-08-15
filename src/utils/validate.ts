@@ -11,7 +11,15 @@ const validatePhone = (phone: string) => {
   return yup.string().matches(phoneRegExp).isValidSync(phone)
 }
 
-const validateDate = (day: number, month: number, year: number) => {
+const validateDate = (
+  day: number | undefined,
+  month: number | undefined,
+  year: number | undefined
+) => {
+  if (!day || !month || !year) {
+    return true
+  }
+
   if (LONG_MONTHES.includes(month)) {
     if (day > DayAmountInMonth.Long) {
       return false

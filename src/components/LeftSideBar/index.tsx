@@ -1,10 +1,10 @@
-import { useDispatch, useSelector } from 'react-redux'
 import { useLocation, useNavigate } from 'react-router-dom'
 
 import logo from '/img/logo.png'
 import userImg from '/img/userImg.png'
+import { logOut } from '@/api/auth'
 import { ALT, ICONS, PAGES, ROUTES_NAMES, TEXT } from '@/constants'
-import { logOut } from '@/store/slices/userSlice'
+import { useTypedDispatch, useTypedSelector } from '@/hooks'
 import { ToggleShowProps, User } from '@/types'
 
 import {
@@ -24,8 +24,8 @@ import {
 
 const LeftSideBar = ({ toggle, show }: ToggleShowProps) => {
   const { pathname } = useLocation()
-  const user: User = useSelector(({ user }) => user.user)
-  const dispatch = useDispatch()
+  const user: User | null = useTypedSelector(({ user }) => user.user)
+  const dispatch = useTypedDispatch()
   const navigate = useNavigate()
 
   const handleLogOut = () => {

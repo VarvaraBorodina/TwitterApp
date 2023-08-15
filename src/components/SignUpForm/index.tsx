@@ -145,22 +145,26 @@ const SignUpForm: React.FC = () => {
           errors.month?.message ||
           errors.year?.message ||
           dateError) &&
-          'Date error'}
+          TEXT.DATE_ERROR}
       </Error>
       <Inputs>
-        <Dropdown title="Day" options={DAYS} changeOption={handleDayChange} />
         <Dropdown
-          title="Month"
+          title={TEXT.DATE_PLACEHOLDER[0]}
+          options={DAYS}
+          changeOption={handleDayChange}
+        />
+        <Dropdown
+          title={TEXT.DATE_PLACEHOLDER[1]}
           options={MONTH_NAMES}
           changeOption={handleMonthChange}
         />
         <Dropdown
-          title="Year"
+          title={TEXT.DATE_PLACEHOLDER[0]}
           options={YEARS}
           changeOption={handleYearChange}
         />
       </Inputs>
-      <Button>Sign Up</Button>
+      <Button>{TEXT.SIGN_UP}</Button>
     </Form>
   )
 }

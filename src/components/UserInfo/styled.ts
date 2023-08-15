@@ -39,6 +39,7 @@ const UserImg = styled.img`
 const UserData = styled.div`
   position: relative;
   top: -150px;
+  width: ${({ theme: { SIZES } }) => SIZES.DROPDOWN}px;
 `
 
 const Button = styled.button`
@@ -53,6 +54,7 @@ const Button = styled.button`
   font-size: ${({ theme: { FONT_SIZE } }) => FONT_SIZE.S}px;
   font-family: ${({ theme: { FONTS } }) => FONTS.M};
   color: ${({ theme: { COLOR_THEME } }) => COLOR_THEME.TEXT_COLOR};
+  cursor: pointer;
 `
 
 const Profile = styled.div`

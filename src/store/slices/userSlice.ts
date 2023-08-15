@@ -15,13 +15,6 @@ const userSlice = createSlice({
   name: 'user',
   initialState,
   reducers: {
-    logOut: () => {
-      return {
-        user: null,
-        loading: false,
-        error: '',
-      }
-    },
     resetError: (state) => {
       return {
         ...state,
@@ -65,4 +58,4 @@ const userSlice = createSlice({
 })
 
 export default userSlice.reducer
-export const { logOut } = userSlice.actions
+export const { resetError } = userSlice.actions

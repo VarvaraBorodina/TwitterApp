@@ -4,6 +4,7 @@ import {
   GoogleAuthProvider,
   signInWithEmailAndPassword,
   signInWithPopup,
+  signOut,
 } from 'firebase/auth'
 import {
   collection,
@@ -102,4 +103,9 @@ const logInWithGoogle = createAsyncThunk('user/logInWithGoogle', async () => {
   return user
 })
 
-export { logInWithEmail, logInWithGoogle, logInWithPhoneNumber, signUp }
+const logOut = createAsyncThunk('user/logOut', async () => {
+  await signOut(auth)
+  return null
+})
+
+export { logInWithEmail, logInWithGoogle, logInWithPhoneNumber, logOut, signUp }
