@@ -87,6 +87,11 @@ const FileName = styled.div`
   }
 `
 
+const Error = styled.p`
+  font-size: ${({ theme: { FONT_SIZE } }) => FONT_SIZE.S}px;
+  font-family: ${({ theme: { FONTS } }) => FONTS.S};
+`
+
 export {
   Button,
   Buttons,
@@ -97,4 +102,5 @@ export {
   ImgButton,
   Input,
   Uploader,
+  Error,
 }
