@@ -7,6 +7,7 @@ import logo from '/img/logo.png'
 import { logInWithEmail, logInWithPhoneNumber } from '@/api/auth'
 import { ALT, ROUTES_NAMES, TEXT } from '@/constants'
 import { useTypedDispatch, useTypedSelector } from '@/hooks'
+import { resetError } from '@/store/slices/userSlice'
 
 import Loader from '../Loader'
 import { loginSchema } from './schema'
@@ -40,6 +41,10 @@ const LogInForm: React.FC = () => {
     }
   }
 
+  const resetApiError = () => {
+    dispatch(resetError())
+  }
+
   return loading ? (
     <Loader />
   ) : (
@@ -52,12 +57,14 @@ const LogInForm: React.FC = () => {
         placeholder={TEXT.LOGIN_PLACEHOLDER}
         {...register('login')}
         type="text"
+        onChange={resetApiError}
       />
       <Error>{errors.password?.message || error}</Error>
       <Input
         placeholder={TEXT.PASSWORD_PLACEHOLDER}
         {...register('password')}
         type="password"
+        onChange={resetApiError}
       />
       <Button>{TEXT.LOGIN}</Button>
       <SignUp to={ROUTES_NAMES.SIGNUP}>{TEXT.SIGN_UP}</SignUp>
