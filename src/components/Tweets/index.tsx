@@ -1,5 +1,12 @@
+import TweetForm from '../TweetForm'
+
 const Tweets = () => {
-  return <div>Tweets</div>
+  return (
+    <div>
+      <TweetForm />
+      Tweets
+    </div>
+  )
 }
 
 export default Tweets

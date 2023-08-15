@@ -20,6 +20,7 @@ const Container = styled.div`
 `
 
 const Content = styled.div`
+  min-width: ${({ theme: { SIZES } }) => SIZES.MIN_MODAL_WIDTH}px;
   padding: ${({ theme: { SPACES } }) => SPACES.M}px;
   border-radius: 12px;
   border: solid ${({ theme: { SPACES } }) => SPACES.XS}px
@@ -27,6 +28,7 @@ const Content = styled.div`
   background-color: ${({ theme: { COLOR_THEME } }) => COLOR_THEME.MAIN_COLOR};
   cursor: auto;
   @media (max-width: ${BREAKPOINTS.L}px) {
+    min-width: 0px;
     padding: ${({ theme: { SPACES } }) => SPACES.XS}px;
   }
 `

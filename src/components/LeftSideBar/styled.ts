@@ -44,9 +44,8 @@ const LinkName = styled.p<{ $isCurrent: boolean }>`
 `
 
 const Button = styled.button`
-  width: ${({ theme: { SIZES } }) => SIZES.DROPDOWN}px;
-  max-width: ${({ theme: { SIZES } }) => SIZES.MAX_INPUT_WIDTH}%;
-  height: ${({ theme: { SIZES } }) => SIZES.HOME_PAGE_BUTTON_HEIGHT}px;
+  width: ${({ theme: { SIZES } }) => SIZES.BUTTON_WIDTH}px;
+  height: ${({ theme: { SIZES } }) => SIZES.BUTTON_HEIGHT}px;
   margin-top: ${({ theme: { SPACES } }) => SPACES.M}px;
   margin-bottom: ${({ theme: { SPACES } }) => SPACES.XL}px;
   font-size: ${({ theme: { FONT_SIZE } }) => FONT_SIZE.S}px;
