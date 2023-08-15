@@ -22,6 +22,7 @@ type UserDataToSignUp = {
 type ToggleShowProps = {
   toggle?: () => void
   show: boolean
+  showModal?: () => void
 }
 
 export { Gender }

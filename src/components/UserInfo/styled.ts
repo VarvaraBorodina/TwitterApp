@@ -3,12 +3,18 @@ import styled from 'styled-components'
 import { BREAKPOINTS } from '@/constants'
 
 const Container = styled.div`
+  position: relative;
   width: 100%;
   border-left: solid ${({ theme: { SIZES } }) => SIZES.PROFILE_BORDER}px
     ${({ theme: { COLORS } }) => COLORS.BORDER};
   border-right: solid ${({ theme: { SIZES } }) => SIZES.PROFILE_BORDER}px
     ${({ theme: { COLORS } }) => COLORS.BORDER};
+  border-bottom: solid ${({ theme: { SIZES } }) => SIZES.PROFILE_BORDER}px
+    ${({ theme: { COLORS } }) => COLORS.BORDER};
   padding-bottom: ${({ theme: { SPACES } }) => SPACES.XL}px;
+  @media (max-width: ${BREAKPOINTS.L}px) {
+    border: none;
+  }
 `
 const Name = styled.h6`
   margin-left: ${({ theme: { SPACES } }) => SPACES.M}px;
@@ -37,8 +43,8 @@ const UserImg = styled.img`
 `
 
 const UserData = styled.div`
-  position: relative;
-  top: -150px;
+  position: absolute;
+  bottom: ${({ theme: { SIZES } }) => SIZES.LOGO_WIDTH}px;
   width: ${({ theme: { SIZES } }) => SIZES.DROPDOWN}px;
 `
 

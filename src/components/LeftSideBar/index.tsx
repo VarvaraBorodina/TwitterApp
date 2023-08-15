@@ -22,7 +22,7 @@ import {
   UserName,
 } from './styled'
 
-const LeftSideBar = ({ toggle, show }: ToggleShowProps) => {
+const LeftSideBar = ({ toggle, show, showModal }: ToggleShowProps) => {
   const { pathname } = useLocation()
   const user: User | null = useTypedSelector(({ user }) => user.user)
   const dispatch = useTypedDispatch()
@@ -37,6 +37,15 @@ const LeftSideBar = ({ toggle, show }: ToggleShowProps) => {
   }
 
   const handleClose = () => {
+    if (toggle) {
+      toggle()
+    }
+  }
+
+  const handleAddTweet = () => {
+    if (showModal) {
+      showModal()
+    }
     if (toggle) {
       toggle()
     }
@@ -58,7 +67,9 @@ const LeftSideBar = ({ toggle, show }: ToggleShowProps) => {
           })}
         </Pages>
 
-        <AccentButton>{TEXT.TWEET_BUTTON}</AccentButton>
+        <AccentButton onClick={handleAddTweet}>
+          {TEXT.TWEET_BUTTON}
+        </AccentButton>
         <UserInfo>
           <Img src={userImg} alt={ALT.USER} />
           <UserName>{`${user?.name} ${user?.lastName}`}</UserName>

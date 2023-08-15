@@ -40,6 +40,7 @@ export const SIZES = {
   BUTTON_HEIGHT: 45,
   TOP_SHIFT: 30,
   SEARCH_WIDTH: 200,
+  MIN_MODAL_WIDTH: 600,
 }
 
 export const FONT_SIZE = {
