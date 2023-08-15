@@ -1,12 +1,14 @@
 import { useState } from 'react'
 
 import userImg from '/img/userImg.png'
+import { addPost } from '@/api/posts'
 import { ALT, ICONS, TEXT } from '@/constants'
 
 import {
   Button,
   Buttons,
   Container,
+  Error,
   FileName,
   Form,
   Img,
@@ -16,8 +18,9 @@ import {
 } from './styled'
 
 const TweetForm = ({ handleTweet }: { handleTweet?: () => void }) => {
-  const [fileName, setFileName] = useState('')
+  const [file, setFile] = useState<File | null>(null)
   const [content, setContent] = useState('')
+  const [error, setError] = useState('')
 
   const handleAddFile = () => {
     document.getElementById('file-input')?.click()
@@ -26,7 +29,7 @@ const TweetForm = ({ handleTweet }: { handleTweet?: () => void }) => {
   const handleChooseFile = ({
     target: { files },
   }: React.ChangeEvent<HTMLInputElement>) => {
-    setFileName(files ? files[0].name : '')
+    setFile(files ? files[0] : null)
   }
 
   const handleContentChange = ({
@@ -36,7 +39,15 @@ const TweetForm = ({ handleTweet }: { handleTweet?: () => void }) => {
   }
 
   const handleSubmit = () => {
-    console.log(content)
+    try {
+      addPost(file, content).then(() => {
+        setContent('')
+        setFile(null)
+      })
+    } catch (error) {
+      setError((error as unknown as Error).message)
+    }
+
     if (handleTweet) {
       handleTweet()
     }
@@ -46,7 +57,12 @@ const TweetForm = ({ handleTweet }: { handleTweet?: () => void }) => {
     <Container>
       <Img src={userImg} alt={ALT.USER} />
       <Form>
-        <Input placeholder="What's happening" onChange={handleContentChange} />
+        <Input
+          placeholder="What's happening"
+          onChange={handleContentChange}
+          value={content}
+        />
+        <Error>{error}</Error>
         <Buttons>
           <Uploader>
             <input
@@ -59,7 +75,7 @@ const TweetForm = ({ handleTweet }: { handleTweet?: () => void }) => {
             <ImgButton onClick={handleAddFile} type="button">
               {ICONS.file}
             </ImgButton>
-            <FileName>{fileName}</FileName>
+            <FileName>{file?.name}</FileName>
           </Uploader>
           <Button onClick={handleSubmit}>{TEXT.TWEET_BUTTON}</Button>
         </Buttons>

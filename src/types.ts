@@ -14,6 +14,15 @@ interface User {
   dateOfBirth?: string
 }
 
+interface Post {
+  id: string
+  content: string
+  user: string
+  usersLiked: string[]
+  date: string
+  imgUrl?: string
+}
+
 type UserDataToSignUp = {
   user: User
   password: string
@@ -26,4 +35,4 @@ type ToggleShowProps = {
 }
 
 export { Gender }
-export type { ToggleShowProps, User, UserDataToSignUp }
+export type { Post, ToggleShowProps, User, UserDataToSignUp }
