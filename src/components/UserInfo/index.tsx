@@ -21,7 +21,11 @@ import {
 } from './styled'
 import { UserInfoProps } from './types'
 
-const UserInfo = ({ toggleShowMenu, toggleShowSearch }: UserInfoProps) => {
+const UserInfo = ({
+  toggleShowMenu,
+  toggleShowSearch,
+  tweetAmount,
+}: UserInfoProps) => {
   const user: User = useSelector(({ user }) => user.user)
   const [isModal, setIsModal] = useState<boolean>(false)
 
@@ -40,7 +44,7 @@ const UserInfo = ({ toggleShowMenu, toggleShowSearch }: UserInfoProps) => {
         <Menu onClick={toggleShowMenu}>{ICONS.menu}</Menu>
         <div>
           <Name>{`${user?.name} ${user?.lastName}`}</Name>
-          <Info>{`10 ${TEXT.TWEETS.toLowerCase()}`}</Info>
+          <Info>{`${tweetAmount} ${TEXT.TWEETS.toLowerCase()}`}</Info>
         </div>
         <Menu onClick={toggleShowSearch}>{ICONS.search}</Menu>
       </Header>

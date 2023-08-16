@@ -1,19 +1,37 @@
-import React, { useState } from 'react'
+import React, { useEffect, useState } from 'react'
 
+import { getUserTweets } from '@/api/tweets'
 import LeftSideBar from '@/components/LeftSideBar'
 import Modal from '@/components/Modal'
 import Search from '@/components/Search'
 import TweetForm from '@/components/TweetForm'
 import Tweets from '@/components/Tweets'
 import UserInfo from '@/components/UserInfo'
+import { Tweet } from '@/types'
 
-import { Container } from './styled'
+import { Container, TweetError } from './styled'
 
 const Profile: React.FC = () => {
   const [showMenu, setShowMenu] = useState<boolean>(false)
   const [showSearch, setShowSearch] = useState<boolean>(false)
 
-  const [showModal, setShowModal] = useState(false)
+  const [showAddModal, setShowAddModal] = useState(false)
+
+  const [tweets, setTweets] = useState<Tweet[]>([])
+  const [error, setError] = useState('')
+
+  const fetchTweets: () => Promise<void> = async () => {
+    try {
+      const tweetsResponse: Tweet[] = await getUserTweets()
+      setTweets(tweetsResponse)
+    } catch (error) {
+      setError((error as Error).message)
+    }
+  }
+
+  useEffect(() => {
+    fetchTweets()
+  }, [])
 
   const toggleShowMenu = () => {
     setShowMenu((prevState) => !prevState)
@@ -22,8 +40,9 @@ const Profile: React.FC = () => {
     setShowSearch((prevState) => !prevState)
   }
 
-  const toggleShowModal = () => {
-    setShowModal((prevState) => !prevState)
+  const toggleShowAddModal = () => {
+    fetchTweets()
+    setShowAddModal((prevState) => !prevState)
   }
 
   if (showMenu) {
@@ -31,7 +50,7 @@ const Profile: React.FC = () => {
       <LeftSideBar
         show={showMenu}
         toggle={toggleShowMenu}
-        showModal={toggleShowModal}
+        showModal={toggleShowAddModal}
       />
     )
   }
@@ -40,18 +59,20 @@ const Profile: React.FC = () => {
   }
   return (
     <Container>
-      {showModal && (
-        <Modal setIsActive={setShowModal}>
-          <TweetForm handleTweet={toggleShowModal} />
+      {showAddModal && (
+        <Modal setIsActive={setShowAddModal}>
+          <TweetForm handleTweet={toggleShowAddModal} />
         </Modal>
       )}
-      <LeftSideBar show={false} showModal={toggleShowModal} />
+      <LeftSideBar show={false} showModal={toggleShowAddModal} />
       <div>
         <UserInfo
           toggleShowMenu={toggleShowMenu}
           toggleShowSearch={toggleShowSearch}
+          tweetAmount={tweets.length}
         />
-        <Tweets />
+        <TweetError>{error}</TweetError>
+        <Tweets tweets={tweets} onTweetAdd={fetchTweets} />
       </div>
       <Search show={false} />
     </Container>

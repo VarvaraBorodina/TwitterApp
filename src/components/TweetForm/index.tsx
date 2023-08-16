@@ -1,8 +1,10 @@
 import { useState } from 'react'
 
 import userImg from '/img/userImg.png'
-import { addPost } from '@/api/posts'
+import { addTweet } from '@/api/tweets'
 import { ALT, ICONS, TEXT } from '@/constants'
+import { useTypedSelector } from '@/hooks'
+import { User } from '@/types'
 
 import {
   Button,
@@ -22,6 +24,8 @@ const TweetForm = ({ handleTweet }: { handleTweet?: () => void }) => {
   const [content, setContent] = useState('')
   const [error, setError] = useState('')
 
+  const user = useTypedSelector(({ user }) => user.user) as User
+
   const handleAddFile = () => {
     document.getElementById('file-input')?.click()
   }
@@ -40,16 +44,17 @@ const TweetForm = ({ handleTweet }: { handleTweet?: () => void }) => {
 
   const handleSubmit = () => {
     try {
-      addPost(file, content).then(() => {
-        setContent('')
-        setFile(null)
-      })
+      if (content) {
+        addTweet(file, content, user).then(() => {
+          setContent('')
+          setFile(null)
+          if (handleTweet) {
+            handleTweet()
+          }
+        })
+      }
     } catch (error) {
-      setError((error as unknown as Error).message)
-    }
-
-    if (handleTweet) {
-      handleTweet()
+      setError((error as Error).message)
     }
   }
 
@@ -77,7 +82,9 @@ const TweetForm = ({ handleTweet }: { handleTweet?: () => void }) => {
             </ImgButton>
             <FileName>{file?.name}</FileName>
           </Uploader>
-          <Button onClick={handleSubmit}>{TEXT.TWEET_BUTTON}</Button>
+          <Button onClick={handleSubmit} disabled={content === ''}>
+            {TEXT.TWEET_BUTTON}
+          </Button>
         </Buttons>
       </Form>
     </Container>

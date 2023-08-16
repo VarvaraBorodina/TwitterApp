@@ -17,6 +17,7 @@ export const COLORS = {
   BORDER: '#D8D8D8',
   HOME_PAGE: '#FFFFFF',
   MODAL_BACKGROUND: '#00000070',
+  LIKE_COLOR: '#EF1C5C',
 }
 
 export const SIZES = {
@@ -41,6 +42,7 @@ export const SIZES = {
   TOP_SHIFT: 30,
   SEARCH_WIDTH: 200,
   MIN_MODAL_WIDTH: 600,
+  POST_IMG_HEIGHT: 300,
 }
 
 export const FONT_SIZE = {
@@ -62,6 +64,7 @@ export const SPACES = {
 
 export const BORDER_RADIUS = {
   S: 6,
+  M: 12,
   L: 42,
 }
 

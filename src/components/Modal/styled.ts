@@ -22,7 +22,7 @@ const Container = styled.div`
 const Content = styled.div`
   min-width: ${({ theme: { SIZES } }) => SIZES.MIN_MODAL_WIDTH}px;
   padding: ${({ theme: { SPACES } }) => SPACES.M}px;
-  border-radius: 12px;
+  border-radius: ${({ theme: { BORDER_RADIUS } }) => BORDER_RADIUS.M}px;
   border: solid ${({ theme: { SPACES } }) => SPACES.XS}px
     ${({ theme: { COLORS } }) => COLORS.BORDER};
   background-color: ${({ theme: { COLOR_THEME } }) => COLOR_THEME.MAIN_COLOR};
