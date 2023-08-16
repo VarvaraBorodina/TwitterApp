@@ -1,5 +1,6 @@
 import {
   collection,
+  deleteDoc,
   doc,
   getDocs,
   orderBy,
@@ -7,7 +8,12 @@ import {
   setDoc,
   where,
 } from 'firebase/firestore'
-import { getDownloadURL, ref, uploadBytes } from 'firebase/storage'
+import {
+  deleteObject,
+  getDownloadURL,
+  ref,
+  uploadBytes,
+} from 'firebase/storage'
 
 import { auth, db, storage } from '@/api'
 import { Tweet, User } from '@/types'
@@ -69,4 +75,39 @@ const getUserTweets = async () => {
   return tweets
 }
 
-export { addTweet, getAllTweets, getUserTweets }
+const deleteTweet = async (id: string, url: string | undefined) => {
+  if (url) {
+    const desertRef = ref(storage, url)
+    await deleteObject(desertRef)
+  }
+  await deleteDoc(doc(db, 'tweets', id))
+}
+
+const toggleLike = async (id: string) => {
+  const userId = auth.currentUser?.uid
+
+  if (userId) {
+    const tweetsQuery = query(
+      collection(db, 'tweets'),
+      where('id', '==', id ?? '')
+    )
+
+    const querySnapshot = await getDocs(tweetsQuery)
+    const tweets: Tweet[] = []
+    querySnapshot.forEach((doc) => {
+      tweets.push(doc.data() as Tweet)
+    })
+
+    const { usersLiked } = tweets[0]
+    const updatedTweets = { ...tweets[0] }
+    if (usersLiked.includes(userId)) {
+      updatedTweets.usersLiked = usersLiked.filter((user) => user !== userId)
+    } else {
+      updatedTweets.usersLiked = [...usersLiked, userId]
+    }
+
+    await setDoc(doc(db, 'tweets', id), updatedTweets)
+  }
+}
+
+export { addTweet, deleteTweet, getAllTweets, getUserTweets, toggleLike }

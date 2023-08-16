@@ -2,7 +2,7 @@ import { Tweet } from '@/types'
 
 type TweetsType = {
   tweets: Tweet[]
-  onTweetAdd: () => void
+  onTweetsChange: () => void
 }
 
 export type { TweetsType }

@@ -3,12 +3,16 @@ import TweetContainer from '@/components/TweetContainer'
 import TweetForm from '../TweetForm'
 import { TweetsType } from './types'
 
-const Tweets = ({ tweets, onTweetAdd }: TweetsType) => {
+const Tweets = ({ tweets, onTweetsChange }: TweetsType) => {
   return (
     <div>
-      <TweetForm handleTweet={onTweetAdd} />
+      <TweetForm handleTweet={onTweetsChange} />
       {tweets.map((tweet) => (
-        <TweetContainer key={tweet.id} tweet={tweet} />
+        <TweetContainer
+          key={tweet.id}
+          tweet={tweet}
+          onTweetsChange={onTweetsChange}
+        />
       ))}
     </div>
   )

@@ -1,5 +1,5 @@
 import userImg from '/img/userImg.png'
-import { auth } from '@/api'
+import { deleteTweet, toggleLike } from '@/api/tweets'
 import { ALT, ICONS } from '@/constants'
 import { useTypedSelector } from '@/hooks'
 import { Tweet, User } from '@/types'
@@ -17,29 +17,51 @@ import {
   Text,
   Title,
 } from './styled'
-const TweetContainer = ({ tweet }: { tweet: Tweet }) => {
+const TweetContainer = ({
+  tweet,
+  onTweetsChange,
+}: {
+  tweet: Tweet
+  onTweetsChange: () => void
+}) => {
   const user = useTypedSelector(({ user }) => user.user) as User
+
+  const handleDelete = (tweetId: string, url: string | undefined) => () => {
+    deleteTweet(tweetId, url).then(() => {
+      onTweetsChange()
+    })
+  }
+
+  const handleToggleLike = (tweetId: string) => () => {
+    toggleLike(tweetId).then(() => {
+      onTweetsChange()
+    })
+  }
+
+  const { userName, date, imgUrl, id, usersLiked, user: tweetUser } = tweet
 
   return (
     <Container>
       <Img src={userImg} alt={ALT.USER} />
       <Content>
         <Info>
-          <Title>{tweet.userName}</Title>
-          <DateString>{new Date(tweet.date).toDateString()}</DateString>
+          <Title>{userName}</Title>
+          <DateString>{new Date(date).toDateString()}</DateString>
         </Info>
         <Text>{tweet.content}</Text>
-        {tweet.imgUrl && <PostImg src={tweet.imgUrl} alt={ALT.USER} />}
+        {imgUrl && <PostImg src={imgUrl} alt={ALT.USER} />}
         <Buttons>
-          <ImgButton>
-            {ICONS.like}
-            <Like
-              $isLiked={tweet.usersLiked.includes(auth.currentUser?.uid ?? '')}
-            >
+          <ImgButton onClick={handleToggleLike(id)}>
+            {usersLiked.includes(user.id) ? ICONS.filledLike : ICONS.like}
+            <Like $isLiked={usersLiked.includes(user.id)}>
               {tweet.usersLiked.length}
             </Like>
           </ImgButton>
-          {tweet.user === user.id && <ImgButton>{ICONS.delete}</ImgButton>}
+          {tweetUser === user.id && (
+            <ImgButton onClick={handleDelete(id, imgUrl)}>
+              {ICONS.delete}
+            </ImgButton>
+          )}
         </Buttons>
       </Content>
     </Container>
