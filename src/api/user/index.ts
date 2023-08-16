@@ -1,6 +1,13 @@
 import { createAsyncThunk } from '@reduxjs/toolkit'
 import { updatePassword } from 'firebase/auth'
-import { doc, setDoc } from 'firebase/firestore'
+import {
+  collection,
+  doc,
+  getDocs,
+  query,
+  setDoc,
+  where,
+} from 'firebase/firestore'
 
 import { auth, db } from '@/api'
 import { User } from '@/types'
@@ -17,4 +24,24 @@ const changePassword = async (password: string) => {
   }
 }
 
-export { changePassword, changeUser }
+const searchUsers = async (search: string) => {
+  const end = search.replace(/.$/, (c) =>
+    String.fromCharCode(c.charCodeAt(0) + 1)
+  )
+
+  const usersQuery = query(
+    collection(db, 'users'),
+    where('name', '>=', search),
+    where('name', '<', end)
+  )
+
+  const querySnapshot = await getDocs(usersQuery)
+  const users: User[] = []
+  querySnapshot.forEach((doc) => {
+    users.push(doc.data() as User)
+  })
+
+  return users
+}
+
+export { changePassword, changeUser, searchUsers }
