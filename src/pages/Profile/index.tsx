@@ -72,7 +72,7 @@ const Profile: React.FC = () => {
           tweetAmount={tweets.length}
         />
         <TweetError>{error}</TweetError>
-        <Tweets tweets={tweets} onTweetAdd={fetchTweets} />
+        <Tweets tweets={tweets} onTweetsChange={fetchTweets} />
       </div>
       <Search show={false} />
     </Container>
