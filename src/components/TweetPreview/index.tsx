@@ -1,6 +1,6 @@
 import { useState } from 'react'
 
-import { deleteTweet, toggleLike } from '@/api/tweets'
+import { useTypedSelector } from '@/hooks'
 import { Tweet } from '@/types'
 
 import Modal from '../Modal'
@@ -8,51 +8,36 @@ import TweetContainer from '../TweetContainer'
 import { Author, Post } from './styles'
 import { PreviewType } from './types'
 
-const TweetPreview = ({ item, onTweetsChange }: PreviewType<Tweet>) => {
-  const { userName, content } = item
+const TweetPreview = ({ item, clearQuery }: PreviewType<Tweet>) => {
   const [isTweetOpen, setIsTweetOpen] = useState<boolean>(false)
-  const [tweet, setTweet] = useState<Tweet | null>(item)
+  const tweet =
+    useTypedSelector(({ tweets }) =>
+      tweets.tweets.find(({ id: tweetId }) => tweetId === item.id)
+    ) ?? item
 
   const handleOnTweet = () => {
-    if (onTweetsChange) {
-      onTweetsChange()
-    }
     setIsTweetOpen(true)
   }
 
   const handleDelete = () => {
-    deleteTweet(item.id, item.imgUrl).then(() => {
-      if (onTweetsChange) {
-        onTweetsChange()
-      }
-      console.log('deleted')
-      setTweet(null)
-      setIsTweetOpen(false)
-    })
-  }
-
-  const handleToggleLike = () => {
-    toggleLike(item.id).then((updatedTweet) => {
-      setTweet(updatedTweet)
-      if (onTweetsChange) {
-        onTweetsChange()
-      }
-    })
+    setIsTweetOpen(false)
+    clearQuery()
   }
 
   if (!tweet) {
+    if (isTweetOpen) {
+      setIsTweetOpen(false)
+    }
     return null
   }
+
+  const { userName, content } = tweet
 
   return (
     <>
       {isTweetOpen && (
         <Modal setIsActive={setIsTweetOpen}>
-          <TweetContainer
-            tweet={tweet}
-            onDelete={handleDelete}
-            onLike={handleToggleLike}
-          />
+          <TweetContainer tweet={tweet} afterDelete={handleDelete} />
         </Modal>
       )}
       <Post onClick={handleOnTweet}>

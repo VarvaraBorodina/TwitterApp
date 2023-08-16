@@ -3,14 +3,13 @@ import { useState } from 'react'
 import userImg from '/img/userImg.png'
 import { addTweet } from '@/api/tweets'
 import { ALT, ICONS, TEXT } from '@/constants'
-import { useTypedSelector } from '@/hooks'
+import { useTypedDispatch, useTypedSelector } from '@/hooks'
 import { User } from '@/types'
 
 import {
   Button,
   Buttons,
   Container,
-  Error,
   FileName,
   Form,
   Img,
@@ -19,12 +18,12 @@ import {
   Uploader,
 } from './styled'
 
-const TweetForm = ({ handleTweet }: { handleTweet?: () => void }) => {
+const TweetForm = ({ handleAddedTweet }: { handleAddedTweet?: () => void }) => {
   const [file, setFile] = useState<File | null>(null)
   const [content, setContent] = useState('')
-  const [error, setError] = useState('')
 
   const user = useTypedSelector(({ user }) => user.user) as User
+  const dispatch = useTypedDispatch()
 
   const handleAddFile = () => {
     document.getElementById('file-input')?.click()
@@ -42,19 +41,12 @@ const TweetForm = ({ handleTweet }: { handleTweet?: () => void }) => {
     setContent(value)
   }
 
-  const handleSubmit = () => {
-    try {
-      if (content) {
-        addTweet(file, content, user).then(() => {
-          setContent('')
-          setFile(null)
-          if (handleTweet) {
-            handleTweet()
-          }
-        })
-      }
-    } catch (error) {
-      setError((error as Error).message)
+  const handleSubmit = async () => {
+    await dispatch(addTweet({ file, content, user }))
+    setContent('')
+    setFile(null)
+    if (handleAddedTweet) {
+      handleAddedTweet()
     }
   }
 
@@ -67,7 +59,6 @@ const TweetForm = ({ handleTweet }: { handleTweet?: () => void }) => {
           onChange={handleContentChange}
           value={content}
         />
-        <Error>{error}</Error>
         <Buttons>
           <Uploader>
             <input

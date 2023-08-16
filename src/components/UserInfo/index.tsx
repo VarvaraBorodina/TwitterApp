@@ -5,6 +5,7 @@ import wallpaper from '/img/wallpaper.png'
 import EditForm from '@/components/EditForm'
 import Modal from '@/components/Modal'
 import { ALT, ICONS, TEXT } from '@/constants'
+import { useTypedSelector } from '@/hooks'
 import { User } from '@/types'
 import { getAge } from '@/utils'
 
@@ -14,20 +15,16 @@ import {
   Header,
   Img,
   Info,
-  Menu,
   Name,
   Profile,
   UserData,
 } from './styled'
-import { UserInfoProps } from './types'
 
-const UserInfo = ({
-  toggleShowMenu,
-  toggleShowSearch,
-  tweetAmount,
-}: UserInfoProps) => {
+const UserInfo = () => {
   const user: User = useSelector(({ user }) => user.user)
   const [isModal, setIsModal] = useState<boolean>(false)
+
+  const tweetAmount = useTypedSelector(({ tweets }) => tweets.tweets.length)
 
   const handleEdit = () => {
     setIsModal(true)
@@ -41,12 +38,8 @@ const UserInfo = ({
         </Modal>
       )}
       <Header>
-        <Menu onClick={toggleShowMenu}>{ICONS.menu}</Menu>
-        <div>
-          <Name>{`${user?.name} ${user?.lastName}`}</Name>
-          <Info>{`${tweetAmount} ${TEXT.TWEETS.toLowerCase()}`}</Info>
-        </div>
-        <Menu onClick={toggleShowSearch}>{ICONS.search}</Menu>
+        <Name>{`${user?.name} ${user?.lastName}`}</Name>
+        <Info>{`${tweetAmount} ${TEXT.TWEETS.toLowerCase()}`}</Info>
       </Header>
       <Img src={wallpaper} alt={ALT.COVER} />
       <Profile>

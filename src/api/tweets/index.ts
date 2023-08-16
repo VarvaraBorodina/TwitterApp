@@ -1,3 +1,4 @@
+import { createAsyncThunk } from '@reduxjs/toolkit'
 import {
   collection,
   deleteDoc,
@@ -16,100 +17,106 @@ import {
 } from 'firebase/storage'
 
 import { auth, db, storage } from '@/api'
-import { Tweet, User } from '@/types'
+import { Tweet } from '@/types'
 
-const addTweet = async (file: File | null, content: string, user: User) => {
-  if (auth.currentUser) {
-    let path = ''
+import { tweetData, tweetDataToDelete } from '../types'
 
-    if (file) {
-      const storageRef = ref(
-        storage,
-        `images/${new Date().getTime()}${file?.name}`
-      )
+const addTweet = createAsyncThunk(
+  'tweets/addTweet',
+  async ({ file, content, user }: tweetData) => {
+    try {
+      let path = ''
 
-      const snapshot = await uploadBytes(storageRef, file as Blob)
-      path = await getDownloadURL(snapshot.ref)
+      if (file) {
+        const storageRef = ref(
+          storage,
+          `images/${new Date().getTime()}${file?.name}`
+        )
+
+        const snapshot = await uploadBytes(storageRef, file as Blob)
+        path = await getDownloadURL(snapshot.ref)
+      }
+
+      const tweet: Tweet = {
+        id: new Date().getTime().toString(),
+        content,
+        user: user.id,
+        userName: `${user.name} ${user.lastName}`,
+        usersLiked: [],
+        date: new Date().getTime(),
+        imgUrl: path ?? undefined,
+      }
+
+      await setDoc(doc(db, 'tweets', tweet.id), tweet)
+      return tweet
+    } catch (error) {
+      throw new Error('Unable to add post')
     }
+  }
+)
 
-    const tweet: Tweet = {
-      id: new Date().getTime().toString(),
-      content,
-      user: user.id,
-      userName: `${user.name} ${user.lastName}`,
-      usersLiked: [],
-      date: new Date().getTime(),
-      imgUrl: path ?? undefined,
+const getAllTweets = createAsyncThunk('tweets/getAllTweets', async () => {
+  try {
+    const tweetsQuery = query(collection(db, 'tweets'), orderBy('date', 'desc'))
+
+    const querySnapshot = await getDocs(tweetsQuery)
+    const tweets: Tweet[] = []
+    querySnapshot.forEach((doc) => {
+      tweets.push(doc.data() as Tweet)
+    })
+    return tweets
+  } catch (error) {
+    throw Error('Unable to get tweets')
+  }
+})
+
+const deleteTweet = createAsyncThunk(
+  'tweets/deleteTweet',
+  async ({ id, url }: tweetDataToDelete) => {
+    try {
+      if (url) {
+        const desertRef = ref(storage, url)
+        await deleteObject(desertRef)
+      }
+      await deleteDoc(doc(db, 'tweets', id))
+      return id
+    } catch (error) {
+      throw Error('Unable to delete tweet')
     }
-
-    await setDoc(doc(db, 'tweets', tweet.id), tweet)
-    return tweet
   }
-  return null
-}
+)
 
-const getAllTweets = async () => {
-  const tweetsQuery = query(collection(db, 'tweets'))
+const toggleLike = createAsyncThunk('tweets/toggleLike', async (id: string) => {
+  try {
+    const userId = auth.currentUser?.uid
+    const tweetsQuery = query(
+      collection(db, 'tweets'),
+      where('id', '==', id ?? '')
+    )
 
-  const querySnapshot = await getDocs(tweetsQuery)
-  const tweets: Tweet[] = []
-  querySnapshot.forEach((doc) => {
-    tweets.push(doc.data() as Tweet)
-  })
-  return tweets
-}
+    const querySnapshot = await getDocs(tweetsQuery)
+    const tweets: Tweet[] = []
+    querySnapshot.forEach((doc) => {
+      tweets.push(doc.data() as Tweet)
+    })
 
-const getUserTweets = async () => {
-  const id = auth.currentUser?.uid
-  const tweetsQuery = query(
-    collection(db, 'tweets'),
-    where('user', '==', id ?? ''),
-    orderBy('date', 'desc')
-  )
+    const { usersLiked } = tweets[0]
+    const updatedTweet: Tweet = { ...tweets[0] }
 
-  const querySnapshot = await getDocs(tweetsQuery)
-  const tweets: Tweet[] = []
-  querySnapshot.forEach((doc) => {
-    tweets.push(doc.data() as Tweet)
-  })
-  return tweets
-}
+    if (userId) {
+      if (usersLiked.includes(userId)) {
+        updatedTweet.usersLiked = usersLiked.filter((user) => user !== userId)
+      } else {
+        updatedTweet.usersLiked = [...usersLiked, userId]
+      }
 
-const deleteTweet = async (id: string, url: string | undefined) => {
-  if (url) {
-    const desertRef = ref(storage, url)
-    await deleteObject(desertRef)
-  }
-  await deleteDoc(doc(db, 'tweets', id))
-}
-
-const toggleLike = async (id: string) => {
-  const userId = auth.currentUser?.uid
-  const tweetsQuery = query(
-    collection(db, 'tweets'),
-    where('id', '==', id ?? '')
-  )
-
-  const querySnapshot = await getDocs(tweetsQuery)
-  const tweets: Tweet[] = []
-  querySnapshot.forEach((doc) => {
-    tweets.push(doc.data() as Tweet)
-  })
-
-  const { usersLiked } = tweets[0]
-  const updatedTweets = { ...tweets[0] }
-
-  if (userId) {
-    if (usersLiked.includes(userId)) {
-      updatedTweets.usersLiked = usersLiked.filter((user) => user !== userId)
-    } else {
-      updatedTweets.usersLiked = [...usersLiked, userId]
+      await setDoc(doc(db, 'tweets', id), updatedTweet)
     }
-
-    await setDoc(doc(db, 'tweets', id), updatedTweets)
+    return updatedTweet
+  } catch (error) {
+    throw Error('Unable to like tweet')
   }
-  return updatedTweets
-}
+})
 
 const searchTweet = async (search: string) => {
   const end = search.replace(/.$/, (c) =>
@@ -131,11 +138,4 @@ const searchTweet = async (search: string) => {
   return tweets
 }
 
-export {
-  addTweet,
-  deleteTweet,
-  getAllTweets,
-  getUserTweets,
-  searchTweet,
-  toggleLike,
-}
+export { addTweet, deleteTweet, getAllTweets, searchTweet, toggleLike }

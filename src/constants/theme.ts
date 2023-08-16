@@ -43,6 +43,7 @@ export const SIZES = {
   SEARCH_WIDTH: 200,
   MIN_MODAL_WIDTH: 600,
   POST_IMG_HEIGHT: 300,
+  HEADER_WIDTH: 870,
 }
 
 export const FONT_SIZE = {

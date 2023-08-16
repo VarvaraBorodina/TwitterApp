@@ -1,6 +1,6 @@
-type PreviewType<T> = {
+type PreviewType<T extends { id: string }> = {
   item: T
-  onTweetsChange?: () => Promise<void>
+  clearQuery: () => void
 }
 
 export type { PreviewType }

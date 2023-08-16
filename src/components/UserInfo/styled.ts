@@ -67,23 +67,8 @@ const Profile = styled.div`
   text-align: right;
 `
 const Header = styled.div`
-  display: flex;
-  align-items: center;
   @media (max-width: ${BREAKPOINTS.L}px) {
     justify-content: space-between;
-  }
-`
-
-const Menu = styled.button`
-  width: ${({ theme: { SIZES } }) => SIZES.TOP_SHIFT}px;
-  height: ${({ theme: { SIZES } }) => SIZES.TOP_SHIFT}px;
-  margin-left: ${({ theme: { SPACES } }) => SPACES.S}px;
-  margin-right: ${({ theme: { SPACES } }) => SPACES.S}px;
-  background: ${({ theme: { COLOR_THEME } }) => COLOR_THEME.MAIN_COLOR};
-  border: none;
-  display: none;
-  @media (max-width: ${BREAKPOINTS.L}px) {
-    display: block;
   }
 `
 
@@ -93,7 +78,6 @@ export {
   Header,
   Img,
   Info,
-  Menu,
   Name,
   Profile,
   UserData,

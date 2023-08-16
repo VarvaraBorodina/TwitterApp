@@ -1,4 +1,4 @@
-// eslint-disable-next-line simple-import-sort/imports
+import { createAsyncThunk } from '@reduxjs/toolkit'
 import {
   createUserWithEmailAndPassword,
   GoogleAuthProvider,
@@ -17,9 +17,8 @@ import {
 } from 'firebase/firestore'
 
 import { auth, db } from '@/api'
-import { User, UserDataToSignUp } from '@/types'
-import { createAsyncThunk } from '@reduxjs/toolkit'
 import { TEXT } from '@/constants'
+import { User, UserDataToSignUp } from '@/types'
 
 const signUp = createAsyncThunk(
   'user/signUp',

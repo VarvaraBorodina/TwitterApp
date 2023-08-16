@@ -66,7 +66,6 @@ const Text = styled.p`
 `
 
 const PostImg = styled.img`
-  max-height: ${({ theme: { SIZES } }) => SIZES.POST_IMG_HEIGHT}px;
   max-width: ${({ theme: { SIZES } }) => SIZES.POST_IMG_HEIGHT}px;
   border-radius: ${({ theme: { BORDER_RADIUS } }) => BORDER_RADIUS.M}px;
   margin: 0 auto;
