@@ -1,10 +1,11 @@
 import React, { useEffect } from 'react'
 import { useNavigate } from 'react-router-dom'
 
-import { getAllTweets, searchTweet } from '@/api/tweets'
+import { getAllTweets } from '@/api/tweets'
+import { searchUsers } from '@/api/user'
 import Layout from '@/components/Layout'
-import TweetPreview from '@/components/TweetPreview'
 import Tweets from '@/components/Tweets'
+import UserPreview from '@/components/UserPreview'
 import { ROUTES_NAMES } from '@/constants'
 import { useTypedDispatch, useTypedSelector } from '@/hooks'
 import { User } from '@/types'
@@ -28,7 +29,7 @@ const Profile: React.FC = () => {
   }, [])
 
   return (
-    <Layout getSearchData={searchTweet} renderSearchItem={TweetPreview}>
+    <Layout getSearchData={searchUsers} renderSearchItem={UserPreview}>
       <>
         <Header>
           <Title>Home</Title>

@@ -58,4 +58,11 @@ const ImgButton = styled.button`
   }
 `
 
-export { Container, ImgButton, Input, InputContainer, Posts }
+const Message = styled.p`
+  text-align: center;
+  margin-top: ${({ theme: { SPACES } }) => SPACES.L}px;
+  font-size: ${({ theme: { FONT_SIZE } }) => FONT_SIZE.S}px;
+  font-family: ${({ theme: { FONTS } }) => FONTS.S};
+`
+
+export { Container, ImgButton, Input, InputContainer, Message, Posts }

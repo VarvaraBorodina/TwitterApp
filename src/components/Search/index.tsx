@@ -1,7 +1,14 @@
 import { ICONS, TEXT } from '@/constants'
 import useSearch from '@/hooks/useSearch'
 
-import { Container, ImgButton, Input, InputContainer, Posts } from './styled'
+import {
+  Container,
+  ImgButton,
+  Input,
+  InputContainer,
+  Message,
+  Posts,
+} from './styled'
 import { SearchType } from './types'
 
 const Search = <T extends { id: string }>(props: SearchType<T>) => {
@@ -25,11 +32,15 @@ const Search = <T extends { id: string }>(props: SearchType<T>) => {
           onChange={handleQueryChange}
         />
       </InputContainer>
-      <Posts>
-        {items.map((item) => (
-          <SearchItem item={item} key={item.id} clearQuery={clearQuery} />
-        ))}
-      </Posts>
+      {items.length === 0 && query !== '' ? (
+        <Message>Nothing found</Message>
+      ) : (
+        <Posts>
+          {items.map((item) => (
+            <SearchItem item={item} key={item.id} clearQuery={clearQuery} />
+          ))}
+        </Posts>
+      )}
     </Container>
   )
 }
