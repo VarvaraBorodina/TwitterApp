@@ -1,4 +1,4 @@
-import { User } from '@/types'
+import { Tweet, User } from '@/types'
 
 type UserSliceType = {
   user: User | null
@@ -6,4 +6,10 @@ type UserSliceType = {
   error: string
 }
 
-export type { UserSliceType }
+type TweetsSliceType = {
+  tweets: Tweet[]
+  loading: boolean
+  error: string
+}
+
+export type { TweetsSliceType, UserSliceType }

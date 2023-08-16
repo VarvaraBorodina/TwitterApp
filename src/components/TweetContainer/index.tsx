@@ -1,8 +1,7 @@
 import userImg from '/img/userImg.png'
-import { deleteTweet, toggleLike } from '@/api/tweets'
 import { ALT, ICONS } from '@/constants'
 import { useTypedSelector } from '@/hooks'
-import { Tweet, User } from '@/types'
+import { User } from '@/types'
 
 import {
   Buttons,
@@ -17,28 +16,11 @@ import {
   Text,
   Title,
 } from './styled'
-const TweetContainer = ({
-  tweet,
-  onTweetsChange,
-}: {
-  tweet: Tweet
-  onTweetsChange: () => void
-}) => {
+import { TweetContainerType } from './types'
+const TweetContainer = ({ tweet, onDelete, onLike }: TweetContainerType) => {
   const user = useTypedSelector(({ user }) => user.user) as User
 
-  const handleDelete = (tweetId: string, url: string | undefined) => () => {
-    deleteTweet(tweetId, url).then(() => {
-      onTweetsChange()
-    })
-  }
-
-  const handleToggleLike = (tweetId: string) => () => {
-    toggleLike(tweetId).then(() => {
-      onTweetsChange()
-    })
-  }
-
-  const { userName, date, imgUrl, id, usersLiked, user: tweetUser } = tweet
+  const { userName, date, imgUrl, usersLiked, user: tweetUser } = tweet
 
   return (
     <Container>
@@ -51,16 +33,14 @@ const TweetContainer = ({
         <Text>{tweet.content}</Text>
         {imgUrl && <PostImg src={imgUrl} alt={ALT.USER} />}
         <Buttons>
-          <ImgButton onClick={handleToggleLike(id)}>
+          <ImgButton onClick={onLike}>
             {usersLiked.includes(user.id) ? ICONS.filledLike : ICONS.like}
             <Like $isLiked={usersLiked.includes(user.id)}>
               {tweet.usersLiked.length}
             </Like>
           </ImgButton>
           {tweetUser === user.id && (
-            <ImgButton onClick={handleDelete(id, imgUrl)}>
-              {ICONS.delete}
-            </ImgButton>
+            <ImgButton onClick={onDelete}>{ICONS.delete}</ImgButton>
           )}
         </Buttons>
       </Content>
