@@ -1,40 +1,38 @@
 import { ICONS, TEXT } from '@/constants'
-import { ToggleShowProps } from '@/types'
+import useSearch from '@/hooks/useSearch'
 
-import {
-  Author,
-  Container,
-  ImgButton,
-  Input,
-  InputContainer,
-  Post,
-  Posts,
-} from './styled'
+import { Container, ImgButton, Input, InputContainer, Posts } from './styled'
+import { SearchType } from './types'
 
-const Search = ({ toggle, show }: ToggleShowProps) => {
+const Search = <T extends { id: string }>(props: SearchType<T>) => {
+  const { SearchItem, show, toggle, getData, onTweetsChange } = props
+  const { query, items, handleQueryChange } = useSearch<T>(getData)
+
   const handleClose = () => {
     if (toggle) {
       toggle()
     }
   }
+
   return (
     <Container $show={show}>
       <ImgButton onClick={handleClose}>{ICONS.close}</ImgButton>
       <InputContainer>
         {ICONS.search}
-        <Input placeholder={TEXT.SEARCH_TWEET} />
+        <Input
+          placeholder={TEXT.SEARCH_TWEET}
+          value={query}
+          onChange={handleQueryChange}
+        />
       </InputContainer>
       <Posts>
-        <Post>
-          <Author>Varvara Bor</Author>
-          Twitterdagi ayol erkak qarama qarshilig inglardan ozinglar zerikm
-          adinglarmi?
-        </Post>
-
-        <Post>
-          <Author>Daria Bor</Author>
-          Rama qarshili gingla rdan ozinglar zerikmad inglarmi?
-        </Post>
+        {items.map((item) => (
+          <SearchItem
+            item={item}
+            key={item.id}
+            onTweetsChange={onTweetsChange}
+          />
+        ))}
       </Posts>
     </Container>
   )

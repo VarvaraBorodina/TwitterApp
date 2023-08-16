@@ -1,10 +1,11 @@
 import React, { useEffect, useState } from 'react'
 
-import { getUserTweets } from '@/api/tweets'
+import { getUserTweets, searchTweet } from '@/api/tweets'
 import LeftSideBar from '@/components/LeftSideBar'
 import Modal from '@/components/Modal'
 import Search from '@/components/Search'
 import TweetForm from '@/components/TweetForm'
+import TweetPreview from '@/components/TweetPreview'
 import Tweets from '@/components/Tweets'
 import UserInfo from '@/components/UserInfo'
 import { Tweet } from '@/types'
@@ -55,8 +56,17 @@ const Profile: React.FC = () => {
     )
   }
   if (showSearch) {
-    return <Search show={showSearch} toggle={toggleShowSearch} />
+    return (
+      <Search
+        show={showSearch}
+        toggle={toggleShowSearch}
+        getData={searchTweet}
+        SearchItem={TweetPreview}
+        onTweetsChange={fetchTweets}
+      />
+    )
   }
+
   return (
     <Container>
       {showAddModal && (
@@ -74,7 +84,13 @@ const Profile: React.FC = () => {
         <TweetError>{error}</TweetError>
         <Tweets tweets={tweets} onTweetsChange={fetchTweets} />
       </div>
-      <Search show={false} />
+      <Search
+        show={showSearch}
+        toggle={toggleShowSearch}
+        getData={searchTweet}
+        SearchItem={TweetPreview}
+        onTweetsChange={fetchTweets}
+      />
     </Container>
   )
 }

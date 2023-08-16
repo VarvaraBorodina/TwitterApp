@@ -85,21 +85,21 @@ const deleteTweet = async (id: string, url: string | undefined) => {
 
 const toggleLike = async (id: string) => {
   const userId = auth.currentUser?.uid
+  const tweetsQuery = query(
+    collection(db, 'tweets'),
+    where('id', '==', id ?? '')
+  )
+
+  const querySnapshot = await getDocs(tweetsQuery)
+  const tweets: Tweet[] = []
+  querySnapshot.forEach((doc) => {
+    tweets.push(doc.data() as Tweet)
+  })
+
+  const { usersLiked } = tweets[0]
+  const updatedTweets = { ...tweets[0] }
 
   if (userId) {
-    const tweetsQuery = query(
-      collection(db, 'tweets'),
-      where('id', '==', id ?? '')
-    )
-
-    const querySnapshot = await getDocs(tweetsQuery)
-    const tweets: Tweet[] = []
-    querySnapshot.forEach((doc) => {
-      tweets.push(doc.data() as Tweet)
-    })
-
-    const { usersLiked } = tweets[0]
-    const updatedTweets = { ...tweets[0] }
     if (usersLiked.includes(userId)) {
       updatedTweets.usersLiked = usersLiked.filter((user) => user !== userId)
     } else {
@@ -108,6 +108,34 @@ const toggleLike = async (id: string) => {
 
     await setDoc(doc(db, 'tweets', id), updatedTweets)
   }
+  return updatedTweets
 }
 
-export { addTweet, deleteTweet, getAllTweets, getUserTweets, toggleLike }
+const searchTweet = async (search: string) => {
+  const end = search.replace(/.$/, (c) =>
+    String.fromCharCode(c.charCodeAt(0) + 1)
+  )
+
+  const tweetsQuery = query(
+    collection(db, 'tweets'),
+    where('content', '>=', search),
+    where('content', '<', end)
+  )
+
+  const querySnapshot = await getDocs(tweetsQuery)
+  const tweets: Tweet[] = []
+  querySnapshot.forEach((doc) => {
+    tweets.push(doc.data() as Tweet)
+  })
+
+  return tweets
+}
+
+export {
+  addTweet,
+  deleteTweet,
+  getAllTweets,
+  getUserTweets,
+  searchTweet,
+  toggleLike,
+}

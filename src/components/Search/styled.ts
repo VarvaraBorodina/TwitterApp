@@ -46,18 +46,6 @@ const Posts = styled.li`
   }
 `
 
-const Post = styled.ul`
-  width: 100%;
-  margin-bottom: ${({ theme: { SPACES } }) => SPACES.L}px;
-  font-size: ${({ theme: { FONT_SIZE } }) => FONT_SIZE.S}px;
-  font-family: ${({ theme: { FONTS } }) => FONTS.S};
-`
-
-const Author = styled.p`
-  font-size: ${({ theme: { FONT_SIZE } }) => FONT_SIZE.S}px;
-  font-family: ${({ theme: { FONTS } }) => FONTS.XL};
-`
-
 const ImgButton = styled.button`
   width: 100%;
   border: none;
@@ -70,4 +58,4 @@ const ImgButton = styled.button`
   }
 `
 
-export { Author, Container, ImgButton, Input, InputContainer, Post, Posts }
+export { Container, ImgButton, Input, InputContainer, Posts }
