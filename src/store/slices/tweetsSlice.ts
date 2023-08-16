@@ -1,7 +1,7 @@
 import { createSlice, PayloadAction } from '@reduxjs/toolkit'
 
-import { ERRORS } from '@/constants'
-import { User } from '@/types'
+import { addTweet, deleteTweet, getAllTweets, toggleLike } from '@/api/tweets'
+import { Tweet } from '@/types'
 
 import { TweetsSliceType } from './types'
 
@@ -25,6 +25,52 @@ const userSlice = createSlice({
 
   extraReducers: (builder) => {
     builder
+      .addCase(
+        getAllTweets.fulfilled,
+        (state, { payload }: PayloadAction<Tweet[]>) => {
+          return {
+            error: '',
+            loading: false,
+            tweets: payload,
+          }
+        }
+      )
+      .addCase(
+        addTweet.fulfilled,
+        (state, { payload }: PayloadAction<Tweet>) => {
+          return {
+            error: '',
+            loading: false,
+            tweets: [payload, ...state.tweets],
+          }
+        }
+      )
+      .addCase(
+        deleteTweet.fulfilled,
+        ({ tweets }, { payload }: PayloadAction<string>) => {
+          return {
+            error: '',
+            loading: false,
+            tweets: tweets.filter(({ id }) => id !== payload),
+          }
+        }
+      )
+      .addCase(
+        toggleLike.fulfilled,
+        ({ tweets }, { payload }: PayloadAction<Tweet>) => {
+          const tweetIndex = tweets.findIndex(({ id }) => id === payload.id)
+
+          const updatedTweets = [...tweets]
+          updatedTweets[tweetIndex] = payload
+
+          return {
+            error: '',
+            loading: false,
+            tweets: updatedTweets,
+          }
+        }
+      )
+
       .addMatcher(
         (action) => action.type.endsWith('/pending'),
         (state) => {
@@ -35,22 +81,12 @@ const userSlice = createSlice({
         }
       )
       .addMatcher(
-        (action) => action.type.endsWith('/fulfilled'),
-        (state, action: PayloadAction<User>) => {
-          return {
-            loading: false,
-            user: action.payload,
-            error: '',
-          }
-        }
-      )
-      .addMatcher(
         (action) => action.type.endsWith('/rejected'),
         (state, action) => {
           return {
             loading: false,
-            user: null,
-            error: ERRORS[action.error.message] ?? action.error.message,
+            tweets: [],
+            error: action.error.message,
           }
         }
       )

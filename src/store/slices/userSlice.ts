@@ -26,7 +26,8 @@ const userSlice = createSlice({
   extraReducers: (builder) => {
     builder
       .addMatcher(
-        (action) => action.type.endsWith('/pending'),
+        (action) =>
+          action.type.endsWith('/pending') && action.type.startsWith('user'),
         (state) => {
           return {
             ...state,
@@ -35,7 +36,8 @@ const userSlice = createSlice({
         }
       )
       .addMatcher(
-        (action) => action.type.endsWith('/fulfilled'),
+        (action) =>
+          action.type.endsWith('/fulfilled') && action.type.startsWith('user'),
         (state, action: PayloadAction<User>) => {
           return {
             loading: false,
@@ -45,7 +47,8 @@ const userSlice = createSlice({
         }
       )
       .addMatcher(
-        (action) => action.type.endsWith('/rejected'),
+        (action) =>
+          action.type.endsWith('/rejected') && action.type.startsWith('user'),
         (state, action) => {
           return {
             loading: false,

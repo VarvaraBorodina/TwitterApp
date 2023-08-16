@@ -5,8 +5,8 @@ import { Container, ImgButton, Input, InputContainer, Posts } from './styled'
 import { SearchType } from './types'
 
 const Search = <T extends { id: string }>(props: SearchType<T>) => {
-  const { SearchItem, show, toggle, getData, onTweetsChange } = props
-  const { query, items, handleQueryChange } = useSearch<T>(getData)
+  const { SearchItem, show, toggle, getData } = props
+  const { query, items, handleQueryChange, clearQuery } = useSearch<T>(getData)
 
   const handleClose = () => {
     if (toggle) {
@@ -27,11 +27,7 @@ const Search = <T extends { id: string }>(props: SearchType<T>) => {
       </InputContainer>
       <Posts>
         {items.map((item) => (
-          <SearchItem
-            item={item}
-            key={item.id}
-            onTweetsChange={onTweetsChange}
-          />
+          <SearchItem item={item} key={item.id} clearQuery={clearQuery} />
         ))}
       </Posts>
     </Container>

@@ -1,97 +1,41 @@
-import React, { useEffect, useState } from 'react'
+import React, { useEffect } from 'react'
+import { useNavigate } from 'react-router-dom'
 
-import { getUserTweets, searchTweet } from '@/api/tweets'
-import LeftSideBar from '@/components/LeftSideBar'
-import Modal from '@/components/Modal'
-import Search from '@/components/Search'
-import TweetForm from '@/components/TweetForm'
+import { getAllTweets, searchTweet } from '@/api/tweets'
+import Layout from '@/components/Layout'
 import TweetPreview from '@/components/TweetPreview'
 import Tweets from '@/components/Tweets'
 import UserInfo from '@/components/UserInfo'
-import { Tweet } from '@/types'
+import { ROUTES_NAMES } from '@/constants'
+import { useTypedDispatch, useTypedSelector } from '@/hooks'
+import { User } from '@/types'
 
-import { Container, TweetError } from './styled'
+import { TweetError } from './styled'
 
 const Profile: React.FC = () => {
-  const [showMenu, setShowMenu] = useState<boolean>(false)
-  const [showSearch, setShowSearch] = useState<boolean>(false)
-
-  const [showAddModal, setShowAddModal] = useState(false)
-
-  const [tweets, setTweets] = useState<Tweet[]>([])
-  const [error, setError] = useState('')
-
-  const fetchTweets: () => Promise<void> = async () => {
-    try {
-      const tweetsResponse: Tweet[] = await getUserTweets()
-      setTweets(tweetsResponse)
-    } catch (error) {
-      setError((error as Error).message)
-    }
-  }
+  const user = useTypedSelector(({ user }) => user.user) as User
+  const navigate = useNavigate()
+  const tweets = useTypedSelector(({ tweets }) =>
+    tweets.tweets.filter((tweet) => tweet.user === user?.id)
+  )
+  const error = useTypedSelector(({ tweets }) => tweets.error)
+  const dispath = useTypedDispatch()
 
   useEffect(() => {
-    fetchTweets()
+    dispath(getAllTweets())
+    if (!user) {
+      navigate(ROUTES_NAMES.HOME)
+    }
   }, [])
 
-  const toggleShowMenu = () => {
-    setShowMenu((prevState) => !prevState)
-  }
-  const toggleShowSearch = () => {
-    setShowSearch((prevState) => !prevState)
-  }
-
-  const toggleShowAddModal = () => {
-    fetchTweets()
-    setShowAddModal((prevState) => !prevState)
-  }
-
-  if (showMenu) {
-    return (
-      <LeftSideBar
-        show={showMenu}
-        toggle={toggleShowMenu}
-        showModal={toggleShowAddModal}
-      />
-    )
-  }
-  if (showSearch) {
-    return (
-      <Search
-        show={showSearch}
-        toggle={toggleShowSearch}
-        getData={searchTweet}
-        SearchItem={TweetPreview}
-        onTweetsChange={fetchTweets}
-      />
-    )
-  }
-
   return (
-    <Container>
-      {showAddModal && (
-        <Modal setIsActive={setShowAddModal}>
-          <TweetForm handleTweet={toggleShowAddModal} />
-        </Modal>
-      )}
-      <LeftSideBar show={false} showModal={toggleShowAddModal} />
-      <div>
-        <UserInfo
-          toggleShowMenu={toggleShowMenu}
-          toggleShowSearch={toggleShowSearch}
-          tweetAmount={tweets.length}
-        />
-        <TweetError>{error}</TweetError>
-        <Tweets tweets={tweets} onTweetsChange={fetchTweets} />
-      </div>
-      <Search
-        show={showSearch}
-        toggle={toggleShowSearch}
-        getData={searchTweet}
-        SearchItem={TweetPreview}
-        onTweetsChange={fetchTweets}
-      />
-    </Container>
+    <Layout getSearchData={searchTweet} renderSearchItem={TweetPreview}>
+      <>
+        {error && <TweetError>{error}</TweetError>}
+        <UserInfo />
+        <Tweets tweets={tweets} />
+      </>
+    </Layout>
   )
 }
 
