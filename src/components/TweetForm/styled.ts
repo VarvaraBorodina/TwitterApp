@@ -96,11 +96,11 @@ export {
   Button,
   Buttons,
   Container,
+  Error,
   FileName,
   Form,
   Img,
   ImgButton,
   Input,
   Uploader,
-  Error,
 }

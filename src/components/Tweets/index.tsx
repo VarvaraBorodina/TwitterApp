@@ -1,10 +1,15 @@
-import TweetForm from '../TweetForm'
+import TweetContainer from '@/components/TweetContainer'
 
-const Tweets = () => {
+import TweetForm from '../TweetForm'
+import { TweetsType } from './types'
+
+const Tweets = ({ tweets, onTweetAdd }: TweetsType) => {
   return (
     <div>
-      <TweetForm />
-      Tweets
+      <TweetForm handleTweet={onTweetAdd} />
+      {tweets.map((tweet) => (
+        <TweetContainer key={tweet.id} tweet={tweet} />
+      ))}
     </div>
   )
 }

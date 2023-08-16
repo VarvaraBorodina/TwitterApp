@@ -14,12 +14,13 @@ interface User {
   dateOfBirth?: string
 }
 
-interface Post {
+interface Tweet {
   id: string
   content: string
   user: string
+  userName: string
   usersLiked: string[]
-  date: string
+  date: number
   imgUrl?: string
 }
 
@@ -35,4 +36,4 @@ type ToggleShowProps = {
 }
 
 export { Gender }
-export type { Post, ToggleShowProps, User, UserDataToSignUp }
+export type { ToggleShowProps, Tweet, User, UserDataToSignUp }
