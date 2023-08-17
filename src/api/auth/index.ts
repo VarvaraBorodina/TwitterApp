@@ -19,6 +19,7 @@ import {
 import { auth, db } from '@/api'
 import { TEXT } from '@/constants'
 import { User, UserDataToSignUp } from '@/types'
+import { clearLocalStorage } from '@/utils/localStorage'
 
 const signUp = createAsyncThunk(
   'user/signUp',
@@ -103,6 +104,7 @@ const logInWithGoogle = createAsyncThunk('user/logInWithGoogle', async () => {
 })
 
 const logOut = createAsyncThunk('user/logOut', async () => {
+  clearLocalStorage()
   await signOut(auth)
   return null
 })

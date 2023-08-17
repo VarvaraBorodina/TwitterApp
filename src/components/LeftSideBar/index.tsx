@@ -5,6 +5,7 @@ import userImg from '/img/userImg.png'
 import { logOut } from '@/api/auth'
 import { ALT, ICONS, PAGES, ROUTES_NAMES, TEXT } from '@/constants'
 import { useTypedDispatch, useTypedSelector } from '@/hooks'
+import { resetTheme } from '@/store/slices/themeSlice'
 import { ToggleShowProps, User } from '@/types'
 
 import {
@@ -33,6 +34,7 @@ const LeftSideBar = ({ toggle, show, showModal }: ToggleShowProps) => {
       toggle()
     }
     dispatch(logOut())
+    dispatch(resetTheme())
     navigate(ROUTES_NAMES.HOME)
   }
 

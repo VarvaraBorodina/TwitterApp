@@ -1,3 +1,5 @@
+import { useState } from 'react'
+
 import userImg from '/img/userImg.png'
 import { deleteTweet, toggleLike } from '@/api/tweets'
 import { ALT, ICONS } from '@/constants'
@@ -26,11 +28,24 @@ const TweetContainer = ({
   tweet: Tweet
   afterDelete?: () => void
 }) => {
+  const {
+    userName,
+    date,
+    imgUrl,
+    usersLiked,
+    user: tweetUser,
+    id,
+    content,
+  } = tweet
+
   const user = useTypedSelector(({ user }) => user.user) as User
   const dispatch = useTypedDispatch()
+  const [isLiked, setIsLiked] = useState(usersLiked.includes(user.id))
+  const [likeAmount, setLikeAmount] = useState(usersLiked.length)
 
-  const { userName, date, imgUrl, usersLiked, user: tweetUser, id } = tweet
   const onLike = () => {
+    setIsLiked((prevState) => !prevState)
+    setLikeAmount((prevState) => (isLiked ? prevState - 1 : prevState + 1))
     dispatch(toggleLike(id))
   }
   const onDelete = () => {
@@ -48,15 +63,13 @@ const TweetContainer = ({
           <Title>{userName}</Title>
           <DateString>{new Date(date).toDateString()}</DateString>
         </Info>
-        <Text>{tweet.content}</Text>
+        <Text>{content}</Text>
         {imgUrl && <PostImg src={imgUrl} alt={ALT.USER} />}
         <Buttons>
           <ImgButton onClick={onLike}>
-            <LikeIcon $isLiked={usersLiked.includes(user.id)}>
-              {usersLiked.includes(user.id) ? ICONS.filledLike : ICONS.like}
-              <Like $isLiked={usersLiked.includes(user.id)}>
-                {tweet.usersLiked.length}
-              </Like>
+            <LikeIcon $isLiked={isLiked}>
+              {isLiked ? ICONS.filledLike : ICONS.like}
+              <Like $isLiked={isLiked}>{likeAmount}</Like>
             </LikeIcon>
           </ImgButton>
           {tweetUser === user.id && (
