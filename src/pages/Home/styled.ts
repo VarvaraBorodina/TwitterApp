@@ -5,6 +5,7 @@ import { BREAKPOINTS } from '@/constants'
 
 const Container = styled.div`
   width: 100vw;
+  min-height: 100vh;
   display: flex;
   align-items: center;
   background: ${({ theme: { COLORS } }) => COLORS.HOME_PAGE};
@@ -62,7 +63,7 @@ const Button = styled.button`
   margin-bottom: ${({ theme: { SPACES } }) => SPACES.M}px;
   background-color: ${({ theme: { COLORS } }) => COLORS.HOME_PAGE};
   border: solid ${({ theme: { SIZES } }) => SIZES.BORDER}px
-    ${({ theme: { COLORS } }) => COLORS.BORDER};
+    ${({ theme: { COLOR_THEME } }) => COLOR_THEME.BORDER};
   border-radius: ${({ theme: { BORDER_RADIUS } }) => BORDER_RADIUS.L}px;
   font-size: ${({ theme: { FONT_SIZE } }) => FONT_SIZE.M}px;
   font-family: ${({ theme: { FONTS } }) => FONTS.M};

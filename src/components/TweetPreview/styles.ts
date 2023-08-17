@@ -1,16 +1,19 @@
 import styled from 'styled-components'
 
 const Post = styled.ul`
-  width: 100%;
+  margin: 0 auto;
+  width: ${({ theme: { SIZES } }) => SIZES.SEARCH_WIDTH}px;
   margin-bottom: ${({ theme: { SPACES } }) => SPACES.L}px;
   font-size: ${({ theme: { FONT_SIZE } }) => FONT_SIZE.S}px;
   font-family: ${({ theme: { FONTS } }) => FONTS.S};
+  color: ${({ theme: { COLOR_THEME } }) => COLOR_THEME.TEXT_COLOR};
   cursor: pointer;
 `
 
 const Author = styled.p`
   font-size: ${({ theme: { FONT_SIZE } }) => FONT_SIZE.S}px;
   font-family: ${({ theme: { FONTS } }) => FONTS.XL};
+  color: ${({ theme: { COLOR_THEME } }) => COLOR_THEME.LIGHT_TEXT};
 `
 
 export { Author, Post }

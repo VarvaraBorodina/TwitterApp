@@ -22,6 +22,11 @@ const Input = styled.textarea`
   height: ${({ theme: { SIZES } }) => SIZES.DROPDOWN_HEIGHT}px;
   font-size: ${({ theme: { FONT_SIZE } }) => FONT_SIZE.M}px;
   font-family: ${({ theme: { FONTS } }) => FONTS.S};
+  background-color: ${({ theme: { COLOR_THEME } }) => COLOR_THEME.MAIN_COLOR};
+  color: ${({ theme: { COLOR_THEME } }) => COLOR_THEME.TEXT_COLOR};
+  &::placeholder {
+    color: ${({ theme: { COLOR_THEME } }) => COLOR_THEME.LIGHT_TEXT};
+  }
   border: none;
   resize: none;
   outline: none;
@@ -39,10 +44,6 @@ const Buttons = styled.div`
   display: flex;
   justify-content: space-between;
   align-items: center;
-  @media (max-width: ${BREAKPOINTS.L}px) {
-    align-items: start;
-    flex-direction: column;
-  }
 `
 
 const Button = styled.button`
@@ -56,6 +57,14 @@ const Button = styled.button`
   border: none;
   border-radius: ${({ theme: { BORDER_RADIUS } }) => BORDER_RADIUS.L}px;
   cursor: pointer;
+  transition: background-color 0.5s;
+  transition: width 0.5s;
+  &:hover {
+    transition: background-color 0.5s;
+    transition: width 0.5s;
+    background-color: ${({ theme: { COLOR_THEME } }) => COLOR_THEME.TEXT_COLOR};
+    width: ${({ theme: { SIZES } }) => SIZES.BUTTON_HOVER}px;
+  }
   @media (max-width: ${BREAKPOINTS.L}px) {
     font-size: ${({ theme: { FONT_SIZE } }) => FONT_SIZE.S}px;
     width: ${({ theme: { SIZES } }) => SIZES.MAX_INPUT_WIDTH}px;

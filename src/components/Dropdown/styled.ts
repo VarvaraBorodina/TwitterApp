@@ -20,7 +20,7 @@ const Input = styled.div`
   height: ${({ theme: { SIZES } }) => SIZES.INPUT_HEIGHT}px;
 
   border: solid ${({ theme: { SIZES } }) => SIZES.BORDER}px
-    ${({ theme: { COLORS } }) => COLORS.BORDER};
+    ${({ theme: { COLOR_THEME } }) => COLOR_THEME.BORDER};
   border-radius: ${({ theme: { BORDER_RADIUS } }) => BORDER_RADIUS.S}px;
   cursor: pointer;
 `
@@ -48,7 +48,7 @@ const OptionContainer = styled.li`
   background-color: ${({ theme: { COLOR_THEME } }) => COLOR_THEME.MAIN_COLOR};
 
   border: solid ${({ theme: { SIZES } }) => SIZES.BORDER}px
-    ${({ theme: { COLORS } }) => COLORS.BORDER};
+    ${({ theme: { COLOR_THEME } }) => COLOR_THEME.BORDER};
   border-radius: ${({ theme: { BORDER_RADIUS } }) => BORDER_RADIUS.S}px;
   overflow-y: auto;
   z-index: 1;

@@ -28,9 +28,18 @@ const Menu = styled.button`
   background: ${({ theme: { COLOR_THEME } }) => COLOR_THEME.MAIN_COLOR};
   border: none;
   display: none;
+`
+
+const LeftMenu = styled(Menu)`
   @media (max-width: ${BREAKPOINTS.L}px) {
     display: block;
   }
 `
 
-export { Container, Header, Menu, TweetError }
+const RightMenu = styled(Menu)`
+  @media (max-width: ${BREAKPOINTS.M}px) {
+    display: block;
+  }
+`
+
+export { Container, Header, LeftMenu, RightMenu, TweetError }

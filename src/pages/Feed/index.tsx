@@ -4,6 +4,7 @@ import { useNavigate } from 'react-router-dom'
 import { getAllTweets } from '@/api/tweets'
 import { searchUsers } from '@/api/user'
 import Layout from '@/components/Layout'
+import ToggleTheme from '@/components/ThemeToggle'
 import Tweets from '@/components/Tweets'
 import UserPreview from '@/components/UserPreview'
 import { ROUTES_NAMES } from '@/constants'
@@ -33,7 +34,7 @@ const Profile: React.FC = () => {
       <>
         <Header>
           <Title>Home</Title>
-          <div>theme</div>
+          <ToggleTheme />
         </Header>
         <TweetError>{error}</TweetError>
         <Tweets tweets={tweets} />

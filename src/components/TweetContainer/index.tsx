@@ -13,6 +13,7 @@ import {
   ImgButton,
   Info,
   Like,
+  LikeIcon,
   PostImg,
   Text,
   Title,
@@ -51,10 +52,12 @@ const TweetContainer = ({
         {imgUrl && <PostImg src={imgUrl} alt={ALT.USER} />}
         <Buttons>
           <ImgButton onClick={onLike}>
-            {usersLiked.includes(user.id) ? ICONS.filledLike : ICONS.like}
-            <Like $isLiked={usersLiked.includes(user.id)}>
-              {tweet.usersLiked.length}
-            </Like>
+            <LikeIcon $isLiked={usersLiked.includes(user.id)}>
+              {usersLiked.includes(user.id) ? ICONS.filledLike : ICONS.like}
+              <Like $isLiked={usersLiked.includes(user.id)}>
+                {tweet.usersLiked.length}
+              </Like>
+            </LikeIcon>
           </ImgButton>
           {tweetUser === user.id && (
             <ImgButton onClick={onDelete}>{ICONS.delete}</ImgButton>

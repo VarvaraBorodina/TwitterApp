@@ -8,7 +8,7 @@ const Container = styled.aside<{ $show: boolean }>`
   flex-direction: column;
   align-items: center;
   width: ${({ theme: { SIZES } }) => SIZES.LEFT_SIDE_BAR}px;
-  margin: ${({ theme: { SPACES } }) => SPACES.L}px;
+  padding: ${({ theme: { SPACES } }) => SPACES.L}px;
   @media (max-width: ${BREAKPOINTS.L}px) {
     width: 100%;
     margin-left: 0px;
@@ -33,6 +33,12 @@ const PageLink = styled(Link)`
   display: flex;
   align-items: center;
   margin-top: ${({ theme: { SPACES } }) => SPACES.M}px;
+  path {
+    fill: ${({ theme: { COLOR_THEME } }) => COLOR_THEME.TEXT_COLOR};
+  }
+  rect {
+    fill: ${({ theme: { COLOR_THEME } }) => COLOR_THEME.TEXT_COLOR};
+  }
 `
 
 const LinkName = styled.p<{ $isCurrent: boolean }>`
@@ -55,6 +61,14 @@ const Button = styled.button`
   border: none;
   border-radius: ${({ theme: { BORDER_RADIUS } }) => BORDER_RADIUS.L}px;
   cursor: pointer;
+  transition: background-color 0.5s;
+  transition: width 0.5s;
+  &:hover {
+    transition: background-color 0.5s;
+    transition: width 0.5s;
+    background-color: ${({ theme: { COLOR_THEME } }) => COLOR_THEME.TEXT_COLOR};
+    width: ${({ theme: { SIZES } }) => SIZES.BUTTON_HOVER}px;
+  }
 `
 
 const AccentButton = styled(Button)`

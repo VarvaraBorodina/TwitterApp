@@ -11,23 +11,29 @@ import {
   OPACITIES,
   SIZES,
   SPACES,
+  Theme,
   Z_INDEX,
 } from '@/constants/theme'
+import { useTypedSelector } from '@/hooks'
 
 const GlobalThemProvider: React.FC<{ children: JSX.Element }> = ({
   children,
 }) => {
+  const colorTheme: Theme = useTypedSelector((state) => {
+    return state.theme.theme
+  })
+
   const theme = {
     COLORS,
-    COLOR_THEME: COLOR_THEMES['LIGHT'],
+    COLOR_THEME: COLOR_THEMES[colorTheme],
     FONT_SIZE,
     FONT_WEIGHT,
+    OPACITIES,
     BORDER_RADIUS,
     SIZES,
     SPACES,
     FONTS,
     Z_INDEX,
-    OPACITIES,
   }
 
   return <ThemeProvider theme={theme}>{children}</ThemeProvider>
