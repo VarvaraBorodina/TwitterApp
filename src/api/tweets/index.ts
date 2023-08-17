@@ -17,9 +17,8 @@ import {
 } from 'firebase/storage'
 
 import { auth, db, storage } from '@/api'
+import { tweetData, tweetDataToDelete } from '@/api/types'
 import { Tweet } from '@/types'
-
-import { tweetData, tweetDataToDelete } from '../types'
 
 const addTweet = createAsyncThunk(
   'tweets/addTweet',

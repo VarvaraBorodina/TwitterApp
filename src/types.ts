@@ -35,5 +35,7 @@ type ToggleShowProps = {
   showModal?: () => void
 }
 
+type Searchable = User | Tweet
+
 export { Gender }
-export type { ToggleShowProps, Tweet, User, UserDataToSignUp }
+export type { Searchable, ToggleShowProps, Tweet, User, UserDataToSignUp }

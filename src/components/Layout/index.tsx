@@ -1,19 +1,16 @@
 import { useState } from 'react'
+import React from 'react'
 
+import TweetForm from '@/components/forms/TweetForm'
 import LeftSideBar from '@/components/LeftSideBar'
 import Modal from '@/components/Modal'
 import Search from '@/components/Search'
-import TweetForm from '@/components/forms/TweetForm'
 import { ICONS } from '@/constants'
 
 import { Container, Header, LeftMenu, RightMenu } from './styled'
 import { LayoutType } from './types'
 
-const Layout = <T extends { id: string }>({
-  getSearchData,
-  renderSearchItem,
-  children,
-}: LayoutType<T>) => {
+const Layout = ({ getSearchData, renderSearchItem, children }: LayoutType) => {
   const [showMenu, setShowMenu] = useState<boolean>(false)
   const [showSearch, setShowSearch] = useState<boolean>(false)
   const [showAddModal, setShowAddModal] = useState(false)
@@ -74,9 +71,4 @@ const Layout = <T extends { id: string }>({
   )
 }
 
-/*
-<TweetError>{error}</TweetError>
-        <Tweets tweets={tweets} onTweetsChange={fetchTweets} />
-*/
-
-export default Layout
+export default React.memo(Layout)

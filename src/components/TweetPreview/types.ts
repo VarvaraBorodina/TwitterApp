@@ -1,5 +1,5 @@
-type PreviewType<T extends { id: string }> = {
-  item: T
+type PreviewType<Searchable> = {
+  item: Searchable
   clearQuery: () => void
 }
 

@@ -1,3 +1,4 @@
+import React from 'react'
 import { useSelector } from 'react-redux'
 
 import TweetForm from '@/components/forms/TweetForm'
@@ -21,4 +22,4 @@ const Tweets = ({ tweets }: { tweets: Tweet[] }) => {
   )
 }
 
-export default Tweets
+export default React.memo(Tweets)

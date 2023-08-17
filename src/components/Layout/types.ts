@@ -1,8 +1,9 @@
 import { PreviewType } from '@/components/TweetPreview/types'
+import { Searchable } from '@/types'
 
-type LayoutType<T extends { id: string }> = {
-  getSearchData: (query: string) => Promise<T[]>
-  renderSearchItem: React.FC<PreviewType<T>>
+type LayoutType = {
+  getSearchData: (query: string) => Promise<Searchable[]>
+  renderSearchItem: (props: PreviewType<Searchable>) => JSX.Element
   children: JSX.Element
 }
 
