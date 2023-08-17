@@ -4,6 +4,7 @@ import styled from 'styled-components'
 import { BREAKPOINTS } from '@/constants'
 
 const Container = styled.aside<{ $show: boolean }>`
+  position: relative;
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -67,12 +68,12 @@ const Button = styled.button`
   border: none;
   border-radius: ${({ theme: { BORDER_RADIUS } }) => BORDER_RADIUS.L}px;
   cursor: pointer;
-  transition: background-color 0.5s;
+  transition: opacity 0.5s;
   transition: width 0.5s;
   &:hover {
-    transition: background-color 0.5s;
+    transition: opacity 0.5s;
     transition: width 0.5s;
-    background-color: ${({ theme: { COLORS } }) => COLORS.LIKE_COLOR};
+    opacity: ${({ theme: { OPACITIES } }) => OPACITIES.L};
     width: ${({ theme: { SIZES } }) => SIZES.BUTTON_HOVER}px;
   }
 `
@@ -98,6 +99,9 @@ const UserName = styled.p`
 `
 
 const ImgButton = styled.button`
+  position: absolute;
+  top: ${({ theme: { SPACES } }) => SPACES.M}px;
+  right: ${({ theme: { SPACES } }) => SPACES.M}px;
   border: none;
   background-color: ${({ theme: { COLOR_THEME } }) => COLOR_THEME.MAIN_COLOR};
   display: none;

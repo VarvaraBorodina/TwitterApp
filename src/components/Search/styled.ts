@@ -3,6 +3,7 @@ import styled from 'styled-components'
 import { BREAKPOINTS } from '@/constants'
 
 const Container = styled.aside<{ $show: boolean }>`
+  position: relative;
   width: ${({ theme: { SIZES } }) => SIZES.LEFT_SIDE_BAR}px;
   padding: ${({ theme: { SPACES } }) => SPACES.M}px;
   @media (max-width: ${BREAKPOINTS.M}px) {
@@ -47,13 +48,14 @@ const Posts = styled.li`
 `
 
 const ImgButton = styled.button`
-  width: 100%;
+  position: absolute;
+  top: ${({ theme: { SPACES } }) => SPACES.M}px;
+  right: ${({ theme: { SPACES } }) => SPACES.M}px;
   border: none;
   background-color: ${({ theme: { COLOR_THEME } }) => COLOR_THEME.MAIN_COLOR};
   display: none;
   cursor: pointer;
   @media (max-width: ${BREAKPOINTS.M}px) {
-    margin-top: ${({ theme: { SPACES } }) => SPACES.L}px;
     display: block;
   }
 `

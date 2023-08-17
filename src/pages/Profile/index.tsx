@@ -8,6 +8,7 @@ import Tweets from '@/components/Tweets'
 import UserInfo from '@/components/UserInfo'
 import { ROUTES_NAMES } from '@/constants'
 import { useTypedDispatch, useTypedSelector } from '@/hooks'
+import { userTweetsSelector } from '@/store/slices/tweetsSlice'
 import { User } from '@/types'
 
 import { TweetError } from './styled'
@@ -15,9 +16,7 @@ import { TweetError } from './styled'
 const Profile: React.FC = () => {
   const user = useTypedSelector(({ user }) => user.user) as User
   const navigate = useNavigate()
-  const tweets = useTypedSelector(({ tweets }) =>
-    tweets.tweets.filter((tweet) => tweet.user === user?.id)
-  )
+  const tweets = useTypedSelector(userTweetsSelector(user.id))
   const error = useTypedSelector(({ tweets }) => tweets.error)
   const dispath = useTypedDispatch()
 

@@ -3,7 +3,7 @@ import { useState } from 'react'
 import LeftSideBar from '@/components/LeftSideBar'
 import Modal from '@/components/Modal'
 import Search from '@/components/Search'
-import TweetForm from '@/components/TweetForm'
+import TweetForm from '@/components/forms/TweetForm'
 import { ICONS } from '@/constants'
 
 import { Container, Header, LeftMenu, RightMenu } from './styled'

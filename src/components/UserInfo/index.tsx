@@ -2,10 +2,11 @@ import { useState } from 'react'
 import { useSelector } from 'react-redux'
 
 import wallpaper from '/img/wallpaper.png'
-import EditForm from '@/components/EditForm'
+import EditForm from '@/components/forms/EditForm'
 import Modal from '@/components/Modal'
 import { ALT, ICONS, TEXT } from '@/constants'
 import { useTypedSelector } from '@/hooks'
+import { tweetsAmountSelector } from '@/store/slices/tweetsSlice'
 import { User } from '@/types'
 import { getAge } from '@/utils'
 
@@ -23,10 +24,7 @@ import {
 const UserInfo = () => {
   const user: User = useSelector(({ user }) => user.user)
   const [isModal, setIsModal] = useState<boolean>(false)
-  const tweetAmount = useTypedSelector(
-    ({ tweets }) =>
-      tweets.tweets.filter((tweet) => tweet.user === user?.id).length
-  )
+  const tweetAmount = useTypedSelector(tweetsAmountSelector)
 
   const handleEdit = () => {
     setIsModal(true)

@@ -1,17 +1,21 @@
+import { useSelector } from 'react-redux'
+
+import TweetForm from '@/components/forms/TweetForm'
 import TweetContainer from '@/components/TweetContainer'
 import { Tweet } from '@/types'
 
-import TweetForm from '../TweetForm'
 import { Message } from './styled'
 
 const Tweets = ({ tweets }: { tweets: Tweet[] }) => {
+  const loading = useSelector(({ tweets }) => tweets.loading)
+
   return (
     <div>
       <TweetForm />
-      {tweets.length ? (
-        tweets.map((tweet) => <TweetContainer key={tweet.id} tweet={tweet} />)
-      ) : (
+      {!tweets.length && !loading ? (
         <Message>{`No tweet yet :(`}</Message>
+      ) : (
+        tweets.map((tweet) => <TweetContainer key={tweet.id} tweet={tweet} />)
       )}
     </div>
   )

@@ -23,6 +23,7 @@ const TEXT = {
   LOGIN_INVALID: 'Email / Phone is invalid',
   PASSWORD_LENGTH: 'Required length is 8',
   DATE_ERROR: 'Invalid date',
+  ERROR: 'Something went wrong...',
 
   EMAIL_PLACEHOLDER: 'Email',
   PHONE_PLACEHOLDER: 'Phone number',

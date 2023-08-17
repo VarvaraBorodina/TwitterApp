@@ -1,4 +1,4 @@
-import { createSlice, PayloadAction } from '@reduxjs/toolkit'
+import { createSelector, createSlice, PayloadAction } from '@reduxjs/toolkit'
 
 import { addTweet, deleteTweet, getAllTweets, toggleLike } from '@/api/tweets'
 import { Tweet } from '@/types'
@@ -92,6 +92,16 @@ const userSlice = createSlice({
       )
   },
 })
+
+export const tweetsAmountSelector = createSelector(
+  [(state) => state.tweets],
+  (tweets) => tweets.tweets.length
+)
+
+export const userTweetsSelector = (id: string) =>
+  createSelector([(state) => state.tweets], ({ tweets }) =>
+    tweets.filter((tweet: Tweet) => tweet.user === id)
+  )
 
 export default userSlice.reducer
 export const { resetError } = userSlice.actions
