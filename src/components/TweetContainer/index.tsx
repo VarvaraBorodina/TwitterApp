@@ -4,7 +4,7 @@ import userImg from '/img/userImg.png'
 import { deleteTweet, toggleLike } from '@/api/tweets'
 import { ALT, ICONS } from '@/constants'
 import { useTypedDispatch, useTypedSelector } from '@/hooks'
-import { Tweet, User } from '@/types'
+import { User } from '@/types'
 
 import {
   Buttons,
@@ -20,14 +20,9 @@ import {
   Text,
   Title,
 } from './styled'
+import { TweetContainerType } from './types'
 
-const TweetContainer = ({
-  tweet,
-  afterDelete,
-}: {
-  tweet: Tweet
-  afterDelete?: () => void
-}) => {
+const TweetContainer = ({ tweet, afterDelete }: TweetContainerType) => {
   const {
     userName,
     date,

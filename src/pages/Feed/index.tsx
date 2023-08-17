@@ -7,7 +7,7 @@ import Layout from '@/components/Layout'
 import ToggleTheme from '@/components/ThemeToggle'
 import Tweets from '@/components/Tweets'
 import UserPreview from '@/components/UserPreview'
-import { ROUTES_NAMES } from '@/constants'
+import { ROUTES_NAMES, TEXT } from '@/constants'
 import { useTypedDispatch, useTypedSelector } from '@/hooks'
 import { User } from '@/types'
 
@@ -33,7 +33,7 @@ const Profile: React.FC = () => {
     <Layout getSearchData={searchUsers} renderSearchItem={UserPreview}>
       <>
         <Header>
-          <Title>Home</Title>
+          <Title>{TEXT.HOME_PAGE_HEADER}</Title>
           <ToggleTheme />
         </Header>
         <TweetError>{error}</TweetError>

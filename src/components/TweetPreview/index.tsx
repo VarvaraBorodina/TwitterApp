@@ -1,10 +1,10 @@
 import { useState } from 'react'
 
+import Modal from '@/components/Modal'
+import TweetContainer from '@/components/TweetContainer'
 import { useTypedSelector } from '@/hooks'
 import { Searchable, Tweet } from '@/types'
 
-import Modal from '../Modal'
-import TweetContainer from '../TweetContainer'
 import { Author, Post } from './styles'
 import { PreviewType } from './types'
 

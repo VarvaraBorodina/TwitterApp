@@ -3,6 +3,7 @@ import { useSelector } from 'react-redux'
 
 import TweetForm from '@/components/forms/TweetForm'
 import TweetContainer from '@/components/TweetContainer'
+import { TEXT } from '@/constants'
 import { Tweet } from '@/types'
 
 import { Message } from './styled'
@@ -14,7 +15,7 @@ const Tweets = ({ tweets }: { tweets: Tweet[] }) => {
     <div>
       <TweetForm />
       {!tweets.length && !loading ? (
-        <Message>{`No tweet yet :(`}</Message>
+        <Message>{TEXT.NO_TWEET}</Message>
       ) : (
         tweets.map((tweet) => <TweetContainer key={tweet.id} tweet={tweet} />)
       )}

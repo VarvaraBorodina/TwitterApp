@@ -1,6 +1,6 @@
 enum ROUTES_NAMES {
-  HOME = '/',
-  FEED = '/feed',
+  HOME = '/auth',
+  FEED = '/',
   LOGIN = '/login',
   SIGNUP = '/sign-up',
   PROFILE = '/profile',

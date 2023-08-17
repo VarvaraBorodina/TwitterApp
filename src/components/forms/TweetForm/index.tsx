@@ -55,7 +55,7 @@ const TweetForm = ({ handleAddedTweet }: { handleAddedTweet?: () => void }) => {
       <Img src={userImg} alt={ALT.USER} />
       <Form>
         <Input
-          placeholder="What's happening"
+          placeholder={TEXT.TWEET_FORM_PLACEHOLDER}
           onChange={handleContentChange}
           value={content}
         />

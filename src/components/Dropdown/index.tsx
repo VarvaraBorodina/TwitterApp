@@ -1,4 +1,3 @@
-/// <reference types="vite-plugin-svgr/client" />
 import React, { useState } from 'react'
 
 import { ReactComponent as Arrow } from '@/assets/icons/arrow.svg'

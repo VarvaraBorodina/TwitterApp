@@ -20,7 +20,7 @@ class ErrorBoundary extends React.Component<ErrorProps, ErrorState> {
     const { hasError } = this.state
     const { children } = this.props
     if (hasError) {
-      return <h1 data-testid="errorboundary">{TEXT.ERROR}</h1>
+      return <h1>{TEXT.ERROR}</h1>
     }
 
     return children
