@@ -9,15 +9,13 @@ const Modal = ({ setIsActive, children }: ModalTypes) => {
   const handleOutClick = () => {
     setIsActive(false)
   }
+
+  const handleOnModalClick = (event: React.MouseEvent<HTMLElement>) =>
+    event.stopPropagation()
+
   return (
     <Container onClick={handleOutClick}>
-      <Content
-        onClick={(event: React.MouseEvent<HTMLElement>) =>
-          event.stopPropagation()
-        }
-      >
-        {children}
-      </Content>
+      <Content onClick={handleOnModalClick}>{children}</Content>
     </Container>
   )
 }

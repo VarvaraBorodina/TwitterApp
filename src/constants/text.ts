@@ -24,6 +24,10 @@ const TEXT = {
   PASSWORD_LENGTH: 'Required length is 8',
   DATE_ERROR: 'Invalid date',
   ERROR: 'Something went wrong...',
+  ADD_POST_ERROR: 'Unable to add post',
+  GET_TWEET_ERROR: 'Unable to get tweets',
+  DELETE_TWEET_ERROR: 'Unable to delete tweet',
+  LIKE_TWEET_ERROR: 'Unable to like tweet',
 
   EMAIL_PLACEHOLDER: 'Email',
   PHONE_PLACEHOLDER: 'Phone number',
@@ -33,6 +37,7 @@ const TEXT = {
   LASTNAME_PLACEHOLDER: 'Last name',
   TELEGRAM_PLACEHOLDER: 'Telegram',
   DATE_PLACEHOLDER: ['Day', 'Month', 'Year'],
+  TWEET_FORM_PLACEHOLDER: "What's happening",
 
   LOGIN_HEADER: 'Log in to Twitter',
   CREATE_ACCOUNT: 'Create an account',
@@ -45,6 +50,10 @@ const TEXT = {
   SEARCH_TWEET: 'Search Twitter',
   AGE: 'year old',
   BIRTH_TEXT: `Facilisi sem pulvinar velit nunc, gravida scelerisque amet nibh sit. Quis bibendum ante phasellus metus, magna lacinia sed augue. Odio enim nascetur leo mauris vel eget. Pretium id ullamcorper blandit viverra dignissim eget tellus. Nibh mi massa in molestie a sit. Elit congue.`,
+  LOADING: 'Loading...',
+  NOT_FOUND: 'Nothing found',
+  NO_TWEET: 'No tweet yet :(',
+  HOME_PAGE_HEADER: 'Home',
 }
 
 const ALT = {

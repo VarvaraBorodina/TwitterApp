@@ -1,4 +1,4 @@
-import { useState } from 'react'
+import { useCallback, useState } from 'react'
 import React from 'react'
 
 import TweetForm from '@/components/forms/TweetForm'
@@ -7,7 +7,7 @@ import Modal from '@/components/Modal'
 import Search from '@/components/Search'
 import { ICONS } from '@/constants'
 
-import { Container, Header, LeftMenu, RightMenu } from './styled'
+import { Container, Content, Header, LeftMenu, RightMenu } from './styled'
 import { LayoutType } from './types'
 
 const Layout = ({ getSearchData, renderSearchItem, children }: LayoutType) => {
@@ -15,16 +15,15 @@ const Layout = ({ getSearchData, renderSearchItem, children }: LayoutType) => {
   const [showSearch, setShowSearch] = useState<boolean>(false)
   const [showAddModal, setShowAddModal] = useState(false)
 
-  const toggleShowMenu = () => {
+  const toggleShowMenu = useCallback(() => {
     setShowMenu((prevState) => !prevState)
-  }
-  const toggleShowSearch = () => {
+  }, [])
+  const toggleShowSearch = useCallback(() => {
     setShowSearch((prevState) => !prevState)
-  }
-
-  const toggleShowAddModal = () => {
+  }, [])
+  const toggleShowAddModal = useCallback(() => {
     setShowAddModal((prevState) => !prevState)
-  }
+  }, [])
 
   if (showMenu) {
     return (
@@ -54,13 +53,13 @@ const Layout = ({ getSearchData, renderSearchItem, children }: LayoutType) => {
         </Modal>
       )}
       <LeftSideBar show={false} showModal={toggleShowAddModal} />
-      <div style={{ display: 'block', width: '100%' }}>
+      <Content>
         <Header>
           <LeftMenu onClick={toggleShowMenu}>{ICONS.menu}</LeftMenu>
           <RightMenu onClick={toggleShowSearch}>{ICONS.search}</RightMenu>
         </Header>
         {children}
-      </div>
+      </Content>
       <Search
         show={showSearch}
         toggle={toggleShowSearch}

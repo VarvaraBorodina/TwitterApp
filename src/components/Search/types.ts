@@ -1,8 +1,7 @@
 import React from 'react'
 
+import { PreviewType } from '@/components/TweetPreview/types'
 import { ToggleShowProps } from '@/types'
-
-import { PreviewType } from '../TweetPreview/types'
 
 interface SearchType<T extends { id: string }> extends ToggleShowProps {
   SearchItem: React.FC<PreviewType<T>>

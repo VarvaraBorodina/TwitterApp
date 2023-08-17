@@ -1,3 +1,5 @@
+import React from 'react'
+
 import { ICONS, TEXT } from '@/constants'
 import useSearch from '@/hooks/useSearch'
 
@@ -34,9 +36,9 @@ const Search = <T extends { id: string }>(props: SearchType<T>) => {
         />
       </InputContainer>
       {loading ? (
-        <Message>Loading...</Message>
+        <Message>{TEXT.LOADING}</Message>
       ) : items.length === 0 && query !== '' ? (
-        <Message>Nothing found</Message>
+        <Message>{TEXT.NOT_FOUND}</Message>
       ) : (
         <Posts>
           {items.map((item) => (
@@ -48,4 +50,4 @@ const Search = <T extends { id: string }>(props: SearchType<T>) => {
   )
 }
 
-export default Search
+export default React.memo(Search)

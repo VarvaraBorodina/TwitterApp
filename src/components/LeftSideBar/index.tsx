@@ -1,3 +1,4 @@
+import React from 'react'
 import { useLocation, useNavigate } from 'react-router-dom'
 
 import logo from '/img/logo.png'
@@ -86,4 +87,4 @@ const LeftSideBar = ({ toggle, show, showModal }: ToggleShowProps) => {
   )
 }
 
-export default LeftSideBar
+export default React.memo(LeftSideBar)

@@ -14,7 +14,7 @@ const signUpSchema = yup.object().shape({
   phone: yup
     .string()
     .required()
-    .test('email', (value) => validatePhone(value)),
+    .test('phone', (value) => validatePhone(value)),
   gender: yup.mixed<Gender>().oneOf(Object.values(Gender)).required(),
   password: yup.string().required(),
   day: yup.string().required().oneOf(DAYS),
