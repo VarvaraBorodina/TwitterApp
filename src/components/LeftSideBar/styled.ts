@@ -47,6 +47,12 @@ const LinkName = styled.p<{ $isCurrent: boolean }>`
   font-family: ${({ theme: { FONTS }, $isCurrent }) =>
     $isCurrent ? FONTS.XL : FONTS.S};
   color: ${({ theme: { COLOR_THEME } }) => COLOR_THEME.TEXT_COLOR};
+
+  transition: background-color 0.2s;
+  &:hover {
+    transition: color 0.2s;
+    color: ${({ theme: { COLORS } }) => COLORS.ACCENT};
+  }
 `
 
 const Button = styled.button`
@@ -66,7 +72,7 @@ const Button = styled.button`
   &:hover {
     transition: background-color 0.5s;
     transition: width 0.5s;
-    background-color: ${({ theme: { COLOR_THEME } }) => COLOR_THEME.TEXT_COLOR};
+    background-color: ${({ theme: { COLORS } }) => COLORS.LIKE_COLOR};
     width: ${({ theme: { SIZES } }) => SIZES.BUTTON_HOVER}px;
   }
 `

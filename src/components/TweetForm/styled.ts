@@ -62,7 +62,7 @@ const Button = styled.button`
   &:hover {
     transition: background-color 0.5s;
     transition: width 0.5s;
-    background-color: ${({ theme: { COLOR_THEME } }) => COLOR_THEME.TEXT_COLOR};
+    background-color: ${({ theme: { COLORS } }) => COLORS.LIKE_COLOR};
     width: ${({ theme: { SIZES } }) => SIZES.BUTTON_HOVER}px;
   }
   @media (max-width: ${BREAKPOINTS.L}px) {

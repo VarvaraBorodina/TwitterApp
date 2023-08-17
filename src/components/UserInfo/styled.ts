@@ -66,7 +66,9 @@ const Button = styled.button`
   &:hover {
     transition: background-color 0.5s;
     transition: width 0.5s;
-    background-color: ${({ theme: { COLOR_THEME } }) => COLOR_THEME.TEXT_COLOR};
+    background-color: ${({ theme: { COLORS } }) => COLORS.LIKE_COLOR};
+    border: solid ${({ theme: { SIZES } }) => SIZES.PROFILE_BORDER}px
+      ${({ theme: { COLORS } }) => COLORS.LIKE_COLOR};
     color: ${({ theme: { COLOR_THEME } }) => COLOR_THEME.MAIN_COLOR};
     width: ${({ theme: { SIZES } }) => SIZES.BUTTON_HOVER}px;
   }
