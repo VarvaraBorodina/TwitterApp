@@ -1,6 +1,6 @@
 import React from 'react'
 
-import LogInForm from '@/components/LogInForm'
+import LogInForm from '@/components/forms/LogInForm'
 
 import { Container } from './styled'
 

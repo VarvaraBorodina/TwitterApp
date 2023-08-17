@@ -35,8 +35,9 @@ const SignUpForm: React.FC = () => {
   const dispatch = useTypedDispatch()
   const navigate = useNavigate()
   const authError = useTypedSelector((state) => state.user.error)
-  const loading = useTypedSelector((state) => state.user.loading)
+
   const [dateError, setDateError] = useState<boolean>(false)
+  const [loading, setLoading] = useState(false)
 
   const {
     register,
@@ -85,8 +86,8 @@ const SignUpForm: React.FC = () => {
       dateOfBirth: new Date(+year, month, +day).toDateString(),
     }
 
-    dispatch(signUp({ user: user, password })).then(
-      ({ payload }) => payload && navigate(ROUTES_NAMES.PROFILE)
+    dispatch(signUp({ user: user, password })).then(({ payload }) =>
+      payload ? navigate(ROUTES_NAMES.PROFILE) : setLoading(false)
     )
   }
 

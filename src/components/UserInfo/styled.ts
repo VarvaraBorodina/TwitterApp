@@ -61,15 +61,12 @@ const Button = styled.button`
   font-family: ${({ theme: { FONTS } }) => FONTS.M};
   color: ${({ theme: { COLOR_THEME } }) => COLOR_THEME.TEXT_COLOR};
   cursor: pointer;
-  transition: background-color 0.5s;
+  transition: opacity 0.5s;
   transition: width 0.5s;
   &:hover {
-    transition: background-color 0.5s;
+    transition: opacity 0.5s;
     transition: width 0.5s;
-    background-color: ${({ theme: { COLORS } }) => COLORS.LIKE_COLOR};
-    border: solid ${({ theme: { SIZES } }) => SIZES.PROFILE_BORDER}px
-      ${({ theme: { COLORS } }) => COLORS.LIKE_COLOR};
-    color: ${({ theme: { COLOR_THEME } }) => COLOR_THEME.MAIN_COLOR};
+    opacity: ${({ theme: { OPACITIES } }) => OPACITIES.L};
     width: ${({ theme: { SIZES } }) => SIZES.BUTTON_HOVER}px;
   }
 `

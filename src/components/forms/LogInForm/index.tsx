@@ -1,15 +1,15 @@
 import { yupResolver } from '@hookform/resolvers/yup'
-import React from 'react'
+import React, { useState } from 'react'
 import { useForm } from 'react-hook-form'
 import { useNavigate } from 'react-router-dom'
 
 import logo from '/img/logo.png'
 import { logInWithEmail, logInWithPhoneNumber } from '@/api/auth'
+import Loader from '@/components/Loader'
 import { ALT, ROUTES_NAMES, TEXT } from '@/constants'
 import { useTypedDispatch, useTypedSelector } from '@/hooks'
 import { resetError } from '@/store/slices/userSlice'
 
-import Loader from '../Loader'
 import { loginSchema } from './schema'
 import { Button, Error, Form, Input, LogoImg, SignUp, SubTitle } from './styled'
 import { loginFormType } from './types'
@@ -21,7 +21,8 @@ const LogInForm: React.FC = () => {
   const dispatch = useTypedDispatch()
   const navigate = useNavigate()
   const error = useTypedSelector((state) => state.user.error)
-  const loading = useTypedSelector((state) => state.user.loading)
+
+  const [loading, setLoading] = useState(false)
 
   const {
     register,
@@ -30,13 +31,16 @@ const LogInForm: React.FC = () => {
   } = form
 
   const submit = ({ login, password }: loginFormType) => {
+    setLoading(true)
     if (login.includes('@')) {
       dispatch(logInWithEmail({ email: login, password })).then(
-        ({ payload }) => payload && navigate(ROUTES_NAMES.PROFILE)
+        ({ payload }) =>
+          payload ? navigate(ROUTES_NAMES.PROFILE) : setLoading(false)
       )
     } else {
       dispatch(logInWithPhoneNumber({ phone: login, password })).then(
-        ({ payload }) => payload && navigate(ROUTES_NAMES.PROFILE)
+        ({ payload }) =>
+          payload ? navigate(ROUTES_NAMES.PROFILE) : setLoading(false)
       )
     }
   }

@@ -57,12 +57,12 @@ const Button = styled.button`
   border: none;
   border-radius: ${({ theme: { BORDER_RADIUS } }) => BORDER_RADIUS.L}px;
   cursor: pointer;
-  transition: background-color 0.5s;
+  transition: opacity 0.5s;
   transition: width 0.5s;
   &:hover {
-    transition: background-color 0.5s;
+    transition: opacity 0.5s;
     transition: width 0.5s;
-    background-color: ${({ theme: { COLORS } }) => COLORS.LIKE_COLOR};
+    opacity: ${({ theme: { OPACITIES } }) => OPACITIES.L};
     width: ${({ theme: { SIZES } }) => SIZES.BUTTON_HOVER}px;
   }
   @media (max-width: ${BREAKPOINTS.L}px) {

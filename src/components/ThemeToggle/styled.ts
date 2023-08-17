@@ -6,6 +6,7 @@ const Ellipse = styled.div<{ $isLeft: boolean }>`
   height: ${({ theme: { SIZES } }) => SIZES.TOGGLE_HEIGHT}px;
   background: ${({ theme: { COLOR_THEME } }) => COLOR_THEME.BORDER};
   border-radius: ${({ theme: { SIZES } }) => SIZES.TOGGLE_WIDHT}px;
+  transition: transform 0.5s;
 
   &:before {
     content: '';
