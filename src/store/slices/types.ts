@@ -1,4 +1,9 @@
+import { Theme } from '@/constants/theme'
 import { Tweet, User } from '@/types'
+
+type ThemeSliceType = {
+  theme: Theme
+}
 
 type UserSliceType = {
   user: User | null
@@ -12,4 +17,4 @@ type TweetsSliceType = {
   error: string
 }
 
-export type { TweetsSliceType, UserSliceType }
+export type { ThemeSliceType, TweetsSliceType, UserSliceType }

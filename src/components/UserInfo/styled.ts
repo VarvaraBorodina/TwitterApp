@@ -6,11 +6,11 @@ const Container = styled.div`
   position: relative;
   width: 100%;
   border-left: solid ${({ theme: { SIZES } }) => SIZES.PROFILE_BORDER}px
-    ${({ theme: { COLORS } }) => COLORS.BORDER};
+    ${({ theme: { COLOR_THEME } }) => COLOR_THEME.BORDER};
   border-right: solid ${({ theme: { SIZES } }) => SIZES.PROFILE_BORDER}px
-    ${({ theme: { COLORS } }) => COLORS.BORDER};
+    ${({ theme: { COLOR_THEME } }) => COLOR_THEME.BORDER};
   border-bottom: solid ${({ theme: { SIZES } }) => SIZES.PROFILE_BORDER}px
-    ${({ theme: { COLORS } }) => COLORS.BORDER};
+    ${({ theme: { COLOR_THEME } }) => COLOR_THEME.BORDER};
   padding-bottom: ${({ theme: { SPACES } }) => SPACES.XL}px;
   @media (max-width: ${BREAKPOINTS.L}px) {
     border: none;
@@ -55,12 +55,21 @@ const Button = styled.button`
   margin-top: ${({ theme: { SPACES } }) => SPACES.M}px;
   background: ${({ theme: { COLOR_THEME } }) => COLOR_THEME.MAIN_COLOR};
   border: solid ${({ theme: { SIZES } }) => SIZES.PROFILE_BORDER}px
-    ${({ theme: { COLORS } }) => COLORS.BORDER};
+    ${({ theme: { COLOR_THEME } }) => COLOR_THEME.BORDER};
   border-radius: ${({ theme: { BORDER_RADIUS } }) => BORDER_RADIUS.L}px;
   font-size: ${({ theme: { FONT_SIZE } }) => FONT_SIZE.S}px;
   font-family: ${({ theme: { FONTS } }) => FONTS.M};
   color: ${({ theme: { COLOR_THEME } }) => COLOR_THEME.TEXT_COLOR};
   cursor: pointer;
+  transition: background-color 0.5s;
+  transition: width 0.5s;
+  &:hover {
+    transition: background-color 0.5s;
+    transition: width 0.5s;
+    background-color: ${({ theme: { COLOR_THEME } }) => COLOR_THEME.TEXT_COLOR};
+    color: ${({ theme: { COLOR_THEME } }) => COLOR_THEME.MAIN_COLOR};
+    width: ${({ theme: { SIZES } }) => SIZES.BUTTON_HOVER}px;
+  }
 `
 
 const Profile = styled.div`

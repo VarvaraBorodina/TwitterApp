@@ -4,9 +4,9 @@ import { BREAKPOINTS } from '@/constants'
 
 const Container = styled.div`
   display: flex;
-  max-width: ${({ theme: { SIZES } }) => SIZES.PROFILE_WIDTH}px;
+  width: 100%;
   border-top: solid ${({ theme: { SIZES } }) => SIZES.PROFILE_BORDER}px
-    ${({ theme: { COLORS } }) => COLORS.BORDER};
+    ${({ theme: { COLOR_THEME } }) => COLOR_THEME.BORDER};
   padding: ${({ theme: { SPACES } }) => SPACES.M}px;
 `
 
@@ -89,12 +89,21 @@ const ImgButton = styled.button`
   cursor: pointer;
 `
 
-const Like = styled.p<{ $isLiked: boolean }>`
-  margin-left: ${({ theme: { SPACES } }) => SPACES.S}px;
-  font-size: ${({ theme: { FONT_SIZE } }) => FONT_SIZE.M}px;
+const Like = styled.div<{ $isLiked: boolean }>`
+  margin-left: ${({ theme: { SPACES } }) => SPACES.XS}px;
+  font-size: ${({ theme: { FONT_SIZE } }) => FONT_SIZE.S}px;
   font-family: ${({ theme: { FONTS } }) => FONTS.M};
   color: ${({ theme: { COLORS, COLOR_THEME }, $isLiked }) =>
     $isLiked ? COLORS.LIKE_COLOR : COLOR_THEME.TEXT_COLOR};
+`
+
+const LikeIcon = styled.div<{ $isLiked: boolean }>`
+  display: flex;
+  align-items: center;
+  path {
+    fill: ${({ theme: { COLORS, COLOR_THEME }, $isLiked }) =>
+      $isLiked ? COLORS.LIKE_COLOR : COLOR_THEME.TEXT_COLOR};
+  }
 `
 
 export {
@@ -106,6 +115,7 @@ export {
   ImgButton,
   Info,
   Like,
+  LikeIcon,
   PostImg,
   Text,
   Title,

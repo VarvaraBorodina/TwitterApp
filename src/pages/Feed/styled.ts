@@ -6,13 +6,15 @@ const Header = styled.div`
   display: flex;
   justify-content: space-between;
   padding-top: ${({ theme: { SPACES } }) => SPACES.L}px;
-  width: 50vw;
+  padding-left: ${({ theme: { SPACES } }) => SPACES.M}px;
+  padding-right: ${({ theme: { SPACES } }) => SPACES.M}px;
+  width: 100%;
   border-bottom: solid ${({ theme: { SIZES } }) => SIZES.PROFILE_BORDER}px
-    ${({ theme: { COLORS } }) => COLORS.BORDER};
+    ${({ theme: { COLOR_THEME } }) => COLOR_THEME.BORDER};
   padding-bottom: ${({ theme: { SPACES } }) => SPACES.L}px;
+  color: ${({ theme: { COLOR_THEME } }) => COLOR_THEME.TEXT_COLOR};
   @media (max-width: ${BREAKPOINTS.L}px) {
     border: none;
-    width: 90vw;
   }
 `
 const TweetError = styled.p`
@@ -23,7 +25,6 @@ const TweetError = styled.p`
 `
 
 const Title = styled.h3`
-  margin-left: ${({ theme: { SPACES } }) => SPACES.M}px;
   font-size: ${({ theme: { FONT_SIZE } }) => FONT_SIZE.L}px;
   font-family: ${({ theme: { FONTS } }) => FONTS.XL};
 `

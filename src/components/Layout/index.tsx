@@ -6,7 +6,7 @@ import Search from '@/components/Search'
 import TweetForm from '@/components/TweetForm'
 import { ICONS } from '@/constants'
 
-import { Container, Header, Menu } from './styled'
+import { Container, Header, LeftMenu, RightMenu } from './styled'
 import { LayoutType } from './types'
 
 const Layout = <T extends { id: string }>({
@@ -57,10 +57,10 @@ const Layout = <T extends { id: string }>({
         </Modal>
       )}
       <LeftSideBar show={false} showModal={toggleShowAddModal} />
-      <div>
+      <div style={{ display: 'block', width: '100%' }}>
         <Header>
-          <Menu onClick={toggleShowMenu}>{ICONS.menu}</Menu>
-          <Menu onClick={toggleShowSearch}>{ICONS.search}</Menu>
+          <LeftMenu onClick={toggleShowMenu}>{ICONS.menu}</LeftMenu>
+          <RightMenu onClick={toggleShowSearch}>{ICONS.search}</RightMenu>
         </Header>
         {children}
       </div>

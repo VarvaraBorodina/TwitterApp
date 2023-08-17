@@ -4,6 +4,7 @@ import styled from 'styled-components'
 import { BREAKPOINTS } from '@/constants'
 
 const Form = styled.form`
+  height: 100%;
   display: flex;
   flex-direction: column;
   width: ${({ theme: { SIZES } }) => SIZES.INPUT_WIDTH}px;
@@ -41,7 +42,7 @@ const Input = styled.input`
   padding: ${({ theme: { SPACES } }) => SPACES.M}px;
   background-color: ${({ theme: { COLORS } }) => COLORS.HOME_PAGE};
   border: solid ${({ theme: { SIZES } }) => SIZES.BORDER}px
-    ${({ theme: { COLORS } }) => COLORS.BORDER};
+    ${({ theme: { COLOR_THEME } }) => COLOR_THEME.BORDER};
   border-radius: ${({ theme: { BORDER_RADIUS } }) => BORDER_RADIUS.S}px;
   font-size: ${({ theme: { FONT_SIZE } }) => FONT_SIZE.XS}px;
   font-family: ${({ theme: { FONTS } }) => FONTS.S};
@@ -69,7 +70,7 @@ const Button = styled.button`
   background-color: ${({ theme: { COLORS } }) => COLORS.ACCENT};
   color: ${({ theme: { COLORS } }) => COLORS.HOME_PAGE};
   border: solid ${({ theme: { SIZES } }) => SIZES.BORDER}px
-    ${({ theme: { COLORS } }) => COLORS.BORDER};
+    ${({ theme: { COLOR_THEME } }) => COLOR_THEME.BORDER};
   border-radius: ${({ theme: { BORDER_RADIUS } }) => BORDER_RADIUS.L}px;
   font-size: ${({ theme: { FONT_SIZE } }) => FONT_SIZE.XS}px;
   font-family: ${({ theme: { FONTS } }) => FONTS.S};

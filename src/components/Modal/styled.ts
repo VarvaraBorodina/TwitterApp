@@ -24,7 +24,7 @@ const Content = styled.div`
   padding: ${({ theme: { SPACES } }) => SPACES.M}px;
   border-radius: ${({ theme: { BORDER_RADIUS } }) => BORDER_RADIUS.M}px;
   border: solid ${({ theme: { SPACES } }) => SPACES.XS}px
-    ${({ theme: { COLORS } }) => COLORS.BORDER};
+    ${({ theme: { COLOR_THEME } }) => COLOR_THEME.BORDER};
   background-color: ${({ theme: { COLOR_THEME } }) => COLOR_THEME.MAIN_COLOR};
   cursor: auto;
   @media (max-width: ${BREAKPOINTS.L}px) {

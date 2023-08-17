@@ -13,7 +13,8 @@ import { SearchType } from './types'
 
 const Search = <T extends { id: string }>(props: SearchType<T>) => {
   const { SearchItem, show, toggle, getData } = props
-  const { query, items, handleQueryChange, clearQuery } = useSearch<T>(getData)
+  const { query, items, handleQueryChange, clearQuery, loading } =
+    useSearch<T>(getData)
 
   const handleClose = () => {
     if (toggle) {
@@ -32,7 +33,9 @@ const Search = <T extends { id: string }>(props: SearchType<T>) => {
           onChange={handleQueryChange}
         />
       </InputContainer>
-      {items.length === 0 && query !== '' ? (
+      {loading ? (
+        <Message>Loading...</Message>
+      ) : items.length === 0 && query !== '' ? (
         <Message>Nothing found</Message>
       ) : (
         <Posts>
