@@ -13,6 +13,7 @@ const ToggleTheme = () => {
     <Ellipse
       onClick={() => dispatch(toggleTheme())}
       $isLeft={theme === 'LIGHT'}
+      data-cy="toggle"
     />
   )
 }

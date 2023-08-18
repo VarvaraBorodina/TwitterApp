@@ -10,7 +10,8 @@ import { ICONS } from '@/constants'
 import { Container, Content, Header, LeftMenu, RightMenu } from './styled'
 import { LayoutType } from './types'
 
-const Layout = ({ getSearchData, renderSearchItem, children }: LayoutType) => {
+const Layout = (props: LayoutType) => {
+  const { getSearchData, renderSearchItem, children, searchPlaceholder } = props
   const [showMenu, setShowMenu] = useState<boolean>(false)
   const [showSearch, setShowSearch] = useState<boolean>(false)
   const [showAddModal, setShowAddModal] = useState(false)
@@ -41,6 +42,7 @@ const Layout = ({ getSearchData, renderSearchItem, children }: LayoutType) => {
         toggle={toggleShowSearch}
         getData={getSearchData}
         SearchItem={renderSearchItem}
+        placeholder={searchPlaceholder}
       />
     )
   }
@@ -65,6 +67,7 @@ const Layout = ({ getSearchData, renderSearchItem, children }: LayoutType) => {
         toggle={toggleShowSearch}
         getData={getSearchData}
         SearchItem={renderSearchItem}
+        placeholder={searchPlaceholder}
       />
     </Container>
   )

@@ -9,11 +9,12 @@ import Tweets from '@/components/Tweets'
 import UserPreview from '@/components/UserPreview'
 import { ROUTES_NAMES, TEXT } from '@/constants'
 import { useTypedDispatch, useTypedSelector } from '@/hooks'
+import { resetError } from '@/store/slices/tweetsSlice'
 import { User } from '@/types'
 
 import { Header, Title, TweetError } from './styled'
 
-const Profile: React.FC = () => {
+const Feed: React.FC = () => {
   const navigate = useNavigate()
 
   const user = useTypedSelector(({ user }) => user.user) as User
@@ -27,10 +28,15 @@ const Profile: React.FC = () => {
     if (!user) {
       navigate(ROUTES_NAMES.HOME)
     }
+    dispath(resetError())
   }, [])
 
   return (
-    <Layout getSearchData={searchUsers} renderSearchItem={UserPreview}>
+    <Layout
+      getSearchData={searchUsers}
+      renderSearchItem={UserPreview}
+      searchPlaceholder={TEXT.SEARCH_USER}
+    >
       <>
         <Header>
           <Title>{TEXT.HOME_PAGE_HEADER}</Title>
@@ -43,4 +49,4 @@ const Profile: React.FC = () => {
   )
 }
 
-export default Profile
+export default Feed

@@ -10,6 +10,7 @@ import {
   Button,
   Buttons,
   Container,
+  Error,
   FileName,
   Form,
   Img,
@@ -21,6 +22,7 @@ import {
 const TweetForm = ({ handleAddedTweet }: { handleAddedTweet?: () => void }) => {
   const [file, setFile] = useState<File | null>(null)
   const [content, setContent] = useState('')
+  const [error, setError] = useState('')
 
   const user = useTypedSelector(({ user }) => user.user) as User
   const dispatch = useTypedDispatch()
@@ -42,11 +44,22 @@ const TweetForm = ({ handleAddedTweet }: { handleAddedTweet?: () => void }) => {
   }
 
   const handleSubmit = async () => {
-    await dispatch(addTweet({ file, content, user }))
-    setContent('')
-    setFile(null)
-    if (handleAddedTweet) {
-      handleAddedTweet()
+    if (content) {
+      setError(TEXT.TWEET_CREATED)
+      setTimeout(() => {
+        setError('')
+      }, 2000)
+      await dispatch(addTweet({ file, content, user }))
+      setContent('')
+      setFile(null)
+      if (handleAddedTweet) {
+        handleAddedTweet()
+      }
+    } else {
+      setError(TEXT.EMPTY_TWEET_ERROR)
+      setTimeout(() => {
+        setError('')
+      }, 2000)
     }
   }
 
@@ -73,10 +86,10 @@ const TweetForm = ({ handleAddedTweet }: { handleAddedTweet?: () => void }) => {
             </ImgButton>
             <FileName>{file?.name}</FileName>
           </Uploader>
-          <Button onClick={handleSubmit} disabled={content === ''}>
-            {TEXT.TWEET_BUTTON}
-          </Button>
+          <Button onClick={handleSubmit}>{TEXT.TWEET_BUTTON}</Button>
         </Buttons>
+
+        <Error>{error}</Error>
       </Form>
     </Container>
   )

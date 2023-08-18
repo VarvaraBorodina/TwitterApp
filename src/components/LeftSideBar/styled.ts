@@ -42,11 +42,10 @@ const PageLink = styled(Link)`
   }
 `
 
-const LinkName = styled.p<{ $isCurrent: boolean }>`
+const LinkName = styled.p`
   margin-left: ${({ theme: { SPACES } }) => SPACES.M}px;
   font-size: ${({ theme: { FONT_SIZE } }) => FONT_SIZE.S}px;
-  font-family: ${({ theme: { FONTS }, $isCurrent }) =>
-    $isCurrent ? FONTS.XL : FONTS.S};
+  font-family: ${({ theme: { FONTS } }) => FONTS.S};
   color: ${({ theme: { COLOR_THEME } }) => COLOR_THEME.TEXT_COLOR};
 
   transition: background-color 0.2s;

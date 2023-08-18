@@ -14,7 +14,7 @@ import {
 import { SearchType } from './types'
 
 const Search = <T extends { id: string }>(props: SearchType<T>) => {
-  const { SearchItem, show, toggle, getData } = props
+  const { SearchItem, show, toggle, getData, placeholder } = props
   const { query, items, handleQueryChange, clearQuery, loading } =
     useSearch<T>(getData)
 
@@ -30,7 +30,7 @@ const Search = <T extends { id: string }>(props: SearchType<T>) => {
       <InputContainer>
         {ICONS.search}
         <Input
-          placeholder={TEXT.SEARCH_TWEET}
+          placeholder={placeholder}
           value={query}
           onChange={handleQueryChange}
         />

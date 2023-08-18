@@ -1,22 +1,22 @@
 import { getAge, getDays, getYears } from './dates'
 import {
-  clearLocalStorage,
-  getThemeFromLocalStorage,
-  getUserFromLocalStorage,
-  saveThemeToLocalStorage,
-  saveUserToLocalStorage,
-} from './localStorage'
+  clearSessionStorage,
+  getThemeFromSessionStorage,
+  getUserFromSessionStorage,
+  saveThemeToSessionStorage,
+  saveUserToSessionStorage,
+} from './sessionStorage'
 import { validateDate, validateEmail, validatePhone } from './validate'
 
 export {
-  clearLocalStorage,
+  clearSessionStorage,
   getAge,
   getDays,
-  getThemeFromLocalStorage,
-  getUserFromLocalStorage,
+  getThemeFromSessionStorage,
+  getUserFromSessionStorage,
   getYears,
-  saveThemeToLocalStorage,
-  saveUserToLocalStorage,
+  saveThemeToSessionStorage,
+  saveUserToSessionStorage,
   validateDate,
   validateEmail,
   validatePhone,
