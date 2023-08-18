@@ -28,7 +28,7 @@ const EditForm: React.FC<editFormProps> = ({ showModal }) => {
     (state) => state.user
   )
 
-  const [dateError, setDateError] = useState<boolean>(false)
+  const [dateError, setDateError] = useState<string>('')
   const [password, setPassword] = useState<string>('')
   const [passwordError, setPasswordError] = useState<string>('')
 
@@ -83,8 +83,8 @@ const EditForm: React.FC<editFormProps> = ({ showModal }) => {
   const submit = (userInfo: editFormType) => {
     if (user) {
       const { name, lastName, month, day, year, gender, telegram } = userInfo
-      const isValideDate = validateDate(Number(day), month, Number(year))
-      if (isValideDate) {
+      const validateDateError = validateDate(Number(day), month, Number(year))
+      if (!validateDateError) {
         const newUser: User = {
           name,
           lastName,
@@ -101,7 +101,7 @@ const EditForm: React.FC<editFormProps> = ({ showModal }) => {
         dispatch(changeUser(newUser))
         showModal(false)
       } else {
-        setDateError(true)
+        setDateError(validateDateError)
       }
     }
   }
@@ -131,7 +131,7 @@ const EditForm: React.FC<editFormProps> = ({ showModal }) => {
     <>
       <Form onSubmit={handleSubmit(submit)}>
         <Title>{TEXT.EDIT}</Title>
-        <Error>{dateError && TEXT.DATE_ERROR}</Error>
+        <Error>{dateError}</Error>
         <Error>
           {error || errors.name?.message || errors.lastName?.message}
         </Error>

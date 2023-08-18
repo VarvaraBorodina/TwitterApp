@@ -24,7 +24,7 @@ import {
 const UserInfo = () => {
   const user: User = useSelector(({ user }) => user.user)
   const [isModal, setIsModal] = useState<boolean>(false)
-  const tweetAmount = useTypedSelector(tweetsAmountSelector)
+  const tweetAmount = useTypedSelector(tweetsAmountSelector(user?.id))
 
   const handleEdit = () => {
     setIsModal(true)

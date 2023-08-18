@@ -2,12 +2,12 @@ import { createSlice, PayloadAction } from '@reduxjs/toolkit'
 
 import { ERRORS } from '@/constants'
 import { User } from '@/types'
-import { getUserFromLocalStorage, saveUserToLocalStorage } from '@/utils'
+import { getUserFromSessionStorage, saveUserToSessionStorage } from '@/utils'
 
 import { UserSliceType } from './types'
 
 const initialState: UserSliceType = {
-  user: getUserFromLocalStorage(),
+  user: getUserFromSessionStorage(),
   loading: false,
   error: '',
 }
@@ -40,7 +40,7 @@ const userSlice = createSlice({
         (action) =>
           action.type.endsWith('/fulfilled') && action.type.startsWith('user'),
         (state, action: PayloadAction<User>) => {
-          saveUserToLocalStorage(action.payload)
+          saveUserToSessionStorage(action.payload)
           return {
             loading: false,
             user: action.payload,

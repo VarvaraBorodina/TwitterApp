@@ -1,6 +1,6 @@
 import * as yup from 'yup'
 
-import { DayAmountInMonth, LONG_MONTHES } from '@/constants'
+import { DayAmountInMonth, LONG_MONTHES, TEXT } from '@/constants'
 
 const validateEmail = (email: string | undefined) => {
   return yup.string().email().isValidSync(email)
@@ -17,26 +17,26 @@ const validateDate = (
   year: number | undefined
 ) => {
   if (!day || !month || !year) {
-    return true
+    return ''
+  }
+
+  if (month === 1 && day > DayAmountInMonth.LongFebruary && year % 4 === 0) {
+    return `${TEXT.DATE_ERROR}${DayAmountInMonth.LongFebruary}`
+  }
+
+  if (month === 1 && day > DayAmountInMonth.ShortFebruary && year % 4 > 0) {
+    return `${TEXT.DATE_ERROR}${DayAmountInMonth.ShortFebruary}`
   }
 
   if (LONG_MONTHES.includes(month)) {
     if (day > DayAmountInMonth.Long) {
-      return false
+      return `${TEXT.DATE_ERROR}${DayAmountInMonth.Long}`
     }
   } else if (month && day > DayAmountInMonth.Short) {
-    return false
+    return `${TEXT.DATE_ERROR}${DayAmountInMonth.Short}`
   }
 
-  if (month === 1 && day > DayAmountInMonth.LongFebruary && year % 4 === 0) {
-    return false
-  }
-
-  if (month === 1 && day > DayAmountInMonth.ShortFebruary && year % 4 > 0) {
-    return false
-  }
-
-  return true
+  return ''
 }
 
 export { validateDate, validateEmail, validatePhone }

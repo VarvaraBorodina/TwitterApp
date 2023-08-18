@@ -93,10 +93,11 @@ const userSlice = createSlice({
   },
 })
 
-export const tweetsAmountSelector = createSelector(
-  [(state) => state.tweets],
-  (tweets) => tweets.tweets.length
-)
+export const tweetsAmountSelector = (id: string) =>
+  createSelector(
+    [(state) => state.tweets],
+    ({ tweets }) => tweets.filter((tweet: Tweet) => tweet.user === id).length
+  )
 
 export const userTweetsSelector = (id: string) =>
   createSelector([(state) => state.tweets], ({ tweets }) =>

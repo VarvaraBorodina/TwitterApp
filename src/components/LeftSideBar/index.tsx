@@ -64,9 +64,7 @@ const LeftSideBar = ({ toggle, show, showModal }: ToggleShowProps) => {
             return (
               <PageLink to={url} key={name}>
                 {icon}
-                <LinkName $isCurrent={pathname === `/${name.toLowerCase()}`}>
-                  {name}
-                </LinkName>
+                <LinkName>{name}</LinkName>
               </PageLink>
             )
           })}

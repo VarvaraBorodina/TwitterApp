@@ -50,6 +50,7 @@ const Router = () => (
           <Route key={path} path={path} element={component} />
         ))}
       </Route>
+      <Route path="*" element={<Feed />} />
     </Routes>
   </Suspense>
 )

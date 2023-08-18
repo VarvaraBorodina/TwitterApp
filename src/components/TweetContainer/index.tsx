@@ -2,6 +2,7 @@ import { useState } from 'react'
 
 import userImg from '/img/userImg.png'
 import { deleteTweet, toggleLike } from '@/api/tweets'
+import Loader from '@/components/Loader'
 import { ALT, ICONS } from '@/constants'
 import { useTypedDispatch, useTypedSelector } from '@/hooks'
 import { User } from '@/types'
@@ -37,6 +38,7 @@ const TweetContainer = ({ tweet, afterDelete }: TweetContainerType) => {
   const dispatch = useTypedDispatch()
   const [isLiked, setIsLiked] = useState(usersLiked.includes(user.id))
   const [likeAmount, setLikeAmount] = useState(usersLiked.length)
+  const [imgLoading, setImgLoading] = useState(Boolean(imgUrl))
 
   const onLike = () => {
     setIsLiked((prevState) => !prevState)
@@ -50,6 +52,10 @@ const TweetContainer = ({ tweet, afterDelete }: TweetContainerType) => {
     }
   }
 
+  const handleLoaded = () => {
+    setImgLoading(false)
+  }
+
   return (
     <Container>
       <Img src={userImg} alt={ALT.USER} />
@@ -59,16 +65,21 @@ const TweetContainer = ({ tweet, afterDelete }: TweetContainerType) => {
           <DateString>{new Date(date).toDateString()}</DateString>
         </Info>
         <Text>{content}</Text>
-        {imgUrl && <PostImg src={imgUrl} alt={ALT.USER} />}
+        {imgUrl && (
+          <PostImg src={imgUrl} alt={ALT.USER} onLoad={handleLoaded} />
+        )}
+        {imgLoading && <Loader />}
         <Buttons>
           <ImgButton onClick={onLike}>
-            <LikeIcon $isLiked={isLiked}>
+            <LikeIcon $isLiked={isLiked} data-cy="like">
               {isLiked ? ICONS.filledLike : ICONS.like}
               <Like $isLiked={isLiked}>{likeAmount}</Like>
             </LikeIcon>
           </ImgButton>
           {tweetUser === user.id && (
-            <ImgButton onClick={onDelete}>{ICONS.delete}</ImgButton>
+            <ImgButton onClick={onDelete} data-cy="delete">
+              {ICONS.delete}
+            </ImgButton>
           )}
         </Buttons>
       </Content>
