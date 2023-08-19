@@ -27,7 +27,7 @@ const userSlice = createSlice({
     builder
       .addCase(
         getAllTweets.fulfilled,
-        (state, { payload }: PayloadAction<Tweet[]>) => {
+        (_state, { payload }: PayloadAction<Tweet[]>) => {
           return {
             error: '',
             loading: false,
@@ -82,7 +82,7 @@ const userSlice = createSlice({
       )
       .addMatcher(
         (action) => action.type.endsWith('/rejected'),
-        (state, action) => {
+        (_state, action) => {
           return {
             loading: false,
             tweets: [],

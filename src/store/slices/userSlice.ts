@@ -39,7 +39,7 @@ const userSlice = createSlice({
       .addMatcher(
         (action) =>
           action.type.endsWith('/fulfilled') && action.type.startsWith('user'),
-        (state, action: PayloadAction<User>) => {
+        (_state, action: PayloadAction<User>) => {
           saveUserToSessionStorage(action.payload)
           return {
             loading: false,
@@ -51,7 +51,7 @@ const userSlice = createSlice({
       .addMatcher(
         (action) =>
           action.type.endsWith('/rejected') && action.type.startsWith('user'),
-        (state, action) => {
+        (_state, action) => {
           return {
             loading: false,
             user: null,

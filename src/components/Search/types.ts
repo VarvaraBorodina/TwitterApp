@@ -3,9 +3,9 @@ import React from 'react'
 import { PreviewType } from '@/components/TweetPreview/types'
 import { ToggleShowProps } from '@/types'
 
-interface SearchType<T extends { id: string }> extends ToggleShowProps {
-  SearchItem?: React.FC<PreviewType<T>>
-  getData: (query: string) => Promise<T[]>
+interface SearchType<Searchable> extends ToggleShowProps {
+  SearchItem?: React.FC<PreviewType<Searchable>>
+  getData: (query: string) => Promise<Searchable[]>
   placeholder: string
 }
 

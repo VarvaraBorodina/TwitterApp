@@ -2,6 +2,7 @@ import { memo } from 'react'
 
 import { ICONS, TEXT } from '@/constants'
 import useSearch from '@/hooks/useSearch'
+import { Searchable } from '@/types'
 
 import {
   Container,
@@ -13,10 +14,10 @@ import {
 } from './styled'
 import { SearchType } from './types'
 
-const Search = <T extends { id: string }>(props: SearchType<T>) => {
+const Search = (props: SearchType<Searchable>) => {
   const { SearchItem, show, toggle, getData, placeholder } = props
   const { query, items, handleQueryChange, clearQuery, loading } =
-    useSearch<T>(getData)
+    useSearch<Searchable>(getData)
 
   const handleClose = () => {
     if (toggle) {
