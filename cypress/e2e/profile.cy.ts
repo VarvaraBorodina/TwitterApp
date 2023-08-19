@@ -37,7 +37,7 @@ describe('Test log in page', () => {
   it('Check user age', () => {
     cy.login()
     cy.url().should('eq', `${baseUrlL}${ROUTE_NAMES.PROFILE}`)
-    cy.contains('26 year old')
+    cy.contains('26 years old')
   })
 
   it('Add telegarm', () => {
@@ -49,7 +49,7 @@ describe('Test log in page', () => {
     cy.get('input[name=telegram]').type(`myTelegram`)
     cy.contains('Save').click()
 
-    cy.contains('myTelegram 26 year old')
+    cy.contains('@myTelegram 26 years old')
 
     cy.contains('Edit profile').click()
     cy.get('input[name=telegram]').clear()

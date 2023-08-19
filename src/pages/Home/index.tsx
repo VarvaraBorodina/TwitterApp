@@ -1,11 +1,8 @@
 import React from 'react'
 import { useNavigate } from 'react-router-dom'
 
-import backTwitter from '/img/back-twitter.png'
-import google from '/img/google.png'
-import logo from '/img/logo.png'
 import { logInWithGoogle } from '@/api/auth'
-import { ALT, ROUTES_NAMES, TEXT } from '@/constants'
+import { ALT, IMGS, ROUTES_NAMES, TEXT } from '@/constants'
 import { useTypedDispatch } from '@/hooks'
 
 import {
@@ -36,13 +33,13 @@ const Home: React.FC = () => {
 
   return (
     <Container>
-      <Img src={backTwitter} alt={ALT.BACK_TWITTER} />
+      <Img src={IMGS.BACK} alt={ALT.BACK_TWITTER} />
       <Section>
-        <LogoImg src={logo} alt={ALT.LOGO} />
+        <LogoImg src={IMGS.LOGO} alt={ALT.LOGO} />
         <Title>{TEXT.HOME_TITLE}</Title>
         <SubTitle>{TEXT.HOME_SUBTITLE}</SubTitle>
         <Button onClick={handleOnGoogleLogIn}>
-          <GoogleLogo src={google} alt={ALT.GOOGLE} />
+          <GoogleLogo src={IMGS.GOOGLE} alt={ALT.GOOGLE} />
           {TEXT.SIGN_UP_GOOGLE}
         </Button>
         <Button onClick={handleOnEmailSignUp}>{TEXT.SIGN_UP_EMAIL}</Button>

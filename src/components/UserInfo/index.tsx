@@ -1,10 +1,8 @@
 import { useState } from 'react'
-import { useSelector } from 'react-redux'
 
-import wallpaper from '/img/wallpaper.png'
 import EditForm from '@/components/forms/EditForm'
 import Modal from '@/components/Modal'
-import { ALT, ICONS, TEXT } from '@/constants'
+import { ALT, ICONS, IMGS, TEXT } from '@/constants'
 import { useTypedSelector } from '@/hooks'
 import { tweetsAmountSelector } from '@/store/slices/tweetsSlice'
 import { User } from '@/types'
@@ -22,7 +20,7 @@ import {
 } from './styled'
 
 const UserInfo = () => {
-  const user: User = useSelector(({ user }) => user.user)
+  const user = useTypedSelector(({ user }) => user.user) as User
   const [isModal, setIsModal] = useState<boolean>(false)
   const tweetAmount = useTypedSelector(tweetsAmountSelector(user?.id))
 
@@ -41,14 +39,14 @@ const UserInfo = () => {
         <Name>{`${user?.name} ${user?.lastName}`}</Name>
         <Info>{`${tweetAmount} ${TEXT.TWEETS.toLowerCase()}`}</Info>
       </Header>
-      <Img src={wallpaper} alt={ALT.COVER} />
+      <Img src={IMGS.WALLPAPER} alt={ALT.COVER} />
       <Profile>
         <Button onClick={handleEdit}>{TEXT.EDIT}</Button>
       </Profile>
       <UserData>
         {ICONS.userImg}
         <Name>{`${user?.name} ${user?.lastName}`}</Name>
-        <Info>{`${user?.telegram ?? ''} ${
+        <Info>{`${user?.telegram ? `@${user?.telegram}` : ''} ${
           user?.dateOfBirth
             ? ` ${getAge(new Date(user.dateOfBirth))} ${TEXT.AGE}`
             : ''

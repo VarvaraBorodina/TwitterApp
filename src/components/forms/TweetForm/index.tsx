@@ -1,8 +1,7 @@
 import { useState } from 'react'
 
-import userImg from '/img/userImg.png'
 import { addTweet } from '@/api/tweets'
-import { ALT, ICONS, TEXT } from '@/constants'
+import { ALT, ICONS, IMGS, TEXT } from '@/constants'
 import { useTypedDispatch, useTypedSelector } from '@/hooks'
 import { User } from '@/types'
 
@@ -65,7 +64,7 @@ const TweetForm = ({ handleAddedTweet }: { handleAddedTweet?: () => void }) => {
 
   return (
     <Container>
-      <Img src={userImg} alt={ALT.USER} />
+      <Img src={IMGS.USER_IMG} alt={ALT.USER} />
       <Form>
         <Input
           placeholder={TEXT.TWEET_FORM_PLACEHOLDER}

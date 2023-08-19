@@ -3,11 +3,18 @@ import React, { useState } from 'react'
 import { useForm } from 'react-hook-form'
 import { useNavigate } from 'react-router-dom'
 
-import logo from '/img/logo.png'
 import { signUp } from '@/api/auth'
 import Dropdown from '@/components/Dropdown'
 import Loader from '@/components/Loader'
-import { ALT, DAYS, MONTH_NAMES, ROUTES_NAMES, TEXT, YEARS } from '@/constants'
+import {
+  ALT,
+  DAYS,
+  IMGS,
+  MONTH_NAMES,
+  ROUTES_NAMES,
+  TEXT,
+  YEARS,
+} from '@/constants'
 import { useTypedDispatch, useTypedSelector } from '@/hooks'
 import { Gender, User } from '@/types'
 import { validateDate } from '@/utils'
@@ -101,7 +108,7 @@ const SignUpForm: React.FC = () => {
     <Loader />
   ) : (
     <Form onSubmit={handleSubmit(submit)}>
-      <LogoImg src={logo} alt={ALT.LOGO} />
+      <LogoImg src={IMGS.LOGO} alt={ALT.LOGO} />
       <Title>{TEXT.CREATE_ACCOUNT}</Title>
       <Error>
         {authError || errors.name?.message || errors.lastName?.message}

@@ -16,6 +16,7 @@ const MONTH_NAMES = [
 ]
 
 const DAYS = getDays()
+
 const YEARS = getYears()
 
 const LONG_MONTHES = [0, 2, 4, 6, 7, 9, 11]

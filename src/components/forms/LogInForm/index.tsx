@@ -3,10 +3,9 @@ import React, { useState } from 'react'
 import { useForm } from 'react-hook-form'
 import { useNavigate } from 'react-router-dom'
 
-import logo from '/img/logo.png'
 import { logInWithEmail, logInWithPhoneNumber } from '@/api/auth'
 import Loader from '@/components/Loader'
-import { ALT, ROUTES_NAMES, TEXT } from '@/constants'
+import { ALT, IMGS, ROUTES_NAMES, TEXT } from '@/constants'
 import { useTypedDispatch, useTypedSelector } from '@/hooks'
 import { resetError } from '@/store/slices/userSlice'
 
@@ -53,7 +52,7 @@ const LogInForm: React.FC = () => {
     <Loader />
   ) : (
     <Form onSubmit={handleSubmit(submit)}>
-      <LogoImg src={logo} alt={ALT.LOGO} />
+      <LogoImg src={IMGS.LOGO} alt={ALT.LOGO} />
 
       <SubTitle>{TEXT.LOGIN_HEADER}</SubTitle>
       <Error>{errors.login?.message}</Error>

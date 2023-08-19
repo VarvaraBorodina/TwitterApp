@@ -1,10 +1,8 @@
-import React from 'react'
+import { memo } from 'react'
 import { useLocation, useNavigate } from 'react-router-dom'
 
-import logo from '/img/logo.png'
-import userImg from '/img/userImg.png'
 import { logOut } from '@/api/auth'
-import { ALT, ICONS, PAGES, ROUTES_NAMES, TEXT } from '@/constants'
+import { ALT, ICONS, IMGS, PAGES, ROUTES_NAMES, TEXT } from '@/constants'
 import { useTypedDispatch, useTypedSelector } from '@/hooks'
 import { resetTheme } from '@/store/slices/themeSlice'
 import { ToggleShowProps, User } from '@/types'
@@ -58,7 +56,7 @@ const LeftSideBar = ({ toggle, show, showModal }: ToggleShowProps) => {
     <Container $show={show}>
       <ImgButton onClick={handleClose}>{ICONS.close}</ImgButton>
       <Content>
-        <LogoImg src={logo} alt={ALT.LOGO} />
+        <LogoImg src={IMGS.LOGO} alt={ALT.LOGO} />
         <Pages>
           {PAGES.map(({ icon, url, name }) => {
             return (
@@ -74,7 +72,7 @@ const LeftSideBar = ({ toggle, show, showModal }: ToggleShowProps) => {
           {TEXT.TWEET_BUTTON}
         </AccentButton>
         <UserInfo>
-          <Img src={userImg} alt={ALT.USER} />
+          <Img src={IMGS.USER_IMG} alt={ALT.USER} />
           <UserName>{`${user?.name} ${user?.lastName}`}</UserName>
         </UserInfo>
         {pathname === ROUTES_NAMES.PROFILE && (
@@ -85,4 +83,4 @@ const LeftSideBar = ({ toggle, show, showModal }: ToggleShowProps) => {
   )
 }
 
-export default React.memo(LeftSideBar)
+export default memo(LeftSideBar)

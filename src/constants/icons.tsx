@@ -1,12 +1,12 @@
 /// <reference types="vite-plugin-svgr/client" />
-import { ReactComponent as Close } from '@/assets/icons/close.svg'
-import { ReactComponent as Delete } from '@/assets/icons/delete.svg'
-import { ReactComponent as File } from '@/assets/icons/file.svg'
-import { ReactComponent as FilledLike } from '@/assets/icons/filledLike.svg'
-import { ReactComponent as Like } from '@/assets/icons/like.svg'
-import { ReactComponent as Menu } from '@/assets/icons/menu.svg'
-import { ReactComponent as Search } from '@/assets/icons/search.svg'
-import { ReactComponent as UserImg } from '@/assets/icons/userImg.svg'
+import Close from '@/assets/icons/Close'
+import Delete from '@/assets/icons/Delete'
+import File from '@/assets/icons/File'
+import FilledLike from '@/assets/icons/FilledLike'
+import Like from '@/assets/icons/Like'
+import Menu from '@/assets/icons/Menu'
+import Search from '@/assets/icons/Search'
+import UserImg from '@/assets/icons/UserImg'
 
 const ICONS = {
   userImg: <UserImg />,
@@ -19,4 +19,12 @@ const ICONS = {
   delete: <Delete />,
 }
 
-export default ICONS
+const IMGS = {
+  LOGO: '/img/logo.png',
+  USER_IMG: '/img/userImg.png',
+  WALLPAPER: '/img/wallpaper.png',
+  BACK: '/img/back-twitter.png',
+  GOOGLE: '/img/google.png',
+}
+
+export { ICONS, IMGS }
