@@ -14,6 +14,7 @@ const ToggleTheme = () => {
       onClick={() => dispatch(toggleTheme())}
       $isLeft={theme === 'LIGHT'}
       data-cy="toggle"
+      data-testid="toggle"
     />
   )
 }

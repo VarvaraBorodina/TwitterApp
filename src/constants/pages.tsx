@@ -1,13 +1,13 @@
 /// <reference types="vite-plugin-svgr/client" />
 
-import { ReactComponent as Bookmarks } from '@/assets/icons/bookmarks.svg'
-import { ReactComponent as Explore } from '@/assets/icons/explore.svg'
-import { ReactComponent as Feed } from '@/assets/icons/feed.svg'
-import { ReactComponent as Lists } from '@/assets/icons/lists.svg'
-import { ReactComponent as Messages } from '@/assets/icons/messages.svg'
-import { ReactComponent as More } from '@/assets/icons/more.svg'
-import { ReactComponent as Notifications } from '@/assets/icons/notification.svg'
-import { ReactComponent as Profile } from '@/assets/icons/profile.svg'
+import Bookmark from '@/assets/icons/Bookmark'
+import Explore from '@/assets/icons/Explore'
+import Feed from '@/assets/icons/Feed'
+import Lists from '@/assets/icons/Lists'
+import Messages from '@/assets/icons/Messages'
+import More from '@/assets/icons/More'
+import Notifications from '@/assets/icons/Notification'
+import Profile from '@/assets/icons/Profile'
 
 import ROUTES_NAMES from './routesNames'
 
@@ -34,7 +34,7 @@ const PAGES = [
   },
   {
     name: 'Bookmarks',
-    icon: <Bookmarks />,
+    icon: <Bookmark />,
     url: ROUTES_NAMES.FEED,
   },
   {

@@ -1,9 +1,8 @@
 import { useState } from 'react'
 
-import userImg from '/img/userImg.png'
 import { deleteTweet, toggleLike } from '@/api/tweets'
 import Loader from '@/components/Loader'
-import { ALT, ICONS } from '@/constants'
+import { ALT, ICONS, IMGS } from '@/constants'
 import { useTypedDispatch, useTypedSelector } from '@/hooks'
 import { User } from '@/types'
 
@@ -58,7 +57,7 @@ const TweetContainer = ({ tweet, afterDelete }: TweetContainerType) => {
 
   return (
     <Container>
-      <Img src={userImg} alt={ALT.USER} />
+      <Img src={IMGS.USER_IMG} alt={ALT.USER} />
       <Content>
         <Info>
           <Title>{userName}</Title>
@@ -71,13 +70,13 @@ const TweetContainer = ({ tweet, afterDelete }: TweetContainerType) => {
         {imgLoading && <Loader />}
         <Buttons>
           <ImgButton onClick={onLike}>
-            <LikeIcon $isLiked={isLiked} data-cy="like">
+            <LikeIcon $isLiked={isLiked} data-cy="like" data-testid="like">
               {isLiked ? ICONS.filledLike : ICONS.like}
               <Like $isLiked={isLiked}>{likeAmount}</Like>
             </LikeIcon>
           </ImgButton>
           {tweetUser === user.id && (
-            <ImgButton onClick={onDelete} data-cy="delete">
+            <ImgButton onClick={onDelete} data-cy="delete" data-testid="delete">
               {ICONS.delete}
             </ImgButton>
           )}

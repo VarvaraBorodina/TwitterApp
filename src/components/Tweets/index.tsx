@@ -1,15 +1,15 @@
-import React from 'react'
-import { useSelector } from 'react-redux'
+import { memo } from 'react'
 
 import TweetForm from '@/components/forms/TweetForm'
 import TweetContainer from '@/components/TweetContainer'
 import { TEXT } from '@/constants'
+import { useTypedSelector } from '@/hooks'
 import { Tweet } from '@/types'
 
 import { Message } from './styled'
 
 const Tweets = ({ tweets }: { tweets: Tweet[] }) => {
-  const loading = useSelector(({ tweets }) => tweets.loading)
+  const loading = useTypedSelector(({ tweets }) => tweets.loading)
 
   return (
     <div>
@@ -23,4 +23,4 @@ const Tweets = ({ tweets }: { tweets: Tweet[] }) => {
   )
 }
 
-export default React.memo(Tweets)
+export default memo(Tweets)

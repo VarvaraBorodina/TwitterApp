@@ -1,6 +1,6 @@
 import React, { useState } from 'react'
 
-import { ReactComponent as Arrow } from '@/assets/icons/arrow.svg'
+import Arrow from '@/assets/icons/Arrow'
 
 import { Container, Input, Option, OptionContainer, Title } from './styled'
 import { DropdownType } from './types'

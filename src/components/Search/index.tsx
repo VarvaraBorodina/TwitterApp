@@ -1,4 +1,4 @@
-import React from 'react'
+import { memo } from 'react'
 
 import { ICONS, TEXT } from '@/constants'
 import useSearch from '@/hooks/useSearch'
@@ -41,13 +41,17 @@ const Search = <T extends { id: string }>(props: SearchType<T>) => {
         <Message>{TEXT.NOT_FOUND}</Message>
       ) : (
         <Posts>
-          {items.map((item) => (
-            <SearchItem item={item} key={item.id} clearQuery={clearQuery} />
-          ))}
+          {items.map((item) =>
+            SearchItem ? (
+              <SearchItem item={item} key={item.id} clearQuery={clearQuery} />
+            ) : (
+              ''
+            )
+          )}
         </Posts>
       )}
     </Container>
   )
 }
 
-export default React.memo(Search)
+export default memo(Search)
