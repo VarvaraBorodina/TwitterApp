@@ -21,6 +21,8 @@ import { TEXT } from '@/constants'
 import { User, UserDataToSignUp } from '@/types'
 import { clearSessionStorage } from '@/utils/sessionStorage'
 
+const { PHONE_EXIST_ERROR, LOGIN_ERROR, GOOGLE_ERROR } = TEXT
+
 const signUp = createAsyncThunk(
   'user/signUp',
   async ({ user, password }: UserDataToSignUp) => {
@@ -28,7 +30,7 @@ const signUp = createAsyncThunk(
     const userResponse = query(usersRef, where('phone', '==', user.phone))
     const querySnapshot = await getDocs(userResponse)
     if (querySnapshot.docs[0]) {
-      throw new Error(TEXT.PHONE_EXIST_ERROR)
+      throw new Error(PHONE_EXIST_ERROR)
     }
     const response = await createUserWithEmailAndPassword(
       auth,
@@ -67,7 +69,7 @@ const logInWithPhoneNumber = createAsyncThunk(
     const response = query(usersRef, where('phone', '==', phone))
     const querySnapshot = await getDocs(response)
     if (!querySnapshot.docs[0]) {
-      throw new Error(TEXT.LOGIN_ERROR)
+      throw new Error(LOGIN_ERROR)
     }
     const { email } = querySnapshot.docs[0].data() as User
 
@@ -88,7 +90,7 @@ const logInWithGoogle = createAsyncThunk('user/logInWithGoogle', async () => {
   }
 
   if (!displayName || !email) {
-    throw new Error(TEXT.GOOGLE_ERROR)
+    throw new Error(GOOGLE_ERROR)
   }
 
   const user: User = {

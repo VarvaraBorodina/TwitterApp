@@ -21,6 +21,13 @@ import { tweetData, tweetDataToDelete } from '@/api/types'
 import { TEXT } from '@/constants'
 import { Tweet } from '@/types'
 
+const {
+  ADD_POST_ERROR,
+  DELETE_TWEET_ERROR,
+  LIKE_TWEET_ERROR,
+  GET_TWEET_ERROR,
+} = TEXT
+
 const addTweet = createAsyncThunk(
   'tweets/addTweet',
   async ({ file, content, user }: tweetData) => {
@@ -50,7 +57,7 @@ const addTweet = createAsyncThunk(
       await setDoc(doc(db, 'tweets', tweet.id), tweet)
       return tweet
     } catch (error) {
-      throw new Error(TEXT.ADD_POST_ERROR)
+      throw new Error(ADD_POST_ERROR)
     }
   }
 )
@@ -66,7 +73,7 @@ const getAllTweets = createAsyncThunk('tweets/getAllTweets', async () => {
     })
     return tweets
   } catch (error) {
-    throw Error(TEXT.GET_TWEET_ERROR)
+    throw Error(GET_TWEET_ERROR)
   }
 })
 
@@ -81,7 +88,7 @@ const deleteTweet = createAsyncThunk(
       await deleteDoc(doc(db, 'tweets', id))
       return id
     } catch (error) {
-      throw Error(TEXT.DELETE_TWEET_ERROR)
+      throw Error(DELETE_TWEET_ERROR)
     }
   }
 )
@@ -114,7 +121,7 @@ const toggleLike = createAsyncThunk('tweets/toggleLike', async (id: string) => {
     }
     return updatedTweet
   } catch (error) {
-    throw Error(TEXT.LIKE_TWEET_ERROR)
+    throw Error(LIKE_TWEET_ERROR)
   }
 })
 

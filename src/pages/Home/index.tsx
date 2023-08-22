@@ -18,42 +18,59 @@ import {
   Title,
 } from './styled'
 
+const { BACK_TWITTER, LOGO: ALT_LOGO, GOOGLE: ALT_GOOGLE } = ALT
+const { PROFILE, SIGNUP, HOME } = ROUTES_NAMES
+const {
+  HOME_TITLE,
+  HOME_SUBTITLE,
+  SIGN_UP_GOOGLE,
+  SIGN_UP_EMAIL,
+  POLICY_TEXT,
+  TERM,
+  POLICY,
+  COOKIE,
+  LOGIN,
+  LOGIN_TEXT,
+} = TEXT
+
+const { BACK, LOGO, GOOGLE } = IMGS
+
 const Home: React.FC = () => {
   const navigate = useNavigate()
   const dispatch = useTypedDispatch()
 
   const handleOnGoogleLogIn = async () => {
     await dispatch(logInWithGoogle())
-    navigate(ROUTES_NAMES.PROFILE)
+    navigate(PROFILE)
   }
 
   const handleOnEmailSignUp = () => {
-    navigate(ROUTES_NAMES.SIGNUP)
+    navigate(SIGNUP)
   }
 
   return (
     <Container>
-      <Img src={IMGS.BACK} alt={ALT.BACK_TWITTER} />
+      <Img src={BACK} alt={BACK_TWITTER} />
       <Section>
-        <LogoImg src={IMGS.LOGO} alt={ALT.LOGO} />
-        <Title>{TEXT.HOME_TITLE}</Title>
-        <SubTitle>{TEXT.HOME_SUBTITLE}</SubTitle>
+        <LogoImg src={LOGO} alt={ALT_LOGO} />
+        <Title>{HOME_TITLE}</Title>
+        <SubTitle>{HOME_SUBTITLE}</SubTitle>
         <Button onClick={handleOnGoogleLogIn}>
-          <GoogleLogo src={IMGS.GOOGLE} alt={ALT.GOOGLE} />
-          {TEXT.SIGN_UP_GOOGLE}
+          <GoogleLogo src={GOOGLE} alt={ALT_GOOGLE} />
+          {SIGN_UP_GOOGLE}
         </Button>
-        <Button onClick={handleOnEmailSignUp}>{TEXT.SIGN_UP_EMAIL}</Button>
+        <Button onClick={handleOnEmailSignUp}>{SIGN_UP_EMAIL}</Button>
         <Info>
-          {TEXT.POLICY_TEXT[0]}
-          <InfoLink to={ROUTES_NAMES.HOME}>{TEXT.TERM}</InfoLink>
-          {TEXT.POLICY_TEXT[1]}
-          <InfoLink to={ROUTES_NAMES.HOME}>{TEXT.POLICY}</InfoLink>
-          {TEXT.POLICY_TEXT[2]}
-          <InfoLink to={ROUTES_NAMES.HOME}>{TEXT.COOKIE}</InfoLink>.
+          {POLICY_TEXT[0]}
+          <InfoLink to={HOME}>{TERM}</InfoLink>
+          {POLICY_TEXT[1]}
+          <InfoLink to={HOME}>{POLICY}</InfoLink>
+          {POLICY_TEXT[2]}
+          <InfoLink to={HOME}>{COOKIE}</InfoLink>.
         </Info>
         <Info>
-          {TEXT.LOGIN_TEXT}
-          <InfoLink to={ROUTES_NAMES.LOGIN}>{TEXT.LOGIN}</InfoLink>
+          {LOGIN_TEXT}
+          <InfoLink to={LOGIN}>{LOGIN}</InfoLink>
         </Info>
       </Section>
     </Container>

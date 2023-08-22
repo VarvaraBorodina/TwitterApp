@@ -9,14 +9,14 @@ import Search from '@/assets/icons/Search'
 import UserImg from '@/assets/icons/UserImg'
 
 const ICONS = {
-  userImg: <UserImg />,
-  search: <Search />,
-  menu: <Menu />,
-  close: <Close />,
-  file: <File />,
-  like: <Like />,
-  filledLike: <FilledLike />,
-  delete: <Delete />,
+  USER_IMG: <UserImg />,
+  SEARCH: <Search />,
+  MENU: <Menu />,
+  CLOSE: <Close />,
+  FILE: <File />,
+  LIKE: <Like />,
+  FILLED_LIKE: <FilledLike />,
+  DELETE: <Delete />,
 }
 
 const IMGS = {

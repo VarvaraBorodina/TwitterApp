@@ -8,10 +8,23 @@ import Loader from '@/components/Loader'
 import { ALT, IMGS, ROUTES_NAMES, TEXT } from '@/constants'
 import { useTypedDispatch, useTypedSelector } from '@/hooks'
 import { resetError } from '@/store/slices/userSlice'
+import { Error, LogoImg } from '@/styles/common'
 
 import { loginSchema } from './schema'
-import { Button, Error, Form, Input, LogoImg, SignUp, SubTitle } from './styled'
+import { Button, Form, Input, SignUp, SubTitle } from './styled'
 import { loginFormType } from './types'
+
+const { PROFILE, SIGNUP } = ROUTES_NAMES
+const {
+  LOGIN_HEADER,
+  LOGIN_PLACEHOLDER,
+  PASSWORD_PLACEHOLDER,
+  LOGIN,
+  SIGN_UP,
+} = TEXT
+
+const { LOGO: IMG_LOGO } = IMGS
+const { LOGO: ALT_LOGO } = ALT
 
 const LogInForm: React.FC = () => {
   const form = useForm<loginFormType>({
@@ -33,13 +46,11 @@ const LogInForm: React.FC = () => {
     setLoading(true)
     if (login.includes('@')) {
       dispatch(logInWithEmail({ email: login, password })).then(
-        ({ payload }) =>
-          payload ? navigate(ROUTES_NAMES.PROFILE) : setLoading(false)
+        ({ payload }) => (payload ? navigate(PROFILE) : setLoading(false))
       )
     } else {
       dispatch(logInWithPhoneNumber({ phone: login, password })).then(
-        ({ payload }) =>
-          payload ? navigate(ROUTES_NAMES.PROFILE) : setLoading(false)
+        ({ payload }) => (payload ? navigate(PROFILE) : setLoading(false))
       )
     }
   }
@@ -52,25 +63,25 @@ const LogInForm: React.FC = () => {
     <Loader />
   ) : (
     <Form onSubmit={handleSubmit(submit)}>
-      <LogoImg src={IMGS.LOGO} alt={ALT.LOGO} />
+      <LogoImg src={IMG_LOGO} alt={ALT_LOGO} />
 
-      <SubTitle>{TEXT.LOGIN_HEADER}</SubTitle>
+      <SubTitle>{LOGIN_HEADER}</SubTitle>
       <Error>{errors.login?.message}</Error>
       <Input
-        placeholder={TEXT.LOGIN_PLACEHOLDER}
+        placeholder={LOGIN_PLACEHOLDER}
         {...register('login')}
         type="text"
         onChange={resetApiError}
       />
       <Error>{errors.password?.message || error}</Error>
       <Input
-        placeholder={TEXT.PASSWORD_PLACEHOLDER}
+        placeholder={PASSWORD_PLACEHOLDER}
         {...register('password')}
         type="password"
         onChange={resetApiError}
       />
-      <Button>{TEXT.LOGIN}</Button>
-      <SignUp to={ROUTES_NAMES.SIGNUP}>{TEXT.SIGN_UP}</SignUp>
+      <Button>{LOGIN}</Button>
+      <SignUp to={SIGNUP}>{SIGN_UP}</SignUp>
     </Form>
   )
 }

@@ -9,12 +9,27 @@ import Loader from '@/components/Loader'
 import { DAYS, MONTH_NAMES, ROUTES_NAMES, TEXT, YEARS } from '@/constants'
 import { useTypedDispatch, useTypedSelector } from '@/hooks'
 import { UserSliceType } from '@/store/slices/types'
+import { Error, Input, Inputs, Title } from '@/styles/common'
 import { Gender, User } from '@/types'
 import { validateDate } from '@/utils'
 
 import { editSchema } from './schema'
-import { Button, Error, Form, Input, Inputs, Title } from './styled'
+import { Button, Form } from './styled'
 import { editFormProps, editFormType } from './types'
+
+const { HOME } = ROUTES_NAMES
+const {
+  EDIT,
+  NAME_PLACEHOLDER,
+  LASTNAME_PLACEHOLDER,
+  TELEGRAM_PLACEHOLDER,
+  GENDER_PLACEHOLDER,
+  DATE_PLACEHOLDER,
+  PASSWORD_PLACEHOLDER,
+  SAVE,
+  CHANGE_PASSWORD,
+  PASSWORD_LENGTH,
+} = TEXT
 
 const EditForm: React.FC<editFormProps> = ({ showModal }) => {
   const form = useForm<editFormType>({
@@ -55,7 +70,7 @@ const EditForm: React.FC<editFormProps> = ({ showModal }) => {
         setValue('year', String(date.getFullYear()))
       }
     } else {
-      navigate(ROUTES_NAMES.HOME)
+      navigate(HOME)
     }
   }, [])
 
@@ -95,7 +110,7 @@ const EditForm: React.FC<editFormProps> = ({ showModal }) => {
           gender,
           dateOfBirth:
             year && month && day
-              ? new Date(+year, month, +day).toDateString()
+              ? new Date(Number(year), month, Number(day)).toDateString()
               : user.dateOfBirth,
         }
         dispatch(changeUser(newUser))
@@ -108,7 +123,7 @@ const EditForm: React.FC<editFormProps> = ({ showModal }) => {
 
   const handleOnPasswordButton = () => {
     if (password.length < 8) {
-      setPasswordError(TEXT.PASSWORD_LENGTH)
+      setPasswordError(PASSWORD_LENGTH)
     } else {
       changePassword(password).then(() => {
         showModal(false)
@@ -130,33 +145,31 @@ const EditForm: React.FC<editFormProps> = ({ showModal }) => {
   return (
     <>
       <Form onSubmit={handleSubmit(submit)}>
-        <Title>{TEXT.EDIT}</Title>
+        <Title>{EDIT}</Title>
         <Error>{dateError}</Error>
         <Error>
           {error || errors.name?.message || errors.lastName?.message}
         </Error>
         <Inputs>
           <Input
-            placeholder={TEXT.NAME_PLACEHOLDER}
+            placeholder={NAME_PLACEHOLDER}
             type="text"
             {...register('name')}
           />
           <Input
-            placeholder={TEXT.LASTNAME_PLACEHOLDER}
+            placeholder={LASTNAME_PLACEHOLDER}
             type="text"
             {...register('lastName')}
           />
         </Inputs>
         <Inputs>
           <Input
-            placeholder={TEXT.TELEGRAM_PLACEHOLDER}
+            placeholder={TELEGRAM_PLACEHOLDER}
             type="text"
             {...register('telegram')}
           />
           <Dropdown
-            title={
-              user?.gender ? Gender[user?.gender] : TEXT.GENDER_PLACEHOLDER
-            }
+            title={user?.gender ? Gender[user?.gender] : GENDER_PLACEHOLDER}
             options={Object.values(Gender)}
             changeOption={handleGenderChange}
           />
@@ -164,9 +177,7 @@ const EditForm: React.FC<editFormProps> = ({ showModal }) => {
         <Inputs>
           <Dropdown
             title={
-              user?.dateOfBirth
-                ? String(date.getDate())
-                : TEXT.DATE_PLACEHOLDER[0]
+              user?.dateOfBirth ? String(date.getDate()) : DATE_PLACEHOLDER[0]
             }
             options={DAYS}
             changeOption={handleDayChange}
@@ -175,7 +186,7 @@ const EditForm: React.FC<editFormProps> = ({ showModal }) => {
             title={
               user?.dateOfBirth
                 ? MONTH_NAMES[date.getMonth()]
-                : TEXT.DATE_PLACEHOLDER[1]
+                : DATE_PLACEHOLDER[1]
             }
             options={MONTH_NAMES}
             changeOption={handleMonthChange}
@@ -184,23 +195,23 @@ const EditForm: React.FC<editFormProps> = ({ showModal }) => {
             title={
               user?.dateOfBirth
                 ? String(date.getFullYear())
-                : TEXT.DATE_PLACEHOLDER[2]
+                : DATE_PLACEHOLDER[2]
             }
             options={YEARS}
             changeOption={handleYearChange}
           />
         </Inputs>
-        <Button onClick={handleSubmit(submit)}>{TEXT.SAVE}</Button>
+        <Button onClick={handleSubmit(submit)}>{SAVE}</Button>
       </Form>
       <Error>{passwordError}</Error>
       <Inputs>
         <Input
-          placeholder={TEXT.PASSWORD_PLACEHOLDER}
+          placeholder={PASSWORD_PLACEHOLDER}
           type="password"
           onChange={handlePasswordChange}
           value={password}
         />
-        <Button onClick={handleOnPasswordButton}>{TEXT.CHANGE_PASSWORD}</Button>
+        <Button onClick={handleOnPasswordButton}>{CHANGE_PASSWORD}</Button>
       </Inputs>
     </>
   )

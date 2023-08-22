@@ -30,23 +30,26 @@ const Pages = styled.nav`
   flex-direction: column;
 `
 
-const PageLink = styled(Link)`
+const PageLink = styled(Link)<{ type: string }>`
   display: flex;
   align-items: center;
   margin-top: ${({ theme: { SPACES } }) => SPACES.M}px;
   path {
-    fill: ${({ theme: { COLOR_THEME } }) => COLOR_THEME.TEXT_COLOR};
+    fill: ${({ theme: { COLOR_THEME, COLORS }, type }) =>
+      type ? COLORS.ACCENT : COLOR_THEME.TEXT_COLOR};
   }
   rect {
-    fill: ${({ theme: { COLOR_THEME } }) => COLOR_THEME.TEXT_COLOR};
+    fill: ${({ theme: { COLOR_THEME, COLORS }, type }) =>
+      type ? COLORS.ACCENT : COLOR_THEME.TEXT_COLOR};
   }
 `
 
-const LinkName = styled.p`
+const LinkName = styled.p<{ type: string }>`
   margin-left: ${({ theme: { SPACES } }) => SPACES.M}px;
   font-size: ${({ theme: { FONT_SIZE } }) => FONT_SIZE.S}px;
   font-family: ${({ theme: { FONTS } }) => FONTS.S};
-  color: ${({ theme: { COLOR_THEME } }) => COLOR_THEME.TEXT_COLOR};
+  color: ${({ theme: { COLOR_THEME, COLORS }, type }) =>
+    type ? COLORS.ACCENT : COLOR_THEME.TEXT_COLOR};
 
   transition: background-color 0.2s;
   &:hover {

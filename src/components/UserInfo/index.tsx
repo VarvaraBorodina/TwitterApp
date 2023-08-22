@@ -19,6 +19,11 @@ import {
   UserData,
 } from './styled'
 
+const { TWEETS, AGE, EDIT } = TEXT
+const { COVER } = ALT
+const { USER_IMG } = ICONS
+const { WALLPAPER } = IMGS
+
 const UserInfo = () => {
   const user = useTypedSelector(({ user }) => user.user) as User
   const [isModal, setIsModal] = useState<boolean>(false)
@@ -37,18 +42,18 @@ const UserInfo = () => {
       )}
       <Header>
         <Name>{`${user?.name} ${user?.lastName}`}</Name>
-        <Info>{`${tweetAmount} ${TEXT.TWEETS.toLowerCase()}`}</Info>
+        <Info>{`${tweetAmount} ${TWEETS.toLowerCase()}`}</Info>
       </Header>
-      <Img src={IMGS.WALLPAPER} alt={ALT.COVER} />
+      <Img src={WALLPAPER} alt={COVER} />
       <Profile>
-        <Button onClick={handleEdit}>{TEXT.EDIT}</Button>
+        <Button onClick={handleEdit}>{EDIT}</Button>
       </Profile>
       <UserData>
-        {ICONS.userImg}
+        {USER_IMG}
         <Name>{`${user?.name} ${user?.lastName}`}</Name>
         <Info>{`${user?.telegram ? `@${user?.telegram}` : ''} ${
           user?.dateOfBirth
-            ? ` ${getAge(new Date(user.dateOfBirth))} ${TEXT.AGE}`
+            ? ` ${getAge(new Date(user.dateOfBirth))} ${AGE}`
             : ''
         }`}</Info>
       </UserData>

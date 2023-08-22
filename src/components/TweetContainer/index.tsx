@@ -22,6 +22,10 @@ import {
 } from './styled'
 import { TweetContainerType } from './types'
 
+const { USER } = ALT
+const { USER_IMG } = IMGS
+const { LIKE, FILLED_LIKE, DELETE } = ICONS
+
 const TweetContainer = ({ tweet, afterDelete }: TweetContainerType) => {
   const {
     userName,
@@ -57,27 +61,25 @@ const TweetContainer = ({ tweet, afterDelete }: TweetContainerType) => {
 
   return (
     <Container>
-      <Img src={IMGS.USER_IMG} alt={ALT.USER} />
+      <Img src={USER_IMG} alt={USER} />
       <Content>
         <Info>
           <Title>{userName}</Title>
           <DateString>{new Date(date).toDateString()}</DateString>
         </Info>
         <Text>{content}</Text>
-        {imgUrl && (
-          <PostImg src={imgUrl} alt={ALT.USER} onLoad={handleLoaded} />
-        )}
+        {imgUrl && <PostImg src={imgUrl} alt={USER} onLoad={handleLoaded} />}
         {imgLoading && <Loader />}
         <Buttons>
           <ImgButton onClick={onLike}>
             <LikeIcon $isLiked={isLiked} data-cy="like" data-testid="like">
-              {isLiked ? ICONS.filledLike : ICONS.like}
+              {isLiked ? FILLED_LIKE : LIKE}
               <Like $isLiked={isLiked}>{likeAmount}</Like>
             </LikeIcon>
           </ImgButton>
           {tweetUser === user.id && (
             <ImgButton onClick={onDelete} data-cy="delete" data-testid="delete">
-              {ICONS.delete}
+              {DELETE}
             </ImgButton>
           )}
         </Buttons>

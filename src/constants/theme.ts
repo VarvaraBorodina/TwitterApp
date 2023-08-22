@@ -19,6 +19,7 @@ export const FONT_WEIGHT = {}
 
 export const COLORS = {
   ACCENT: '#1DA1F2',
+  ERROR: '#FF2A59',
   HOME_PAGE: '#FFFFFF',
   MODAL_BACKGROUND: '#00000070',
   LIKE_COLOR: '#EF1C5C',

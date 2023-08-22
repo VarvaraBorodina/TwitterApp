@@ -11,46 +11,48 @@ import Profile from '@/assets/icons/Profile'
 
 import ROUTES_NAMES from './routesNames'
 
+const { FEED, PROFILE, OTHER } = ROUTES_NAMES
+
 const PAGES = [
   {
     name: 'Feed',
     icon: <Feed />,
-    url: ROUTES_NAMES.FEED,
+    url: FEED,
   },
   {
     name: 'Explore',
     icon: <Explore />,
-    url: ROUTES_NAMES.FEED,
+    url: OTHER,
   },
   {
     name: 'Notifications',
     icon: <Notifications />,
-    url: ROUTES_NAMES.FEED,
+    url: OTHER,
   },
   {
     name: 'Messages',
     icon: <Messages />,
-    url: ROUTES_NAMES.FEED,
+    url: OTHER,
   },
   {
     name: 'Bookmarks',
     icon: <Bookmark />,
-    url: ROUTES_NAMES.FEED,
+    url: OTHER,
   },
   {
     name: 'Lists',
     icon: <Lists />,
-    url: ROUTES_NAMES.FEED,
+    url: OTHER,
   },
   {
     name: 'Profile',
     icon: <Profile />,
-    url: ROUTES_NAMES.PROFILE,
+    url: PROFILE,
   },
   {
     name: 'More',
     icon: <More />,
-    url: ROUTES_NAMES.FEED,
+    url: OTHER,
   },
 ]
 

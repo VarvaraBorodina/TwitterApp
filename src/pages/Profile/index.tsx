@@ -13,6 +13,9 @@ import { User } from '@/types'
 
 import { TweetError } from './styled'
 
+const { HOME } = ROUTES_NAMES
+const { SEARCH_TWEET } = TEXT
+
 const Profile: React.FC = () => {
   const user = useTypedSelector(({ user }) => user.user) as User
   const navigate = useNavigate()
@@ -22,7 +25,7 @@ const Profile: React.FC = () => {
 
   useEffect(() => {
     if (!user) {
-      navigate(ROUTES_NAMES.HOME)
+      navigate(HOME)
     }
     dispath(getAllTweets())
   }, [])
@@ -31,7 +34,7 @@ const Profile: React.FC = () => {
     <Layout
       getSearchData={searchTweet}
       renderSearchItem={TweetPreview}
-      searchPlaceholder={TEXT.SEARCH_TWEET}
+      searchPlaceholder={SEARCH_TWEET}
     >
       <>
         {error && <TweetError>{error}</TweetError>}

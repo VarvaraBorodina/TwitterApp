@@ -16,14 +16,8 @@ import {
   YEARS,
 } from '@/constants'
 import { useTypedDispatch, useTypedSelector } from '@/hooks'
-import { Gender, User } from '@/types'
-import { validateDate } from '@/utils'
-
-import { signUpSchema } from './schema'
 import {
-  Button,
   Error,
-  Form,
   Info,
   Input,
   Inputs,
@@ -31,8 +25,33 @@ import {
   SignUp,
   SubTitle,
   Title,
-} from './styled'
+} from '@/styles/common'
+import { Gender, User } from '@/types'
+import { validateDate } from '@/utils'
+
+import { signUpSchema } from './schema'
+import { Button, Form } from './styled'
 import { signUpFormType } from './types'
+
+const { HOME, PROFILE } = ROUTES_NAMES
+const {
+  CREATE_ACCOUNT,
+  USE_EMAIL,
+  NAME_PLACEHOLDER,
+  LASTNAME_PLACEHOLDER,
+  EMAIL_PLACEHOLDER,
+  PHONE_PLACEHOLDER,
+  GENDER_PLACEHOLDER,
+  DATE_PLACEHOLDER,
+  PASSWORD_PLACEHOLDER,
+  BIRTH,
+  BIRTH_TEXT,
+  SIGN_UP,
+  DATE_REQUIRED,
+} = TEXT
+
+const { LOGO: IMG_LOGO } = IMGS
+const { LOGO: ALT_LOGO } = ALT
 
 const SignUpForm: React.FC = () => {
   const form = useForm<signUpFormType>({
@@ -84,7 +103,7 @@ const SignUpForm: React.FC = () => {
     const { name, lastName, phone, email, password, month, day, year, gender } =
       userInfo
     if (!day || !month || !year) {
-      setDateError(TEXT.DATE_REQUIRED)
+      setDateError(DATE_REQUIRED)
       return
     }
     if (!dateError) {
@@ -99,7 +118,7 @@ const SignUpForm: React.FC = () => {
       }
 
       dispatch(signUp({ user: user, password })).then(({ payload }) =>
-        payload ? navigate(ROUTES_NAMES.PROFILE) : setLoading(false)
+        payload ? navigate(PROFILE) : setLoading(false)
       )
     }
   }
@@ -108,19 +127,19 @@ const SignUpForm: React.FC = () => {
     <Loader />
   ) : (
     <Form onSubmit={handleSubmit(submit)}>
-      <LogoImg src={IMGS.LOGO} alt={ALT.LOGO} />
-      <Title>{TEXT.CREATE_ACCOUNT}</Title>
+      <LogoImg src={IMG_LOGO} alt={ALT_LOGO} />
+      <Title>{CREATE_ACCOUNT}</Title>
       <Error>
         {authError || errors.name?.message || errors.lastName?.message}
       </Error>
       <Inputs>
         <Input
-          placeholder={TEXT.NAME_PLACEHOLDER}
+          placeholder={NAME_PLACEHOLDER}
           type="text"
           {...register('name')}
         />
         <Input
-          placeholder={TEXT.LASTNAME_PLACEHOLDER}
+          placeholder={LASTNAME_PLACEHOLDER}
           type="text"
           {...register('lastName')}
         />
@@ -128,12 +147,12 @@ const SignUpForm: React.FC = () => {
       <Error>{errors.email?.message || errors.phone?.message}</Error>
       <Inputs>
         <Input
-          placeholder={TEXT.EMAIL_PLACEHOLDER}
+          placeholder={EMAIL_PLACEHOLDER}
           type="email"
           {...register('email')}
         />
         <Input
-          placeholder={TEXT.PHONE_PLACEHOLDER}
+          placeholder={PHONE_PLACEHOLDER}
           type="text"
           {...register('phone')}
         />
@@ -141,19 +160,19 @@ const SignUpForm: React.FC = () => {
       <Error>{errors.password?.message || errors.gender?.message}</Error>
       <Inputs>
         <Input
-          placeholder={TEXT.PASSWORD_PLACEHOLDER}
+          placeholder={PASSWORD_PLACEHOLDER}
           type="password"
           {...register('password')}
         />
         <Dropdown
-          title={TEXT.GENDER_PLACEHOLDER}
+          title={GENDER_PLACEHOLDER}
           options={Object.values(Gender)}
           changeOption={handleGenderChange}
         />
       </Inputs>
-      <SignUp to={ROUTES_NAMES.HOME}>{TEXT.USE_EMAIL}</SignUp>
-      <SubTitle>{TEXT.BIRTH}</SubTitle>
-      <Info>{TEXT.BIRTH_TEXT}</Info>
+      <SignUp to={HOME}>{USE_EMAIL}</SignUp>
+      <SubTitle>{BIRTH}</SubTitle>
+      <Info>{BIRTH_TEXT}</Info>
       <Error>
         {errors.day?.message ||
           errors.month?.message ||
@@ -162,22 +181,22 @@ const SignUpForm: React.FC = () => {
       </Error>
       <Inputs>
         <Dropdown
-          title={TEXT.DATE_PLACEHOLDER[0]}
+          title={DATE_PLACEHOLDER[0]}
           options={DAYS}
           changeOption={handleDayChange}
         />
         <Dropdown
-          title={TEXT.DATE_PLACEHOLDER[1]}
+          title={DATE_PLACEHOLDER[1]}
           options={MONTH_NAMES}
           changeOption={handleMonthChange}
         />
         <Dropdown
-          title={TEXT.DATE_PLACEHOLDER[2]}
+          title={DATE_PLACEHOLDER[2]}
           options={YEARS}
           changeOption={handleYearChange}
         />
       </Inputs>
-      <Button>{TEXT.SIGN_UP}</Button>
+      <Button>{SIGN_UP}</Button>
     </Form>
   )
 }

@@ -22,6 +22,12 @@ import {
   UserName,
 } from './styled'
 
+const { HOME, PROFILE } = ROUTES_NAMES
+const { CLOSE } = ICONS
+const { LOGO: LOGO_IMG, USER_IMG } = IMGS
+const { LOGO: LOGO_ALT, USER } = ALT
+const { TWEET_BUTTON, LOGOUT } = TEXT
+
 const LeftSideBar = ({ toggle, show, showModal }: ToggleShowProps) => {
   const { pathname } = useLocation()
   const user: User | null = useTypedSelector(({ user }) => user.user)
@@ -34,7 +40,7 @@ const LeftSideBar = ({ toggle, show, showModal }: ToggleShowProps) => {
     }
     dispatch(logOut())
     dispatch(resetTheme())
-    navigate(ROUTES_NAMES.HOME)
+    navigate(HOME)
   }
 
   const handleClose = () => {
@@ -54,29 +60,28 @@ const LeftSideBar = ({ toggle, show, showModal }: ToggleShowProps) => {
 
   return (
     <Container $show={show}>
-      <ImgButton onClick={handleClose}>{ICONS.close}</ImgButton>
+      <ImgButton onClick={handleClose}>{CLOSE}</ImgButton>
       <Content>
-        <LogoImg src={IMGS.LOGO} alt={ALT.LOGO} />
+        <LogoImg src={LOGO_IMG} alt={LOGO_ALT} />
         <Pages>
           {PAGES.map(({ icon, url, name }) => {
+            const type = pathname === url ? 'current' : ''
             return (
-              <PageLink to={url} key={name}>
+              <PageLink to={url} key={name} type={type}>
                 {icon}
-                <LinkName>{name}</LinkName>
+                <LinkName type={type}>{name}</LinkName>
               </PageLink>
             )
           })}
         </Pages>
 
-        <AccentButton onClick={handleAddTweet}>
-          {TEXT.TWEET_BUTTON}
-        </AccentButton>
+        <AccentButton onClick={handleAddTweet}>{TWEET_BUTTON}</AccentButton>
         <UserInfo>
-          <Img src={IMGS.USER_IMG} alt={ALT.USER} />
+          <Img src={USER_IMG} alt={USER} />
           <UserName>{`${user?.name} ${user?.lastName}`}</UserName>
         </UserInfo>
-        {pathname === ROUTES_NAMES.PROFILE && (
-          <Button onClick={handleLogOut}>{TEXT.LOGOUT}</Button>
+        {pathname === PROFILE && (
+          <Button onClick={handleLogOut}>{LOGOUT}</Button>
         )}
       </Content>
     </Container>

@@ -4,6 +4,8 @@ import { TEXT } from '@/constants'
 
 import { ErrorProps, ErrorState } from './types'
 
+const { ERROR } = TEXT
+
 class ErrorBoundary extends React.Component<ErrorProps, ErrorState> {
   constructor(props: ErrorProps) {
     super(props)
@@ -20,7 +22,7 @@ class ErrorBoundary extends React.Component<ErrorProps, ErrorState> {
     const { hasError } = this.state
     const { children } = this.props
     if (hasError) {
-      return <h1>{TEXT.ERROR}</h1>
+      return <h1>{ERROR}</h1>
     }
 
     return children

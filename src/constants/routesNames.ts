@@ -4,6 +4,7 @@ enum ROUTES_NAMES {
   LOGIN = '/login',
   SIGNUP = '/sign-up',
   PROFILE = '/profile',
+  OTHER = '/other',
 }
 
 export default ROUTES_NAMES

@@ -8,6 +8,8 @@ import { Tweet } from '@/types'
 
 import { Message } from './styled'
 
+const { NO_TWEET } = TEXT
+
 const Tweets = ({ tweets }: { tweets: Tweet[] }) => {
   const loading = useTypedSelector(({ tweets }) => tweets.loading)
 
@@ -15,7 +17,7 @@ const Tweets = ({ tweets }: { tweets: Tweet[] }) => {
     <div>
       <TweetForm />
       {!tweets.length && !loading ? (
-        <Message>{TEXT.NO_TWEET}</Message>
+        <Message>{NO_TWEET}</Message>
       ) : (
         tweets.map((tweet) => <TweetContainer key={tweet.id} tweet={tweet} />)
       )}

@@ -68,11 +68,13 @@ const ALT = {
   COVER: 'Cover',
 }
 
+const { PASSWORD_ERROR, LOGIN_ERROR, EMAIL_EXIST_ERROR } = TEXT
+
 const ERRORS: { [identifier: string]: string } = {
-  'Firebase: Error (auth/wrong-password).': TEXT.PASSWORD_ERROR,
-  'Firebase: Error (auth/user-not-found).': TEXT.LOGIN_ERROR,
-  EMAIL_EXISTS: TEXT.EMAIL_EXIST_ERROR,
-  'Firebase: Error (auth/email-already-in-use).': TEXT.EMAIL_EXIST_ERROR,
+  'Firebase: Error (auth/wrong-password).': PASSWORD_ERROR,
+  'Firebase: Error (auth/user-not-found).': LOGIN_ERROR,
+  EMAIL_EXISTS: EMAIL_EXIST_ERROR,
+  'Firebase: Error (auth/email-already-in-use).': EMAIL_EXIST_ERROR,
 }
 
 export { ALT, ERRORS, TEXT }

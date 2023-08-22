@@ -14,6 +14,9 @@ import {
 } from './styled'
 import { SearchType } from './types'
 
+const { CLOSE, SEARCH } = ICONS
+const { LOADING, NOT_FOUND } = TEXT
+
 const Search = (props: SearchType<Searchable>) => {
   const { SearchItem, show, toggle, getData, placeholder } = props
   const { query, items, handleQueryChange, clearQuery, loading } =
@@ -27,9 +30,9 @@ const Search = (props: SearchType<Searchable>) => {
 
   return (
     <Container $show={show}>
-      <ImgButton onClick={handleClose}>{ICONS.close}</ImgButton>
+      <ImgButton onClick={handleClose}>{CLOSE}</ImgButton>
       <InputContainer>
-        {ICONS.search}
+        {SEARCH}
         <Input
           placeholder={placeholder}
           value={query}
@@ -37,9 +40,9 @@ const Search = (props: SearchType<Searchable>) => {
         />
       </InputContainer>
       {loading ? (
-        <Message>{TEXT.LOADING}</Message>
+        <Message>{LOADING}</Message>
       ) : items.length === 0 && query !== '' ? (
-        <Message>{TEXT.NOT_FOUND}</Message>
+        <Message>{NOT_FOUND}</Message>
       ) : (
         <Posts>
           {items.map((item) =>

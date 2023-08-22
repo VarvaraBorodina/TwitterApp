@@ -20,20 +20,22 @@ const validateDate = (
     return ''
   }
 
+  const { DATE_ERROR } = TEXT
+
   if (month === 1 && day > DayAmountInMonth.LongFebruary && year % 4 === 0) {
-    return `${TEXT.DATE_ERROR}${DayAmountInMonth.LongFebruary}`
+    return `${DATE_ERROR}${DayAmountInMonth.LongFebruary}`
   }
 
   if (month === 1 && day > DayAmountInMonth.ShortFebruary && year % 4 > 0) {
-    return `${TEXT.DATE_ERROR}${DayAmountInMonth.ShortFebruary}`
+    return `${DATE_ERROR}${DayAmountInMonth.ShortFebruary}`
   }
 
   if (LONG_MONTHES.includes(month)) {
     if (day > DayAmountInMonth.Long) {
-      return `${TEXT.DATE_ERROR}${DayAmountInMonth.Long}`
+      return `${DATE_ERROR}${DayAmountInMonth.Long}`
     }
   } else if (month && day > DayAmountInMonth.Short) {
-    return `${TEXT.DATE_ERROR}${DayAmountInMonth.Short}`
+    return `${DATE_ERROR}${DayAmountInMonth.Short}`
   }
 
   return ''

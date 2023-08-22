@@ -8,15 +8,6 @@ const Container = styled.div`
   padding: ${({ theme: { SPACES } }) => SPACES.M}px;
 `
 
-const Img = styled.img`
-  width: ${({ theme: { SIZES } }) => SIZES.BIG_LOGO_WIDTH}px;
-  height: ${({ theme: { SIZES } }) => SIZES.BIG_LOGO_WIDTH}px;
-  margin-right: ${({ theme: { SPACES } }) => SPACES.M}px;
-  @media (max-width: ${BREAKPOINTS.L}px) {
-    display: none;
-  }
-`
-
 const Input = styled.textarea`
   width: 100%;
   height: ${({ theme: { SIZES } }) => SIZES.DROPDOWN_HEIGHT}px;
@@ -46,32 +37,6 @@ const Buttons = styled.div`
   align-items: center;
 `
 
-const Button = styled.button`
-  width: ${({ theme: { SIZES } }) => SIZES.BUTTON_WIDTH}px;
-  height: ${({ theme: { SIZES } }) => SIZES.BUTTON_HEIGHT}px;
-
-  font-size: ${({ theme: { FONT_SIZE } }) => FONT_SIZE.S}px;
-  font-family: ${({ theme: { FONTS } }) => FONTS.M};
-  color: ${({ theme: { COLOR_THEME } }) => COLOR_THEME.MAIN_COLOR};
-  background-color: ${({ theme: { COLORS } }) => COLORS.ACCENT};
-  border: none;
-  border-radius: ${({ theme: { BORDER_RADIUS } }) => BORDER_RADIUS.L}px;
-  cursor: pointer;
-  transition: opacity 0.5s;
-  transition: width 0.5s;
-  &:hover {
-    transition: opacity 0.5s;
-    transition: width 0.5s;
-    opacity: ${({ theme: { OPACITIES } }) => OPACITIES.L};
-    width: ${({ theme: { SIZES } }) => SIZES.BUTTON_HOVER}px;
-  }
-  @media (max-width: ${BREAKPOINTS.L}px) {
-    font-size: ${({ theme: { FONT_SIZE } }) => FONT_SIZE.S}px;
-    width: ${({ theme: { SIZES } }) => SIZES.MAX_INPUT_WIDTH}px;
-    height: ${({ theme: { SIZES } }) => SIZES.BUTTON_HEIGHT}px;
-  }
-`
-
 const ImgButton = styled.button`
   display: flex;
   align-items: center;
@@ -96,21 +61,4 @@ const FileName = styled.div`
   }
 `
 
-const Error = styled.p`
-  font-size: ${({ theme: { FONT_SIZE } }) => FONT_SIZE.S}px;
-  font-family: ${({ theme: { FONTS } }) => FONTS.S};
-  color: ${({ theme: { COLOR_THEME } }) => COLOR_THEME.TEXT_COLOR};
-`
-
-export {
-  Button,
-  Buttons,
-  Container,
-  Error,
-  FileName,
-  Form,
-  Img,
-  ImgButton,
-  Input,
-  Uploader,
-}
+export { Buttons, Container, FileName, Form, ImgButton, Input, Uploader }

@@ -8,11 +8,6 @@ const Form = styled.form`
   margin-top: ${({ theme: { SPACES } }) => SPACES.XL}px;
 `
 
-const LogoImg = styled.img`
-  width: ${({ theme: { SIZES } }) => SIZES.BIG_LOGO_WIDTH}px;
-  margin-bottom: ${({ theme: { SPACES } }) => SPACES.M}px;
-`
-
 const SubTitle = styled.h1`
   margin-bottom: ${({ theme: { SPACES } }) => SPACES.M}px;
   font-family: ${({ theme: { FONTS } }) => FONTS.XL};
@@ -50,14 +45,6 @@ const Button = styled.button`
   font-family: ${({ theme: { FONTS } }) => FONTS.S};
   cursor: pointer;
 `
-
-const Error = styled.p`
-  margin-bottom: ${({ theme: { SPACES } }) => SPACES.S}px;
-  font-size: ${({ theme: { FONT_SIZE } }) => FONT_SIZE.M}px;
-  font-family: ${({ theme: { FONTS } }) => FONTS.S};
-  color: ${({ theme: { COLORS } }) => COLORS.ACCENT};
-`
-
 const SignUp = styled(Link)`
   display: inline-block;
   width: ${({ theme: { SIZES } }) => SIZES.LOGIN_FORM_WIDTH}px;
@@ -69,4 +56,4 @@ const SignUp = styled(Link)`
   font-family: ${({ theme: { FONTS } }) => FONTS.S};
 `
 
-export { Button, Error, Form, Input, LogoImg, SignUp, SubTitle }
+export { Button, Form, Input, SignUp, SubTitle }

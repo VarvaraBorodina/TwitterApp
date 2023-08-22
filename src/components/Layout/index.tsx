@@ -10,6 +10,8 @@ import { ICONS } from '@/constants'
 import { Container, Content, Header, LeftMenu, RightMenu } from './styled'
 import { LayoutType } from './types'
 
+const { MENU, SEARCH } = ICONS
+
 const Layout = (props: LayoutType) => {
   const { getSearchData, renderSearchItem, children, searchPlaceholder } = props
   const [showMenu, setShowMenu] = useState<boolean>(false)
@@ -57,8 +59,8 @@ const Layout = (props: LayoutType) => {
       <LeftSideBar show={false} showModal={toggleShowAddModal} />
       <Content>
         <Header>
-          <LeftMenu onClick={toggleShowMenu}>{ICONS.menu}</LeftMenu>
-          <RightMenu onClick={toggleShowSearch}>{ICONS.search}</RightMenu>
+          <LeftMenu onClick={toggleShowMenu}>{MENU}</LeftMenu>
+          <RightMenu onClick={toggleShowSearch}>{SEARCH}</RightMenu>
         </Header>
         {children}
       </Content>

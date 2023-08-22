@@ -14,6 +14,9 @@ import { User } from '@/types'
 
 import { Header, Title, TweetError } from './styled'
 
+const { HOME } = ROUTES_NAMES
+const { SEARCH_USER, HOME_PAGE_HEADER } = TEXT
+
 const Feed: React.FC = () => {
   const navigate = useNavigate()
 
@@ -26,7 +29,7 @@ const Feed: React.FC = () => {
   useEffect(() => {
     dispath(getAllTweets())
     if (!user) {
-      navigate(ROUTES_NAMES.HOME)
+      navigate(HOME)
     }
     dispath(resetError())
   }, [])
@@ -35,11 +38,11 @@ const Feed: React.FC = () => {
     <Layout
       getSearchData={searchUsers}
       renderSearchItem={UserPreview}
-      searchPlaceholder={TEXT.SEARCH_USER}
+      searchPlaceholder={SEARCH_USER}
     >
       <>
         <Header>
-          <Title>{TEXT.HOME_PAGE_HEADER}</Title>
+          <Title>{HOME_PAGE_HEADER}</Title>
           <ToggleTheme />
         </Header>
         <TweetError>{error}</TweetError>
