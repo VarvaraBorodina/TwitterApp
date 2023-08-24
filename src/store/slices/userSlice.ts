@@ -62,5 +62,5 @@ const userSlice = createSlice({
   },
 })
 
-export default userSlice.reducer
+export const userReducer = userSlice.reducer
 export const { resetError } = userSlice.actions

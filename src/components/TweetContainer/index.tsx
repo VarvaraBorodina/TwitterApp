@@ -1,7 +1,7 @@
 import { useState } from 'react'
 
 import { deleteTweet, toggleLike } from '@/api/tweets'
-import Loader from '@/components/Loader'
+import { Loader } from '@/components/Loader'
 import { ALT, ICONS, IMGS } from '@/constants'
 import { useTypedDispatch, useTypedSelector } from '@/hooks'
 import { User } from '@/types'
@@ -11,7 +11,6 @@ import {
   Container,
   Content,
   DateString,
-  Img,
   ImgButton,
   Info,
   Like,
@@ -19,6 +18,7 @@ import {
   PostImg,
   Text,
   Title,
+  TweetImg,
 } from './styled'
 import { TweetContainerType } from './types'
 
@@ -26,7 +26,7 @@ const { USER } = ALT
 const { USER_IMG } = IMGS
 const { LIKE, FILLED_LIKE, DELETE } = ICONS
 
-const TweetContainer = ({ tweet, afterDelete }: TweetContainerType) => {
+export const TweetContainer = ({ tweet, afterDelete }: TweetContainerType) => {
   const {
     userName,
     date,
@@ -61,7 +61,7 @@ const TweetContainer = ({ tweet, afterDelete }: TweetContainerType) => {
 
   return (
     <Container>
-      <Img src={USER_IMG} alt={USER} />
+      <TweetImg src={USER_IMG} alt={USER} />
       <Content>
         <Info>
           <Title>{userName}</Title>
@@ -87,5 +87,3 @@ const TweetContainer = ({ tweet, afterDelete }: TweetContainerType) => {
     </Container>
   )
 }
-
-export default TweetContainer

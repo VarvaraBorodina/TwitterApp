@@ -1,4 +1,4 @@
-const Notification = () => {
+export const Notification = () => {
   return (
     <svg
       width="24"
@@ -14,5 +14,3 @@ const Notification = () => {
     </svg>
   )
 }
-
-export default Notification

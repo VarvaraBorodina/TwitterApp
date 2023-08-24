@@ -1,10 +1,10 @@
 import { yupResolver } from '@hookform/resolvers/yup'
-import React, { useState } from 'react'
+import { useState } from 'react'
 import { useForm } from 'react-hook-form'
 import { useNavigate } from 'react-router-dom'
 
 import { logInWithEmail, logInWithPhoneNumber } from '@/api/auth'
-import Loader from '@/components/Loader'
+import { Loader } from '@/components/Loader'
 import { ALT, IMGS, ROUTES_NAMES, TEXT } from '@/constants'
 import { useTypedDispatch, useTypedSelector } from '@/hooks'
 import { resetError } from '@/store/slices/userSlice'
@@ -26,7 +26,7 @@ const {
 const { LOGO: IMG_LOGO } = IMGS
 const { LOGO: ALT_LOGO } = ALT
 
-const LogInForm: React.FC = () => {
+export const LogInForm = () => {
   const form = useForm<loginFormType>({
     resolver: yupResolver(loginSchema),
   })
@@ -69,21 +69,17 @@ const LogInForm: React.FC = () => {
       <Error>{errors.login?.message}</Error>
       <Input
         placeholder={LOGIN_PLACEHOLDER}
-        {...register('login')}
+        {...register('login', { onChange: resetApiError })}
         type="text"
-        onChange={resetApiError}
       />
       <Error>{errors.password?.message || error}</Error>
       <Input
         placeholder={PASSWORD_PLACEHOLDER}
-        {...register('password')}
+        {...register('password', { onChange: resetApiError })}
         type="password"
-        onChange={resetApiError}
       />
       <Button>{LOGIN}</Button>
       <SignUp to={SIGNUP}>{SIGN_UP}</SignUp>
     </Form>
   )
 }
-
-export default LogInForm

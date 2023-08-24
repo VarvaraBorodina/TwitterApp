@@ -1,5 +1,6 @@
-export type DropdownType = {
+export type DropdownType<T> = {
   title: string
-  changeOption: (newTitle: string) => boolean
+  changeOption: (name: T, newOption: string) => boolean
   options: string[]
+  name: T
 }

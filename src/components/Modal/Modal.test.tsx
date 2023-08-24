@@ -2,10 +2,10 @@ import 'jest-styled-components'
 
 import { render as RTLrender, screen } from '@testing-library/react'
 
-import MockWrapper from '@/components/MockWrapper'
+import { MockWrapper } from '@/components/MockWrapper'
 import * as hooks from '@/hooks'
 
-import Modal from '.'
+import { Modal } from '.'
 
 const mockDispatch = jest.fn()
 

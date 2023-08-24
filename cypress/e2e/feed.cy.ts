@@ -1,6 +1,6 @@
 import cypress from 'cypress'
 
-import ROUTE_NAMES from '../routeNames'
+import { ROUTE_NAMES } from '../routeNames'
 
 const baseUrlL: string = Cypress.config().baseUrl!.toString()
 

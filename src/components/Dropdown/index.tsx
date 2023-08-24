@@ -1,16 +1,21 @@
-import React, { useState } from 'react'
+import { useState } from 'react'
 
-import Arrow from '@/assets/icons/Arrow'
+import { Arrow } from '@/assets/icons/Arrow'
 
 import { Container, Input, Option, OptionContainer, Title } from './styled'
 import { DropdownType } from './types'
 
-const Dropdown: React.FC<DropdownType> = ({ title, changeOption, options }) => {
+export const Dropdown = <T,>({
+  title,
+  changeOption,
+  options,
+  name,
+}: DropdownType<T>) => {
   const [isOpen, setIsOpen] = useState<boolean>(false)
   const [option, setOption] = useState<string>(title)
 
   const handleOnOptionClick = (optionName: string) => () => {
-    if (changeOption(optionName)) {
+    if (changeOption(name, optionName)) {
       setIsOpen(false)
       setOption(optionName)
     }
@@ -19,7 +24,7 @@ const Dropdown: React.FC<DropdownType> = ({ title, changeOption, options }) => {
   return (
     <Container>
       <Input onClick={() => setIsOpen(true)}>
-        <Title>{option}</Title>
+        <Title readOnly value={option} />
         <Arrow />
       </Input>
       {isOpen && (
@@ -34,5 +39,3 @@ const Dropdown: React.FC<DropdownType> = ({ title, changeOption, options }) => {
     </Container>
   )
 }
-
-export default Dropdown

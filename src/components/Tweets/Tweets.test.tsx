@@ -2,11 +2,11 @@ import 'jest-styled-components'
 
 import { render as RTLrender, screen } from '@testing-library/react'
 
-import MockWrapper from '@/components/MockWrapper'
+import { MockWrapper } from '@/components/MockWrapper'
 import * as hooks from '@/hooks'
 import { Tweet } from '@/types'
 
-import Tweets from '.'
+import { Tweets } from '.'
 
 const mockDispatch = jest.fn()
 

@@ -1,4 +1,4 @@
-const File = () => {
+export const File = () => {
   return (
     <svg
       width="24"
@@ -30,5 +30,3 @@ const File = () => {
     </svg>
   )
 }
-
-export default File

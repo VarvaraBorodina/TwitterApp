@@ -1,7 +1,7 @@
 import { useState } from 'react'
 
-import EditForm from '@/components/forms/EditForm'
-import Modal from '@/components/Modal'
+import { EditForm } from '@/components/forms/EditForm'
+import { Modal } from '@/components/Modal'
 import { ALT, ICONS, IMGS, TEXT } from '@/constants'
 import { useTypedSelector } from '@/hooks'
 import { tweetsAmountSelector } from '@/store/slices/tweetsSlice'
@@ -12,11 +12,11 @@ import {
   Button,
   Container,
   Header,
-  Img,
   Info,
   Name,
   Profile,
   UserData,
+  WallpaperImg,
 } from './styled'
 
 const { TWEETS, AGE, EDIT } = TEXT
@@ -24,7 +24,7 @@ const { COVER } = ALT
 const { USER_IMG } = ICONS
 const { WALLPAPER } = IMGS
 
-const UserInfo = () => {
+export const UserInfo = () => {
   const user = useTypedSelector(({ user }) => user.user) as User
   const [isModal, setIsModal] = useState<boolean>(false)
   const tweetAmount = useTypedSelector(tweetsAmountSelector(user?.id))
@@ -44,7 +44,7 @@ const UserInfo = () => {
         <Name>{`${user?.name} ${user?.lastName}`}</Name>
         <Info>{`${tweetAmount} ${TWEETS.toLowerCase()}`}</Info>
       </Header>
-      <Img src={WALLPAPER} alt={COVER} />
+      <WallpaperImg src={WALLPAPER} alt={COVER} />
       <Profile>
         <Button onClick={handleEdit}>{EDIT}</Button>
       </Profile>
@@ -60,5 +60,3 @@ const UserInfo = () => {
     </Container>
   )
 }
-
-export default UserInfo

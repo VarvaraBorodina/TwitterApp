@@ -1,19 +1,19 @@
 /// <reference types="vite-plugin-svgr/client" />
 
-import Bookmark from '@/assets/icons/Bookmark'
-import Explore from '@/assets/icons/Explore'
-import Feed from '@/assets/icons/Feed'
-import Lists from '@/assets/icons/Lists'
-import Messages from '@/assets/icons/Messages'
-import More from '@/assets/icons/More'
-import Notifications from '@/assets/icons/Notification'
-import Profile from '@/assets/icons/Profile'
+import { Bookmarks } from '@/assets/icons/Bookmark'
+import { Explore } from '@/assets/icons/Explore'
+import { Feed } from '@/assets/icons/Feed'
+import { Lists } from '@/assets/icons/Lists'
+import { Messages } from '@/assets/icons/Messages'
+import { More } from '@/assets/icons/More'
+import { Notification } from '@/assets/icons/Notification'
+import { Profile } from '@/assets/icons/Profile'
 
-import ROUTES_NAMES from './routesNames'
+import { ROUTES_NAMES } from './routesNames'
 
 const { FEED, PROFILE, OTHER } = ROUTES_NAMES
 
-const PAGES = [
+export const PAGES = [
   {
     name: 'Feed',
     icon: <Feed />,
@@ -26,7 +26,7 @@ const PAGES = [
   },
   {
     name: 'Notifications',
-    icon: <Notifications />,
+    icon: <Notification />,
     url: OTHER,
   },
   {
@@ -36,7 +36,7 @@ const PAGES = [
   },
   {
     name: 'Bookmarks',
-    icon: <Bookmark />,
+    icon: <Bookmarks />,
     url: OTHER,
   },
   {
@@ -55,5 +55,3 @@ const PAGES = [
     url: OTHER,
   },
 ]
-
-export default PAGES

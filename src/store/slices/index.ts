@@ -1,13 +1,11 @@
 import { combineReducers } from 'redux'
 
-import themeSlice from './themeSlice'
-import tweetsSlice from './tweetsSlice'
-import userSlice from './userSlice'
+import { themeReducer } from './themeSlice'
+import { tweetsReducer } from './tweetsSlice'
+import { userReducer } from './userSlice'
 
-const rootReducer = combineReducers({
-  user: userSlice,
-  tweets: tweetsSlice,
-  theme: themeSlice,
+export const rootReducer = combineReducers({
+  user: userReducer,
+  tweets: tweetsReducer,
+  theme: themeReducer,
 })
-
-export default rootReducer

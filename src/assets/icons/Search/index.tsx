@@ -1,4 +1,4 @@
-const Search = () => {
+export const Search = () => {
   return (
     <svg
       width="20"
@@ -14,5 +14,3 @@ const Search = () => {
     </svg>
   )
 }
-
-export default Search

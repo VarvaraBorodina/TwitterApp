@@ -1,4 +1,4 @@
-const TEXT = {
+export const TEXT = {
   PASSWORD_ERROR: 'Wrong password',
   LOGIN_ERROR: 'User not found',
   GOOGLE_ERROR: 'Google account error',
@@ -7,7 +7,7 @@ const TEXT = {
   LOGIN_REQUIRED: 'Email / Phone is required',
   LOGIN_INVALID: 'Email / Phone is invalid',
   PASSWORD_LENGTH: 'Required length is 8',
-  DATE_ERROR: 'Max day: ',
+  DATE_ERROR: 'This month is not that long',
   DATE_REQUIRED: 'Required full date',
   ERROR: 'Something went wrong...',
   ADD_POST_ERROR: 'Unable to add post',
@@ -59,7 +59,7 @@ const TEXT = {
   TWEET_CREATED: 'Tweet is created',
 }
 
-const ALT = {
+export const ALT = {
   LOGO: 'twitter logo',
   GOOGLE: 'google logo',
   BACK_TWITTER: 'back twitter',
@@ -70,11 +70,9 @@ const ALT = {
 
 const { PASSWORD_ERROR, LOGIN_ERROR, EMAIL_EXIST_ERROR } = TEXT
 
-const ERRORS: { [identifier: string]: string } = {
+export const ERRORS: { [identifier: string]: string } = {
   'Firebase: Error (auth/wrong-password).': PASSWORD_ERROR,
   'Firebase: Error (auth/user-not-found).': LOGIN_ERROR,
   EMAIL_EXISTS: EMAIL_EXIST_ERROR,
   'Firebase: Error (auth/email-already-in-use).': EMAIL_EXIST_ERROR,
 }
-
-export { ALT, ERRORS, TEXT }

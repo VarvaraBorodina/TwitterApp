@@ -1,6 +1,6 @@
 import { Gender } from '@/types'
 
-type signUpFormType = {
+export type signUpFormType = {
   name: string
   lastName: string
   email: string
@@ -8,8 +8,6 @@ type signUpFormType = {
   password: string
   gender: Gender
   day: string
-  month: number
+  month: string
   year: string
 }
-
-export type { signUpFormType }

@@ -10,19 +10,24 @@ export const LogoImg = styled.img`
 export const Error = styled.p`
   margin-bottom: ${({ theme: { SPACES } }) => SPACES.S}px;
   font-size: ${({ theme: { FONT_SIZE } }) => FONT_SIZE.XS}px;
-  font-family: ${({ theme: { FONTS } }) => FONTS.S};
+  font-weight: ${({ theme: { FONTS } }) => FONTS.S};
   color: ${({ theme: { COLORS } }) => COLORS.ERROR};
 `
 export const Title = styled.h1`
   margin-bottom: ${({ theme: { SPACES } }) => SPACES.M}px;
-  font-family: ${({ theme: { FONTS } }) => FONTS.XL};
+  font-weight: ${({ theme: { FONTS } }) => FONTS.XL};
   font-size: ${({ theme: { FONT_SIZE } }) => FONT_SIZE.L}px;
+  color: ${({ theme: { COLOR_THEME } }) => COLOR_THEME.TEXT_COLOR};
+  @media (max-width: ${BREAKPOINTS.M}px) {
+    font-size: ${({ theme: { FONT_SIZE } }) => FONT_SIZE.M}px;
+    margin-bottom: ${({ theme: { SPACES } }) => SPACES.S}px;
+  }
 `
 
 export const SubTitle = styled.h3`
   margin-top: ${({ theme: { SPACES } }) => SPACES.S}px;
   margin-bottom: ${({ theme: { SPACES } }) => SPACES.S}px;
-  font-family: ${({ theme: { FONTS } }) => FONTS.XL};
+  font-weight: ${({ theme: { FONTS } }) => FONTS.XL};
   font-size: ${({ theme: { FONT_SIZE } }) => FONT_SIZE.M}px;
 `
 
@@ -30,13 +35,13 @@ export const SignUp = styled(Link)`
   margin-top: ${({ theme: { SPACES } }) => SPACES.S}px;
   color: ${({ theme: { COLORS } }) => COLORS.ACCENT};
   font-size: ${({ theme: { FONT_SIZE } }) => FONT_SIZE.XS}px;
-  font-family: ${({ theme: { FONTS } }) => FONTS.S};
+  font-weight: ${({ theme: { FONTS } }) => FONTS.S};
 `
 
 export const Info = styled.p`
   margin-bottom: ${({ theme: { SPACES } }) => SPACES.S}px;
   font-size: ${({ theme: { FONT_SIZE } }) => FONT_SIZE.XS}px;
-  font-family: ${({ theme: { FONTS } }) => FONTS.S};
+  font-weight: ${({ theme: { FONTS } }) => FONTS.S};
   opacity: ${({ theme: { OPACITIES } }) => OPACITIES.L};
 `
 
@@ -53,7 +58,7 @@ export const Input = styled.input`
     ${({ theme: { COLOR_THEME } }) => COLOR_THEME.BORDER};
   border-radius: ${({ theme: { BORDER_RADIUS } }) => BORDER_RADIUS.S}px;
   font-size: ${({ theme: { FONT_SIZE } }) => FONT_SIZE.XS}px;
-  font-family: ${({ theme: { FONTS } }) => FONTS.S};
+  font-weight: ${({ theme: { FONTS } }) => FONTS.S};
   @media (max-width: ${BREAKPOINTS.M}px) {
     width: ${({ theme: { SIZES } }) => SIZES.MAX_INPUT_WIDTH}vw;
   }
@@ -77,7 +82,7 @@ export const FormButton = styled.button`
     ${({ theme: { COLOR_THEME } }) => COLOR_THEME.BORDER};
   border-radius: ${({ theme: { BORDER_RADIUS } }) => BORDER_RADIUS.L}px;
   font-size: ${({ theme: { FONT_SIZE } }) => FONT_SIZE.XS}px;
-  font-family: ${({ theme: { FONTS } }) => FONTS.S};
+  font-weight: ${({ theme: { FONTS } }) => FONTS.S};
   cursor: pointer;
   @media (max-width: ${BREAKPOINTS.M}px) {
     width: ${({ theme: { SIZES } }) => SIZES.MAX_INPUT_WIDTH}vw;
@@ -89,7 +94,7 @@ export const TweetButton = styled.button`
   height: ${({ theme: { SIZES } }) => SIZES.BUTTON_HEIGHT}px;
 
   font-size: ${({ theme: { FONT_SIZE } }) => FONT_SIZE.S}px;
-  font-family: ${({ theme: { FONTS } }) => FONTS.M};
+  font-weight: ${({ theme: { FONTS } }) => FONTS.M};
   color: ${({ theme: { COLOR_THEME } }) => COLOR_THEME.MAIN_COLOR};
   background-color: ${({ theme: { COLORS } }) => COLORS.ACCENT};
   border: none;
@@ -116,5 +121,18 @@ export const UserImg = styled.img`
   margin-right: ${({ theme: { SPACES } }) => SPACES.M}px;
   @media (max-width: ${BREAKPOINTS.L}px) {
     display: none;
+  }
+`
+
+export const ImgButton = styled.button`
+  position: absolute;
+  top: ${({ theme: { SPACES } }) => SPACES.M}px;
+  right: ${({ theme: { SPACES } }) => SPACES.M}px;
+  border: none;
+  background-color: ${({ theme: { COLOR_THEME } }) => COLOR_THEME.MAIN_COLOR};
+  display: none;
+  cursor: pointer;
+  @media (max-width: ${BREAKPOINTS.M}px) {
+    display: block;
   }
 `

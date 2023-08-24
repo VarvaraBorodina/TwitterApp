@@ -1,23 +1,17 @@
 import { memo } from 'react'
 
 import { ICONS, TEXT } from '@/constants'
-import useSearch from '@/hooks/useSearch'
+import { useSearch } from '@/hooks/useSearch'
+import { ImgButton } from '@/styles/common'
 import { Searchable } from '@/types'
 
-import {
-  Container,
-  ImgButton,
-  Input,
-  InputContainer,
-  Message,
-  Posts,
-} from './styled'
+import { Container, Input, InputContainer, Message, Posts } from './styled'
 import { SearchType } from './types'
 
 const { CLOSE, SEARCH } = ICONS
 const { LOADING, NOT_FOUND } = TEXT
 
-const Search = (props: SearchType<Searchable>) => {
+export const Search = memo((props: SearchType<Searchable>) => {
   const { SearchItem, show, toggle, getData, placeholder } = props
   const { query, items, handleQueryChange, clearQuery, loading } =
     useSearch<Searchable>(getData)
@@ -29,7 +23,7 @@ const Search = (props: SearchType<Searchable>) => {
   }
 
   return (
-    <Container $show={show}>
+    <Container show={show ? 'show' : ''}>
       <ImgButton onClick={handleClose}>{CLOSE}</ImgButton>
       <InputContainer>
         {SEARCH}
@@ -39,23 +33,19 @@ const Search = (props: SearchType<Searchable>) => {
           onChange={handleQueryChange}
         />
       </InputContainer>
-      {loading ? (
-        <Message>{LOADING}</Message>
-      ) : items.length === 0 && query !== '' ? (
+      {loading && <Message>{LOADING}</Message>}
+      {items.length === 0 && !loading && query !== '' && (
         <Message>{NOT_FOUND}</Message>
-      ) : (
-        <Posts>
-          {items.map((item) =>
-            SearchItem ? (
-              <SearchItem item={item} key={item.id} clearQuery={clearQuery} />
-            ) : (
-              ''
-            )
-          )}
-        </Posts>
       )}
+      <Posts>
+        {items.map((item) =>
+          SearchItem ? (
+            <SearchItem item={item} key={item.id} clearQuery={clearQuery} />
+          ) : (
+            ''
+          )
+        )}
+      </Posts>
     </Container>
   )
-}
-
-export default memo(Search)
+})

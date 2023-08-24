@@ -1,7 +1,7 @@
 /// <reference types="cypress" />
 // ***********************************************
 
-import ROUTE_NAMES from '../routeNames'
+import { ROUTE_NAMES } from '../routeNames'
 
 Cypress.Commands.add('login', () => {
   cy.visit(ROUTE_NAMES.LOGIN)

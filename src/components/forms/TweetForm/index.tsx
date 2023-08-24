@@ -3,7 +3,7 @@ import { useState } from 'react'
 import { addTweet } from '@/api/tweets'
 import { ALT, ICONS, IMGS, TEXT } from '@/constants'
 import { useTypedDispatch, useTypedSelector } from '@/hooks'
-import { Error, TweetButton, UserImg } from '@/styles/common'
+import { TweetButton, UserImg } from '@/styles/common'
 import { User } from '@/types'
 
 import {
@@ -13,6 +13,7 @@ import {
   Form,
   ImgButton,
   Input,
+  Message,
   Uploader,
 } from './styled'
 
@@ -26,7 +27,11 @@ const { USER_IMG } = IMGS
 const { USER } = ALT
 const { FILE: FILE_ICON } = ICONS
 
-const TweetForm = ({ handleAddedTweet }: { handleAddedTweet?: () => void }) => {
+export const TweetForm = ({
+  handleAddedTweet,
+}: {
+  handleAddedTweet?: () => void
+}) => {
   const [file, setFile] = useState<File | null>(null)
   const [content, setContent] = useState('')
   const [error, setError] = useState('')
@@ -96,10 +101,8 @@ const TweetForm = ({ handleAddedTweet }: { handleAddedTweet?: () => void }) => {
           <TweetButton onClick={handleSubmit}>{TWEET_BUTTON}</TweetButton>
         </Buttons>
 
-        <Error>{error}</Error>
+        <Message>{error}</Message>
       </Form>
     </Container>
   )
 }
-
-export default TweetForm

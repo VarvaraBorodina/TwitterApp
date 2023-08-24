@@ -1,4 +1,4 @@
-const FilledLike = () => {
+export const FilledLike = () => {
   return (
     <svg
       width="24"
@@ -14,5 +14,3 @@ const FilledLike = () => {
     </svg>
   )
 }
-
-export default FilledLike

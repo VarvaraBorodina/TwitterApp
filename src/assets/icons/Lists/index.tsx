@@ -1,4 +1,4 @@
-const Lists = () => {
+export const Lists = () => {
   return (
     <svg
       width="24"
@@ -20,5 +20,3 @@ const Lists = () => {
     </svg>
   )
 }
-
-export default Lists

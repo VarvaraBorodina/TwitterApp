@@ -1,20 +1,20 @@
 import { Link } from 'react-router-dom'
 import styled from 'styled-components'
 
-const Form = styled.form`
+export const Form = styled.form`
   width: ${({ theme: { SIZES } }) => SIZES.LOGIN_FORM_WIDTH}px;
   max-width: ${({ theme: { SIZES } }) => SIZES.MAX_INPUT_WIDTH}vw;
   margin: 0 auto;
   margin-top: ${({ theme: { SPACES } }) => SPACES.XL}px;
 `
 
-const SubTitle = styled.h1`
+export const SubTitle = styled.h1`
   margin-bottom: ${({ theme: { SPACES } }) => SPACES.M}px;
-  font-family: ${({ theme: { FONTS } }) => FONTS.XL};
+  font-weight: ${({ theme: { FONTS } }) => FONTS.XL};
   font-size: ${({ theme: { FONT_SIZE } }) => FONT_SIZE.L}px;
 `
 
-const Input = styled.input`
+export const Input = styled.input`
   align-items: center;
   width: ${({ theme: { SIZES } }) => SIZES.LOGIN_FORM_WIDTH}px;
   max-width: ${({ theme: { SIZES } }) => SIZES.MAX_INPUT_WIDTH}vw;
@@ -26,10 +26,10 @@ const Input = styled.input`
     ${({ theme: { COLOR_THEME } }) => COLOR_THEME.BORDER};
   border-radius: ${({ theme: { BORDER_RADIUS } }) => BORDER_RADIUS.S}px;
   font-size: ${({ theme: { FONT_SIZE } }) => FONT_SIZE.M}px;
-  font-family: ${({ theme: { FONTS } }) => FONTS.S};
+  font-weight: ${({ theme: { FONTS } }) => FONTS.S};
 `
 
-const Button = styled.button`
+export const Button = styled.button`
   display: flex;
   align-items: center;
   justify-content: center;
@@ -42,10 +42,10 @@ const Button = styled.button`
     ${({ theme: { COLOR_THEME } }) => COLOR_THEME.BORDER};
   border-radius: ${({ theme: { BORDER_RADIUS } }) => BORDER_RADIUS.L}px;
   font-size: ${({ theme: { FONT_SIZE } }) => FONT_SIZE.M}px;
-  font-family: ${({ theme: { FONTS } }) => FONTS.S};
+  font-weight: ${({ theme: { FONTS } }) => FONTS.S};
   cursor: pointer;
 `
-const SignUp = styled(Link)`
+export const SignUp = styled(Link)`
   display: inline-block;
   width: ${({ theme: { SIZES } }) => SIZES.LOGIN_FORM_WIDTH}px;
   max-width: ${({ theme: { SIZES } }) => SIZES.MAX_INPUT_WIDTH}vw;
@@ -53,7 +53,5 @@ const SignUp = styled(Link)`
   margin-top: ${({ theme: { SPACES } }) => SPACES.M}px;
   color: ${({ theme: { COLORS } }) => COLORS.ACCENT};
   font-size: ${({ theme: { FONT_SIZE } }) => FONT_SIZE.XS}px;
-  font-family: ${({ theme: { FONTS } }) => FONTS.S};
+  font-weight: ${({ theme: { FONTS } }) => FONTS.S};
 `
-
-export { Button, Form, Input, SignUp, SubTitle }

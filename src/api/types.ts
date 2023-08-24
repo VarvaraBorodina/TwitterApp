@@ -1,14 +1,12 @@
 import { User } from '@/types'
 
-type tweetData = {
+export type tweetData = {
   file: File | null
   content: string
   user: User
 }
 
-type tweetDataToDelete = {
+export type tweetDataToDelete = {
   id: string
   url: string | undefined
 }
-
-export type { tweetData, tweetDataToDelete }

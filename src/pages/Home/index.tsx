@@ -1,4 +1,3 @@
-import React from 'react'
 import { useNavigate } from 'react-router-dom'
 
 import { logInWithGoogle } from '@/api/auth'
@@ -19,7 +18,7 @@ import {
 } from './styled'
 
 const { BACK_TWITTER, LOGO: ALT_LOGO, GOOGLE: ALT_GOOGLE } = ALT
-const { PROFILE, SIGNUP, HOME } = ROUTES_NAMES
+const { PROFILE, SIGNUP, HOME, LOGIN } = ROUTES_NAMES
 const {
   HOME_TITLE,
   HOME_SUBTITLE,
@@ -29,13 +28,13 @@ const {
   TERM,
   POLICY,
   COOKIE,
-  LOGIN,
+  LOGIN: LOGIN_BUTTON_TEXT,
   LOGIN_TEXT,
 } = TEXT
 
 const { BACK, LOGO, GOOGLE } = IMGS
 
-const Home: React.FC = () => {
+export const Home = () => {
   const navigate = useNavigate()
   const dispatch = useTypedDispatch()
 
@@ -70,11 +69,9 @@ const Home: React.FC = () => {
         </Info>
         <Info>
           {LOGIN_TEXT}
-          <InfoLink to={LOGIN}>{LOGIN}</InfoLink>
+          <InfoLink to={LOGIN}>{LOGIN_BUTTON_TEXT}</InfoLink>
         </Info>
       </Section>
     </Container>
   )
 }
-
-export default Home

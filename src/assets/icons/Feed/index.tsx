@@ -1,4 +1,4 @@
-const Feed = () => {
+export const Feed = () => {
   return (
     <svg
       width="28"
@@ -14,5 +14,3 @@ const Feed = () => {
     </svg>
   )
 }
-
-export default Feed

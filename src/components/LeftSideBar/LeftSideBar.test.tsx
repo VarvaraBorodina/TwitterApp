@@ -7,11 +7,11 @@ import {
   screen,
 } from '@testing-library/react'
 
-import MockWrapper from '@/components/MockWrapper'
+import { MockWrapper } from '@/components/MockWrapper'
 import { PAGES } from '@/constants'
 import * as hooks from '@/hooks'
 
-import LeftSideBar from '.'
+import { LeftSideBar } from '.'
 
 const mockDispatch = jest.fn()
 

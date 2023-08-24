@@ -6,7 +6,7 @@ import { ErrorProps, ErrorState } from './types'
 
 const { ERROR } = TEXT
 
-class ErrorBoundary extends React.Component<ErrorProps, ErrorState> {
+export class ErrorBoundary extends React.Component<ErrorProps, ErrorState> {
   constructor(props: ErrorProps) {
     super(props)
     this.state = {
@@ -28,5 +28,3 @@ class ErrorBoundary extends React.Component<ErrorProps, ErrorState> {
     return children
   }
 }
-
-export default ErrorBoundary

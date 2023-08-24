@@ -16,7 +16,7 @@ import {
 
 import { MockWrapperType } from './types'
 
-function MockWrapper({ children }: MockWrapperType) {
+export function MockWrapper({ children }: MockWrapperType) {
   const theme = {
     COLORS,
     COLOR_THEME: COLOR_THEMES.LIGHT,
@@ -36,5 +36,3 @@ function MockWrapper({ children }: MockWrapperType) {
     </BrowserRouter>
   )
 }
-
-export default MockWrapper

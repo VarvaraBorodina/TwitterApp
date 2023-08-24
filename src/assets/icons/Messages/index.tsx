@@ -1,4 +1,4 @@
-const Messages = () => {
+export const Messages = () => {
   return (
     <svg
       width="24"
@@ -14,5 +14,3 @@ const Messages = () => {
     </svg>
   )
 }
-
-export default Messages

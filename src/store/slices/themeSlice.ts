@@ -1,4 +1,4 @@
-import { createSlice } from '@reduxjs/toolkit'
+import { createSelector, createSlice } from '@reduxjs/toolkit'
 
 import { getThemeFromSessionStorage, saveThemeToSessionStorage } from '@/utils'
 
@@ -23,5 +23,10 @@ const themeSlice = createSlice({
   },
 })
 
-export default themeSlice.reducer
+export const themeSelector = createSelector(
+  [(state) => state.theme],
+  ({ theme }) => theme
+)
+
+export const themeReducer = themeSlice.reducer
 export const { toggleTheme, resetTheme } = themeSlice.actions

@@ -10,21 +10,29 @@ import {
 } from 'firebase/firestore'
 
 import { auth, db } from '@/api'
+import { THUNK_NAMES } from '@/constants'
 import { User } from '@/types'
 
-const changeUser = createAsyncThunk('user/change', async (newUser: User) => {
-  await setDoc(doc(db, 'users', newUser.id), newUser)
-  return newUser
-})
+const {
+  USER: { CHANGE_USER },
+} = THUNK_NAMES
 
-const changePassword = async (password: string) => {
+export const changeUser = createAsyncThunk(
+  CHANGE_USER,
+  async (newUser: User) => {
+    await setDoc(doc(db, 'users', newUser.id), newUser)
+    return newUser
+  }
+)
+
+export const changePassword = async (password: string) => {
   const user = auth.currentUser
   if (user) {
     await updatePassword(user, password)
   }
 }
 
-const searchUsers = async (search: string) => {
+export const searchUsers = async (search: string) => {
   const end = search.replace(/.$/, (c) =>
     String.fromCharCode(c.charCodeAt(0) + 1)
   )
@@ -43,5 +51,3 @@ const searchUsers = async (search: string) => {
 
   return users
 }
-
-export { changePassword, changeUser, searchUsers }

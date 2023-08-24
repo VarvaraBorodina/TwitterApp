@@ -1,4 +1,4 @@
-const Delete = () => {
+export const Delete = () => {
   return (
     <svg
       xmlns="http://www.w3.org/2000/svg"
@@ -28,5 +28,3 @@ const Delete = () => {
     </svg>
   )
 }
-
-export default Delete

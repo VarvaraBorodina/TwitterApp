@@ -1,4 +1,4 @@
-const Bookmarks = () => {
+export const Bookmarks = () => {
   return (
     <svg
       width="21"
@@ -14,5 +14,3 @@ const Bookmarks = () => {
     </svg>
   )
 }
-
-export default Bookmarks

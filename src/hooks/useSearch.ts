@@ -1,6 +1,6 @@
 import { useDeferredValue, useEffect, useState } from 'react'
 
-const useSearch = <T>(getData: (query: string) => Promise<T[]>) => {
+export const useSearch = <T>(getData: (query: string) => Promise<T[]>) => {
   const [items, setItems] = useState<T[]>([])
 
   const [query, setQuery] = useState('')
@@ -9,12 +9,16 @@ const useSearch = <T>(getData: (query: string) => Promise<T[]>) => {
   const [loading, setLoading] = useState(false)
 
   useEffect(() => {
-    setLoading(true)
+    if (deferredQuery) {
+      setLoading(true)
 
-    getData(deferredQuery).then((data) => {
-      setItems(data)
-      setLoading(false)
-    })
+      getData(deferredQuery).then((data) => {
+        setItems(data)
+        setLoading(false)
+      })
+    } else {
+      setItems([])
+    }
   }, [deferredQuery])
 
   const handleQueryChange = ({
@@ -31,5 +35,3 @@ const useSearch = <T>(getData: (query: string) => Promise<T[]>) => {
 
   return { query, items, loading, handleQueryChange, clearQuery }
 }
-
-export default useSearch

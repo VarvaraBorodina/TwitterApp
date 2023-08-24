@@ -16,7 +16,7 @@ import {
 } from '@/constants/theme'
 import { useTypedSelector } from '@/hooks'
 
-const GlobalThemProvider: React.FC<{ children: JSX.Element }> = ({
+export const GlobalThemProvider: React.FC<{ children: JSX.Element }> = ({
   children,
 }) => {
   const colorTheme: Theme = useTypedSelector((state) => {
@@ -38,5 +38,3 @@ const GlobalThemProvider: React.FC<{ children: JSX.Element }> = ({
 
   return <ThemeProvider theme={theme}>{children}</ThemeProvider>
 }
-
-export default GlobalThemProvider
