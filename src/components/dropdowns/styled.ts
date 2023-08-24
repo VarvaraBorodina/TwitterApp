@@ -2,7 +2,7 @@ import { styled } from 'styled-components'
 
 import { BREAKPOINTS } from '@/constants'
 
-const Container = styled.div`
+export const Container = styled.div`
   position: relative;
   margin-right: ${({ theme: { SPACES } }) => SPACES.S}px;
   margin-bottom: ${({ theme: { SPACES } }) => SPACES.S}px;
@@ -11,7 +11,7 @@ const Container = styled.div`
   }
 `
 
-const Input = styled.div`
+export const Input = styled.div`
   display: flex;
   align-items: center;
   justify-content: space-around;
@@ -25,17 +25,17 @@ const Input = styled.div`
   cursor: pointer;
 `
 
-const Option = styled.ul`
+export const Option = styled.ul`
   margin-bottom: ${({ theme: { SPACES } }) => SPACES.S}px;
   font-size: ${({ theme: { FONT_SIZE } }) => FONT_SIZE.XS}px;
-  font-family: ${({ theme: { FONTS } }) => FONTS.S};
+  font-weight: ${({ theme: { FONTS } }) => FONTS.S};
   color: ${({ theme: { COLOR_THEME } }) => COLOR_THEME.TEXT_COLOR};
   cursor: pointer;
   &:hover {
     color: ${({ theme: { COLORS } }) => COLORS.ACCENT};
   }
 `
-const OptionContainer = styled.li`
+export const OptionContainer = styled.li`
   position: absolute;
   top: ${({ theme: { SIZES, SPACES } }) => SIZES.INPUT_HEIGHT + SPACES.XS}px;
   left: 0;
@@ -53,13 +53,15 @@ const OptionContainer = styled.li`
   overflow-y: auto;
   z-index: 1;
 `
-const Title = styled.p`
+export const Title = styled.input`
+  width: ${({ theme: { SIZES } }) => SIZES.DROPDOWN_INPUT}px;
   font-size: ${({ theme: { FONT_SIZE } }) => FONT_SIZE.XS}px;
-  font-family: ${({ theme: { FONTS } }) => FONTS.S};
+  font-weight: ${({ theme: { FONTS } }) => FONTS.S};
+  background-color: ${({ theme: { COLOR_THEME } }) => COLOR_THEME.MAIN_COLOR};
   color: ${({ theme: { COLOR_THEME } }) => COLOR_THEME.TEXT_COLOR};
+  border: none;
+  outline: none;
 `
-const Img = styled.img`
+export const Img = styled.img`
   padding-left: ${({ theme: { SPACES } }) => SPACES.M}px;
 `
-
-export { Container, Img, Input, Option, OptionContainer, Title }

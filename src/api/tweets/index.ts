@@ -19,10 +19,22 @@ import {
 import { auth, db, storage } from '@/api'
 import { tweetData, tweetDataToDelete } from '@/api/types'
 import { TEXT } from '@/constants'
+import { THUNK_NAMES } from '@/constants'
 import { Tweet } from '@/types'
 
-const addTweet = createAsyncThunk(
-  'tweets/addTweet',
+const {
+  ADD_POST_ERROR,
+  DELETE_TWEET_ERROR,
+  LIKE_TWEET_ERROR,
+  GET_TWEET_ERROR,
+} = TEXT
+
+const {
+  TWEETS: { ADD_TWIT, GET_ALL_TWEETS, DELETE_TWEET, TOGGLE_LIKE },
+} = THUNK_NAMES
+
+export const addTweet = createAsyncThunk(
+  ADD_TWIT,
   async ({ file, content, user }: tweetData) => {
     try {
       let path = ''
@@ -50,12 +62,12 @@ const addTweet = createAsyncThunk(
       await setDoc(doc(db, 'tweets', tweet.id), tweet)
       return tweet
     } catch (error) {
-      throw new Error(TEXT.ADD_POST_ERROR)
+      throw new Error(ADD_POST_ERROR)
     }
   }
 )
 
-const getAllTweets = createAsyncThunk('tweets/getAllTweets', async () => {
+export const getAllTweets = createAsyncThunk(GET_ALL_TWEETS, async () => {
   try {
     const tweetsQuery = query(collection(db, 'tweets'), orderBy('date', 'desc'))
 
@@ -66,12 +78,12 @@ const getAllTweets = createAsyncThunk('tweets/getAllTweets', async () => {
     })
     return tweets
   } catch (error) {
-    throw Error(TEXT.GET_TWEET_ERROR)
+    throw Error(GET_TWEET_ERROR)
   }
 })
 
-const deleteTweet = createAsyncThunk(
-  'tweets/deleteTweet',
+export const deleteTweet = createAsyncThunk(
+  DELETE_TWEET,
   async ({ id, url }: tweetDataToDelete) => {
     try {
       if (url) {
@@ -81,12 +93,12 @@ const deleteTweet = createAsyncThunk(
       await deleteDoc(doc(db, 'tweets', id))
       return id
     } catch (error) {
-      throw Error(TEXT.DELETE_TWEET_ERROR)
+      throw Error(DELETE_TWEET_ERROR)
     }
   }
 )
 
-const toggleLike = createAsyncThunk('tweets/toggleLike', async (id: string) => {
+export const toggleLike = createAsyncThunk(TOGGLE_LIKE, async (id: string) => {
   try {
     const userId = auth.currentUser?.uid
     const tweetsQuery = query(
@@ -114,11 +126,11 @@ const toggleLike = createAsyncThunk('tweets/toggleLike', async (id: string) => {
     }
     return updatedTweet
   } catch (error) {
-    throw Error(TEXT.LIKE_TWEET_ERROR)
+    throw Error(LIKE_TWEET_ERROR)
   }
 })
 
-const searchTweet = async (search: string) => {
+export const searchTweet = async (search: string) => {
   const end = search.replace(/.$/, (c) =>
     String.fromCharCode(c.charCodeAt(0) + 1)
   )
@@ -137,5 +149,3 @@ const searchTweet = async (search: string) => {
 
   return tweets
 }
-
-export { addTweet, deleteTweet, getAllTweets, searchTweet, toggleLike }

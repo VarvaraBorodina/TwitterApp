@@ -1,8 +1,8 @@
 import { COLORS } from '@/constants/theme'
 
-import Container from './styled'
+import { Container } from './styled'
 
-const Loader = () => {
+export const Loader = () => {
   return (
     <Container data-testid="loader">
       <svg
@@ -99,5 +99,3 @@ const Loader = () => {
     </Container>
   )
 }
-
-export default Loader

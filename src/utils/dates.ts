@@ -1,6 +1,7 @@
 const MIN_AGE = 16
+const SECONDS_PER_YEAR = 3.15576e10
 
-const getDays = () => {
+export const getDays = () => {
   const DAYS = []
   for (let i = 1; i < 32; i++) {
     DAYS.push(String(i))
@@ -8,7 +9,7 @@ const getDays = () => {
   return DAYS
 }
 
-const getYears = () => {
+export const getYears = () => {
   const YEARS = []
   for (
     let i = new Date().getFullYear() - MIN_AGE;
@@ -20,9 +21,7 @@ const getYears = () => {
   return YEARS
 }
 
-const getAge = (birthDate: Date): number =>
+export const getAge = (birthDate: Date): number =>
   Math.floor(
-    (new Date().getTime() - new Date(birthDate).getTime()) / 3.15576e10
+    (new Date().getTime() - new Date(birthDate).getTime()) / SECONDS_PER_YEAR
   )
-
-export { getAge, getDays, getYears }

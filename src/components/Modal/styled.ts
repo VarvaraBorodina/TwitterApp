@@ -2,7 +2,7 @@ import styled from 'styled-components'
 
 import { BREAKPOINTS } from '@/constants'
 
-const Container = styled.div`
+export const Container = styled.div`
   display: flex;
   align-items: center;
   justify-content: center;
@@ -19,7 +19,7 @@ const Container = styled.div`
   }
 `
 
-const Content = styled.div`
+export const Content = styled.div`
   min-width: ${({ theme: { SIZES } }) => SIZES.MIN_MODAL_WIDTH}px;
   padding: ${({ theme: { SPACES } }) => SPACES.M}px;
   border-radius: ${({ theme: { BORDER_RADIUS } }) => BORDER_RADIUS.M}px;
@@ -32,5 +32,3 @@ const Content = styled.div`
     padding: ${({ theme: { SPACES } }) => SPACES.XS}px;
   }
 `
-
-export { Container, Content }

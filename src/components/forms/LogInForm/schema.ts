@@ -1,16 +1,16 @@
 import * as yup from 'yup'
 
 import { TEXT } from '@/constants'
-import { validateEmail, validatePhone } from '@/utils'
+import { validatePhone } from '@/utils'
 
-const loginSchema = yup.object().shape({
+const { LOGIN_REQUIRED, LOGIN_INVALID } = TEXT
+
+export const loginSchema = yup.object().shape({
   login: yup
     .string()
-    .required(TEXT.LOGIN_REQUIRED)
-    .test('login', TEXT.LOGIN_INVALID, (value) => {
-      return validateEmail(value) || validatePhone(value)
+    .required(LOGIN_REQUIRED)
+    .test('login', LOGIN_INVALID, (value) => {
+      return yup.string().email().isValidSync(value) || validatePhone(value)
     }),
   password: yup.string().required(),
 })
-
-export { loginSchema }

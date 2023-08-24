@@ -1,5 +1,5 @@
 import { getAge, getDays, getYears } from './dates'
-import { validateDate, validateEmail, validatePhone } from './validate'
+import { validateDate, validatePhone } from './validate'
 
 describe('Test utils', () => {
   it('Test getAge 1', () => {
@@ -16,18 +16,6 @@ describe('Test utils', () => {
 
   it('Test getDays', () => {
     expect(getYears()).toHaveLength(100 - 16)
-  })
-
-  it('Test invalide email', () => {
-    expect(validateEmail('ygysgxdw')).toBeFalsy()
-  })
-
-  it('Test valide email', () => {
-    expect(validateEmail('ygys@gx.dw')).toBeTruthy()
-  })
-
-  it('Test invalide phone', () => {
-    expect(validateEmail('ygysgxdw')).toBeFalsy()
   })
 
   it('Phone without +', () => {

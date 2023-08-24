@@ -1,20 +1,18 @@
 import { Theme } from '@/constants/theme'
 import { Tweet, User } from '@/types'
 
-type ThemeSliceType = {
+export type ThemeSliceType = {
   theme: Theme
 }
 
-type UserSliceType = {
+export type UserSliceType = {
   user: User | null
   loading: boolean
   error: string
 }
 
-type TweetsSliceType = {
+export type TweetsSliceType = {
   tweets: Tweet[]
   loading: boolean
   error: string
 }
-
-export type { ThemeSliceType, TweetsSliceType, UserSliceType }

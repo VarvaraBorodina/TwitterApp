@@ -104,5 +104,10 @@ export const userTweetsSelector = (id: string) =>
     tweets.filter((tweet: Tweet) => tweet.user === id)
   )
 
-export default userSlice.reducer
+export const currentTweetSelector = (tweetId: string) =>
+  createSelector([(state) => state.tweets], ({ tweets }) =>
+    tweets.find((tweet: Tweet) => tweetId === tweet.id)
+  )
+
+export const tweetsReducer = userSlice.reducer
 export const { resetError } = userSlice.actions

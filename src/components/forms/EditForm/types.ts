@@ -1,17 +1,16 @@
 import { Gender } from '@/types'
 
-type editFormType = {
+export type editFormType = {
   name: string
   lastName: string
   gender: Gender | undefined
   day: string | undefined
-  month: number | undefined
+  month: string | undefined
   year: string | undefined
   telegram: string | undefined
+  password: string | undefined
 }
 
-type editFormProps = {
+export type editFormProps = {
   showModal: (show: boolean) => void
 }
-
-export type { editFormProps, editFormType }

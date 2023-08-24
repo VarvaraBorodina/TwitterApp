@@ -1,16 +1,18 @@
 import { useCallback, useState } from 'react'
 import React from 'react'
 
-import TweetForm from '@/components/forms/TweetForm'
-import LeftSideBar from '@/components/LeftSideBar'
-import Modal from '@/components/Modal'
-import Search from '@/components/Search'
+import { TweetForm } from '@/components/forms/TweetForm'
+import { LeftSideBar } from '@/components/LeftSideBar'
+import { Modal } from '@/components/Modal'
+import { Search } from '@/components/Search'
 import { ICONS } from '@/constants'
 
 import { Container, Content, Header, LeftMenu, RightMenu } from './styled'
 import { LayoutType } from './types'
 
-const Layout = (props: LayoutType) => {
+const { MENU, SEARCH } = ICONS
+
+export const Layout = React.memo((props: LayoutType) => {
   const { getSearchData, renderSearchItem, children, searchPlaceholder } = props
   const [showMenu, setShowMenu] = useState<boolean>(false)
   const [showSearch, setShowSearch] = useState<boolean>(false)
@@ -57,8 +59,8 @@ const Layout = (props: LayoutType) => {
       <LeftSideBar show={false} showModal={toggleShowAddModal} />
       <Content>
         <Header>
-          <LeftMenu onClick={toggleShowMenu}>{ICONS.menu}</LeftMenu>
-          <RightMenu onClick={toggleShowSearch}>{ICONS.search}</RightMenu>
+          <LeftMenu onClick={toggleShowMenu}>{MENU}</LeftMenu>
+          <RightMenu onClick={toggleShowSearch}>{SEARCH}</RightMenu>
         </Header>
         {children}
       </Content>
@@ -71,6 +73,4 @@ const Layout = (props: LayoutType) => {
       />
     </Container>
   )
-}
-
-export default React.memo(Layout)
+})

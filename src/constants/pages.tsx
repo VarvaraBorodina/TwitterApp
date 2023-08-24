@@ -1,57 +1,57 @@
 /// <reference types="vite-plugin-svgr/client" />
 
-import Bookmark from '@/assets/icons/Bookmark'
-import Explore from '@/assets/icons/Explore'
-import Feed from '@/assets/icons/Feed'
-import Lists from '@/assets/icons/Lists'
-import Messages from '@/assets/icons/Messages'
-import More from '@/assets/icons/More'
-import Notifications from '@/assets/icons/Notification'
-import Profile from '@/assets/icons/Profile'
+import { Bookmarks } from '@/assets/icons/Bookmark'
+import { Explore } from '@/assets/icons/Explore'
+import { Feed } from '@/assets/icons/Feed'
+import { Lists } from '@/assets/icons/Lists'
+import { Messages } from '@/assets/icons/Messages'
+import { More } from '@/assets/icons/More'
+import { Notification } from '@/assets/icons/Notification'
+import { Profile } from '@/assets/icons/Profile'
 
-import ROUTES_NAMES from './routesNames'
+import { ROUTES_NAMES } from './routesNames'
 
-const PAGES = [
+const { FEED, PROFILE, OTHER } = ROUTES_NAMES
+
+export const PAGES = [
   {
     name: 'Feed',
     icon: <Feed />,
-    url: ROUTES_NAMES.FEED,
+    url: FEED,
   },
   {
     name: 'Explore',
     icon: <Explore />,
-    url: ROUTES_NAMES.FEED,
+    url: OTHER,
   },
   {
     name: 'Notifications',
-    icon: <Notifications />,
-    url: ROUTES_NAMES.FEED,
+    icon: <Notification />,
+    url: OTHER,
   },
   {
     name: 'Messages',
     icon: <Messages />,
-    url: ROUTES_NAMES.FEED,
+    url: OTHER,
   },
   {
     name: 'Bookmarks',
-    icon: <Bookmark />,
-    url: ROUTES_NAMES.FEED,
+    icon: <Bookmarks />,
+    url: OTHER,
   },
   {
     name: 'Lists',
     icon: <Lists />,
-    url: ROUTES_NAMES.FEED,
+    url: OTHER,
   },
   {
     name: 'Profile',
     icon: <Profile />,
-    url: ROUTES_NAMES.PROFILE,
+    url: PROFILE,
   },
   {
     name: 'More',
     icon: <More />,
-    url: ROUTES_NAMES.FEED,
+    url: OTHER,
   },
 ]
-
-export default PAGES

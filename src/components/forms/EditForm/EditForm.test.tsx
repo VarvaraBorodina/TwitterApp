@@ -3,10 +3,10 @@ import 'jest-styled-components'
 import { fireEvent, render as RTLrender, screen } from '@testing-library/react'
 import { act } from 'react-dom/test-utils'
 
-import MockWrapper from '@/components/MockWrapper'
+import { MockWrapper } from '@/components/MockWrapper'
 import * as hooks from '@/hooks'
 
-import EditForm from '.'
+import { EditForm } from '.'
 
 const showModal = jest.fn()
 const mockDispatch = jest.fn()

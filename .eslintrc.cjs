@@ -29,6 +29,7 @@ module.exports = {
     'simple-import-sort/exports': 'error',
     'no-param-reassign': 'off',
     'import/no-cycle': 'off',
+    'react/display-name': 'off',
     'no-console': 'warn',
     'react/react-in-jsx-scope': 'off',
   },

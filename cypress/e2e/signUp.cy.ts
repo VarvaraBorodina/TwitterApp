@@ -1,6 +1,6 @@
 import cypress from 'cypress'
 
-import ROUTE_NAMES from '../routeNames'
+import { ROUTE_NAMES } from '../routeNames'
 
 const baseUrlL: string = Cypress.config().baseUrl!.toString()
 
@@ -21,16 +21,16 @@ describe('Test auth page', () => {
     cy.get('input[name=lastName]').type(`myLastName`)
     cy.get('input[name=password]').type('password')
 
-    cy.contains('Gender').click()
+    cy.get('input[value=Gender]').click()
     cy.contains('Man').click()
 
-    cy.contains('Day').click()
+    cy.get('input[value=Day]').click()
     cy.contains('10').click()
 
-    cy.contains('Month').click()
+    cy.get('input[value=Month]').click()
     cy.contains('May').click()
 
-    cy.contains('Year').click()
+    cy.get('input[value=Year]').click()
     cy.contains('2003').click()
 
     cy.get('button').click()
@@ -43,7 +43,7 @@ describe('Test auth page', () => {
     cy.get('button').click()
     cy.url().should('eq', `${baseUrlL}${ROUTE_NAMES.SIGNUP}`)
 
-    cy.contains(`email is a required field`)
+    cy.contains(`name is a required field`)
   })
 
   it('User already exist', () => {
@@ -53,16 +53,16 @@ describe('Test auth page', () => {
     cy.get('input[name=lastName]').type(`myLastName`)
     cy.get('input[name=password]').type('password')
 
-    cy.contains('Gender').click()
+    cy.get('input[value=Gender]').click()
     cy.contains('Man').click()
 
-    cy.contains('Day').click()
+    cy.get('input[value=Day]').click()
     cy.contains('10').click()
 
-    cy.contains('Month').click()
+    cy.get('input[value=Month]').click()
     cy.contains('May').click()
 
-    cy.contains('Year').click()
+    cy.get('input[value=Year]').click()
     cy.contains('2003').click()
 
     cy.get('button').click()

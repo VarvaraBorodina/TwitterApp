@@ -1,6 +1,6 @@
 import cypress from 'cypress'
 
-import ROUTE_NAMES from '../routeNames'
+import { ROUTE_NAMES } from '../routeNames'
 
 describe('Test log in page', () => {
   it('Lignt theme first', () => {

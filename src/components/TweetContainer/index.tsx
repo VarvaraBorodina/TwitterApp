@@ -1,7 +1,7 @@
 import { useState } from 'react'
 
 import { deleteTweet, toggleLike } from '@/api/tweets'
-import Loader from '@/components/Loader'
+import { Loader } from '@/components/Loader'
 import { ALT, ICONS, IMGS } from '@/constants'
 import { useTypedDispatch, useTypedSelector } from '@/hooks'
 import { User } from '@/types'
@@ -11,7 +11,6 @@ import {
   Container,
   Content,
   DateString,
-  Img,
   ImgButton,
   Info,
   Like,
@@ -19,10 +18,15 @@ import {
   PostImg,
   Text,
   Title,
+  TweetImg,
 } from './styled'
 import { TweetContainerType } from './types'
 
-const TweetContainer = ({ tweet, afterDelete }: TweetContainerType) => {
+const { USER } = ALT
+const { USER_IMG } = IMGS
+const { LIKE, FILLED_LIKE, DELETE } = ICONS
+
+export const TweetContainer = ({ tweet, afterDelete }: TweetContainerType) => {
   const {
     userName,
     date,
@@ -57,27 +61,25 @@ const TweetContainer = ({ tweet, afterDelete }: TweetContainerType) => {
 
   return (
     <Container>
-      <Img src={IMGS.USER_IMG} alt={ALT.USER} />
+      <TweetImg src={USER_IMG} alt={USER} />
       <Content>
         <Info>
           <Title>{userName}</Title>
           <DateString>{new Date(date).toDateString()}</DateString>
         </Info>
         <Text>{content}</Text>
-        {imgUrl && (
-          <PostImg src={imgUrl} alt={ALT.USER} onLoad={handleLoaded} />
-        )}
+        {imgUrl && <PostImg src={imgUrl} alt={USER} onLoad={handleLoaded} />}
         {imgLoading && <Loader />}
         <Buttons>
           <ImgButton onClick={onLike}>
             <LikeIcon $isLiked={isLiked} data-cy="like" data-testid="like">
-              {isLiked ? ICONS.filledLike : ICONS.like}
+              {isLiked ? FILLED_LIKE : LIKE}
               <Like $isLiked={isLiked}>{likeAmount}</Like>
             </LikeIcon>
           </ImgButton>
           {tweetUser === user.id && (
             <ImgButton onClick={onDelete} data-cy="delete" data-testid="delete">
-              {ICONS.delete}
+              {DELETE}
             </ImgButton>
           )}
         </Buttons>
@@ -85,5 +87,3 @@ const TweetContainer = ({ tweet, afterDelete }: TweetContainerType) => {
     </Container>
   )
 }
-
-export default TweetContainer

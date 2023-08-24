@@ -3,22 +3,35 @@ import { useState } from 'react'
 import { addTweet } from '@/api/tweets'
 import { ALT, ICONS, IMGS, TEXT } from '@/constants'
 import { useTypedDispatch, useTypedSelector } from '@/hooks'
+import { TweetButton, UserImg } from '@/styles/common'
 import { User } from '@/types'
 
 import {
-  Button,
   Buttons,
   Container,
-  Error,
   FileName,
   Form,
-  Img,
   ImgButton,
   Input,
+  Message,
   Uploader,
 } from './styled'
 
-const TweetForm = ({ handleAddedTweet }: { handleAddedTweet?: () => void }) => {
+const {
+  TWEET_CREATED,
+  EMPTY_TWEET_ERROR,
+  TWEET_FORM_PLACEHOLDER,
+  TWEET_BUTTON,
+} = TEXT
+const { USER_IMG } = IMGS
+const { USER } = ALT
+const { FILE: FILE_ICON } = ICONS
+
+export const TweetForm = ({
+  handleAddedTweet,
+}: {
+  handleAddedTweet?: () => void
+}) => {
   const [file, setFile] = useState<File | null>(null)
   const [content, setContent] = useState('')
   const [error, setError] = useState('')
@@ -44,7 +57,7 @@ const TweetForm = ({ handleAddedTweet }: { handleAddedTweet?: () => void }) => {
 
   const handleSubmit = async () => {
     if (content) {
-      setError(TEXT.TWEET_CREATED)
+      setError(TWEET_CREATED)
       setTimeout(() => {
         setError('')
       }, 2000)
@@ -55,7 +68,7 @@ const TweetForm = ({ handleAddedTweet }: { handleAddedTweet?: () => void }) => {
         handleAddedTweet()
       }
     } else {
-      setError(TEXT.EMPTY_TWEET_ERROR)
+      setError(EMPTY_TWEET_ERROR)
       setTimeout(() => {
         setError('')
       }, 2000)
@@ -64,10 +77,10 @@ const TweetForm = ({ handleAddedTweet }: { handleAddedTweet?: () => void }) => {
 
   return (
     <Container>
-      <Img src={IMGS.USER_IMG} alt={ALT.USER} />
+      <UserImg src={USER_IMG} alt={USER} />
       <Form>
         <Input
-          placeholder={TEXT.TWEET_FORM_PLACEHOLDER}
+          placeholder={TWEET_FORM_PLACEHOLDER}
           onChange={handleContentChange}
           value={content}
         />
@@ -81,17 +94,15 @@ const TweetForm = ({ handleAddedTweet }: { handleAddedTweet?: () => void }) => {
               onChange={handleChooseFile}
             />
             <ImgButton onClick={handleAddFile} type="button">
-              {ICONS.file}
+              {FILE_ICON}
             </ImgButton>
             <FileName>{file?.name}</FileName>
           </Uploader>
-          <Button onClick={handleSubmit}>{TEXT.TWEET_BUTTON}</Button>
+          <TweetButton onClick={handleSubmit}>{TWEET_BUTTON}</TweetButton>
         </Buttons>
 
-        <Error>{error}</Error>
+        <Message>{error}</Message>
       </Form>
     </Container>
   )
 }
-
-export default TweetForm

@@ -1,19 +1,18 @@
 import { useState } from 'react'
 
-import Modal from '@/components/Modal'
-import TweetContainer from '@/components/TweetContainer'
+import { Modal } from '@/components/Modal'
+import { TweetContainer } from '@/components/TweetContainer'
 import { useTypedSelector } from '@/hooks'
+import { currentTweetSelector } from '@/store/slices/tweetsSlice'
 import { Searchable, Tweet } from '@/types'
 
 import { Author, Post } from './styles'
 import { PreviewType } from './types'
 
-const TweetPreview = ({ item, clearQuery }: PreviewType<Searchable>) => {
+export const TweetPreview = ({ item, clearQuery }: PreviewType<Searchable>) => {
   const [isTweetOpen, setIsTweetOpen] = useState<boolean>(false)
   const tweet =
-    useTypedSelector(({ tweets }) =>
-      tweets.tweets.find(({ id: tweetId }) => tweetId === item.id)
-    ) ?? (item as Tweet)
+    useTypedSelector(currentTweetSelector(item.id)) ?? (item as Tweet)
 
   const handleOnTweet = () => {
     setIsTweetOpen(true)
@@ -28,7 +27,7 @@ const TweetPreview = ({ item, clearQuery }: PreviewType<Searchable>) => {
     if (isTweetOpen) {
       setIsTweetOpen(false)
     }
-    return <></>
+    return null
   }
 
   const { userName, content } = tweet
@@ -47,4 +46,3 @@ const TweetPreview = ({ item, clearQuery }: PreviewType<Searchable>) => {
     </>
   )
 }
-export default TweetPreview

@@ -1,10 +1,12 @@
-import React, { useEffect } from 'react'
+import { useEffect } from 'react'
 import { Outlet, useNavigate } from 'react-router-dom'
 
 import { ROUTES_NAMES } from '@/constants'
 import { useTypedSelector } from '@/hooks'
 
-const WithAuth: React.FC = () => {
+const { HOME } = ROUTES_NAMES
+
+export const WithAuth = () => {
   const user = useTypedSelector((state) => {
     return state.user.user
   })
@@ -12,11 +14,9 @@ const WithAuth: React.FC = () => {
 
   useEffect(() => {
     if (!user) {
-      navigate(ROUTES_NAMES.HOME)
+      navigate(HOME)
     }
   }, [])
 
   return <Outlet />
 }
-
-export default WithAuth

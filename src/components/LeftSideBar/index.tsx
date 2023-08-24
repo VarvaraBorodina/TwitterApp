@@ -5,82 +5,86 @@ import { logOut } from '@/api/auth'
 import { ALT, ICONS, IMGS, PAGES, ROUTES_NAMES, TEXT } from '@/constants'
 import { useTypedDispatch, useTypedSelector } from '@/hooks'
 import { resetTheme } from '@/store/slices/themeSlice'
+import { ImgButton, LogoImg } from '@/styles/common'
 import { ToggleShowProps, User } from '@/types'
 
 import {
-  AccentButton,
   Button,
   Container,
   Content,
-  Img,
-  ImgButton,
+  LightButton,
   LinkName,
-  LogoImg,
   PageLink,
   Pages,
+  UserImg,
   UserInfo,
   UserName,
 } from './styled'
 
-const LeftSideBar = ({ toggle, show, showModal }: ToggleShowProps) => {
-  const { pathname } = useLocation()
-  const user: User | null = useTypedSelector(({ user }) => user.user)
-  const dispatch = useTypedDispatch()
-  const navigate = useNavigate()
+const { HOME, PROFILE } = ROUTES_NAMES
+const { CLOSE } = ICONS
+const { LOGO: LOGO_IMG, USER_IMG } = IMGS
+const { LOGO: LOGO_ALT, USER } = ALT
+const { TWEET_BUTTON, LOGOUT } = TEXT
 
-  const handleLogOut = () => {
-    if (toggle) {
-      toggle()
+export const LeftSideBar = memo(
+  ({ toggle, show, showModal }: ToggleShowProps) => {
+    const { pathname } = useLocation()
+    const user: User | null = useTypedSelector(({ user }) => user.user)
+    const dispatch = useTypedDispatch()
+    const navigate = useNavigate()
+
+    const handleLogOut = () => {
+      if (toggle) {
+        toggle()
+      }
+      dispatch(logOut())
+      dispatch(resetTheme())
+      navigate(HOME)
     }
-    dispatch(logOut())
-    dispatch(resetTheme())
-    navigate(ROUTES_NAMES.HOME)
+
+    const handleClose = () => {
+      if (toggle) {
+        toggle()
+      }
+    }
+
+    const handleAddTweet = () => {
+      if (showModal) {
+        showModal()
+      }
+      if (toggle) {
+        toggle()
+      }
+    }
+
+    return (
+      <Container show={show ? 'show' : ''}>
+        <ImgButton onClick={handleClose}>{CLOSE}</ImgButton>
+        <Content>
+          <LogoImg src={LOGO_IMG} alt={LOGO_ALT} />
+          <Pages>
+            {PAGES.map(({ icon, url, name }) => {
+              const type = pathname === url ? 'current' : ''
+              return (
+                <PageLink to={url} key={name} type={type}>
+                  {icon}
+                  <LinkName type={type}>{name}</LinkName>
+                </PageLink>
+              )
+            })}
+          </Pages>
+
+          <Button onClick={handleAddTweet}>{TWEET_BUTTON}</Button>
+          <UserInfo>
+            <UserImg src={USER_IMG} alt={USER} />
+            <UserName>{`${user?.name} ${user?.lastName}`}</UserName>
+          </UserInfo>
+          {pathname === PROFILE && (
+            <LightButton onClick={handleLogOut}>{LOGOUT}</LightButton>
+          )}
+        </Content>
+      </Container>
+    )
   }
-
-  const handleClose = () => {
-    if (toggle) {
-      toggle()
-    }
-  }
-
-  const handleAddTweet = () => {
-    if (showModal) {
-      showModal()
-    }
-    if (toggle) {
-      toggle()
-    }
-  }
-
-  return (
-    <Container $show={show}>
-      <ImgButton onClick={handleClose}>{ICONS.close}</ImgButton>
-      <Content>
-        <LogoImg src={IMGS.LOGO} alt={ALT.LOGO} />
-        <Pages>
-          {PAGES.map(({ icon, url, name }) => {
-            return (
-              <PageLink to={url} key={name}>
-                {icon}
-                <LinkName>{name}</LinkName>
-              </PageLink>
-            )
-          })}
-        </Pages>
-
-        <AccentButton onClick={handleAddTweet}>
-          {TEXT.TWEET_BUTTON}
-        </AccentButton>
-        <UserInfo>
-          <Img src={IMGS.USER_IMG} alt={ALT.USER} />
-          <UserName>{`${user?.name} ${user?.lastName}`}</UserName>
-        </UserInfo>
-        {pathname === ROUTES_NAMES.PROFILE && (
-          <Button onClick={handleLogOut}>{TEXT.LOGOUT}</Button>
-        )}
-      </Content>
-    </Container>
-  )
-}
-
-export default memo(LeftSideBar)
+)

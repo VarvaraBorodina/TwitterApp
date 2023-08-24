@@ -1,7 +1,7 @@
 import { Theme } from '@/constants/theme'
 import { User } from '@/types'
 
-const getUserFromSessionStorage = () => {
+export const getUserFromSessionStorage = () => {
   const userString = sessionStorage.getItem('user')
   if (userString) {
     const user: User = JSON.parse(userString)
@@ -10,7 +10,7 @@ const getUserFromSessionStorage = () => {
   return null
 }
 
-const getThemeFromSessionStorage = (): Theme => {
+export const getThemeFromSessionStorage = (): Theme => {
   const themeString = sessionStorage.getItem('theme')
   if (themeString) {
     const theme: Theme = JSON.parse(themeString)
@@ -19,22 +19,14 @@ const getThemeFromSessionStorage = (): Theme => {
   return 'LIGHT'
 }
 
-const saveUserToSessionStorage = (user: User) => {
+export const saveUserToSessionStorage = (user: User) => {
   sessionStorage.setItem('user', JSON.stringify(user))
 }
 
-const saveThemeToSessionStorage = (theme: Theme) => {
+export const saveThemeToSessionStorage = (theme: Theme) => {
   sessionStorage.setItem('theme', JSON.stringify(theme))
 }
 
-const clearSessionStorage = () => {
+export const clearSessionStorage = () => {
   sessionStorage.clear()
-}
-
-export {
-  clearSessionStorage,
-  getThemeFromSessionStorage,
-  getUserFromSessionStorage,
-  saveThemeToSessionStorage,
-  saveUserToSessionStorage,
 }

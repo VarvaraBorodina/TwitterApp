@@ -3,11 +3,11 @@ import 'jest-styled-components'
 import { fireEvent, render as RTLrender, screen } from '@testing-library/react'
 import { act } from 'react-dom/test-utils'
 
-import MockWrapper from '@/components/MockWrapper'
+import { MockWrapper } from '@/components/MockWrapper'
 import * as hooks from '@/hooks'
 import { getAge } from '@/utils'
 
-import UserInfo from '.'
+import { UserInfo } from '.'
 
 const mockDispatch = jest.fn()
 

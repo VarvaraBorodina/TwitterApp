@@ -15,7 +15,7 @@
 
 ## Deploy
 
-[Watch]()
+[Watch](https://64e2ffd4a22dd80008e7adea--imaginative-tulumba-d20705.netlify.app/)
 
 ## Используемые технологии
 

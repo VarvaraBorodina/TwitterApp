@@ -3,10 +3,10 @@ import 'jest-styled-components'
 import { fireEvent, render as RTLrender, screen } from '@testing-library/react'
 import { act } from 'react-dom/test-utils'
 
-import MockWrapper from '@/components/MockWrapper'
+import { MockWrapper } from '@/components/MockWrapper'
 import * as hooks from '@/hooks'
 
-import LoginForm from '.'
+import { SignUpForm } from '.'
 
 const mockDispatch = jest.fn()
 
@@ -42,7 +42,7 @@ describe('Check Sign up Form', () => {
     jest.spyOn(hooks, 'useTypedSelector').mockReturnValue('Error')
     jest.spyOn(hooks, 'useTypedDispatch').mockReturnValue(mockDispatch)
 
-    render(<LoginForm />)
+    render(<SignUpForm />)
   })
 
   it('Check header', async () => {

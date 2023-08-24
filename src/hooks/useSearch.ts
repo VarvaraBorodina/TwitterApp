@@ -1,21 +1,31 @@
-import { useState } from 'react'
+import { useDeferredValue, useEffect, useState } from 'react'
 
-const useSearch = <T>(getData: (query: string) => Promise<T[]>) => {
+export const useSearch = <T>(getData: (query: string) => Promise<T[]>) => {
   const [items, setItems] = useState<T[]>([])
+
   const [query, setQuery] = useState('')
+  const deferredQuery = useDeferredValue(query)
+
   const [loading, setLoading] = useState(false)
+
+  useEffect(() => {
+    if (deferredQuery) {
+      setLoading(true)
+
+      getData(deferredQuery).then((data) => {
+        setItems(data)
+        setLoading(false)
+      })
+    } else {
+      setItems([])
+    }
+  }, [deferredQuery])
 
   const handleQueryChange = ({
     target,
   }: React.ChangeEvent<HTMLInputElement>) => {
     const { value } = target
     setQuery(value)
-    setLoading(true)
-
-    getData(value).then((data) => {
-      setItems(data)
-      setLoading(false)
-    })
   }
 
   const clearQuery = () => {
@@ -25,5 +35,3 @@ const useSearch = <T>(getData: (query: string) => Promise<T[]>) => {
 
   return { query, items, loading, handleQueryChange, clearQuery }
 }
-
-export default useSearch

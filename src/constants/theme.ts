@@ -19,6 +19,7 @@ export const FONT_WEIGHT = {}
 
 export const COLORS = {
   ACCENT: '#1DA1F2',
+  ERROR: '#FF2A59',
   HOME_PAGE: '#FFFFFF',
   MODAL_BACKGROUND: '#00000070',
   LIKE_COLOR: '#EF1C5C',
@@ -34,6 +35,7 @@ export const SIZES = {
   INPUT_HEIGHT: 45,
   SMALL_INPUT_WIDTH: 285,
   DROPDOWN: 190,
+  DROPDOWN_INPUT: 100,
   DROPDOWN_HEIGHT: 100,
   LOGO_WIDTH: 33,
   BIG_LOGO_WIDTH: 50,
@@ -52,6 +54,8 @@ export const SIZES = {
   TOGGLE_HEIGHT: 27,
   TOGGLE_WIDHT: 50,
   TOGGLE_CIRCLE: 20,
+  PORTAL_DROPDOWN_TOP: 405,
+  PORTAL_DROPDOWN_LEFT: 50,
 }
 
 export const FONT_SIZE = {
@@ -78,9 +82,9 @@ export const BORDER_RADIUS = {
 }
 
 export const FONTS = {
-  S: 'RobotoRegular',
-  M: 'RobotoMedium',
-  XL: 'RobotoBlack',
+  S: 300,
+  M: 600,
+  XL: 700,
 }
 
 export const OPACITIES = {

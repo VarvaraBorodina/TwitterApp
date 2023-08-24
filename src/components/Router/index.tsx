@@ -1,57 +1,24 @@
-import React, { Suspense } from 'react'
+import { Suspense } from 'react'
 import { Route, Routes } from 'react-router-dom'
 
-import Loader from '@/components/Loader'
-import { ROUTES_NAMES } from '@/constants'
-import { WithAuthContainer } from '@/containers'
+import { Loader } from '@/components/Loader'
+import { openRoutes, protectedRoutes, TEXT } from '@/constants'
+import { WithAuth } from '@/containers/WithAuthContainer'
 
-const { HOME, FEED, LOGIN, SIGNUP, PROFILE } = ROUTES_NAMES
+const { NOT_FOUND } = TEXT
 
-const Home = React.lazy(() => import('@/pages/Home'))
-const LogIn = React.lazy(() => import('@/pages/LogIn'))
-const SignUp = React.lazy(() => import('@/pages/SignUp'))
-const Profile = React.lazy(() => import('@/pages/Profile'))
-const Feed = React.lazy(() => import('@/pages/Feed'))
-
-const openRoutes = [
-  {
-    path: HOME,
-    component: <Home />,
-  },
-  {
-    path: LOGIN,
-    component: <LogIn />,
-  },
-  {
-    path: SIGNUP,
-    component: <SignUp />,
-  },
-]
-
-const protectedRoutes = [
-  {
-    path: PROFILE,
-    component: <Profile />,
-  },
-  {
-    path: FEED,
-    component: <Feed />,
-  },
-]
-
-const Router = () => (
+export const Router = () => (
   <Suspense fallback={<Loader />}>
     <Routes>
       {openRoutes.map(({ path, component }) => (
         <Route key={path} path={path} element={component} />
       ))}
-      <Route element={<WithAuthContainer />}>
+      <Route element={<WithAuth />}>
         {protectedRoutes.map(({ path, component }) => (
           <Route key={path} path={path} element={component} />
         ))}
       </Route>
-      <Route path="*" element={<Feed />} />
+      <Route path="*" element={<h1>{NOT_FOUND}</h1>} />
     </Routes>
   </Suspense>
 )
-export default Router

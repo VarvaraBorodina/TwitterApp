@@ -1,4 +1,4 @@
-const UserImg = () => {
+export const UserImg = () => {
   return (
     <svg
       width="150"
@@ -27,5 +27,3 @@ const UserImg = () => {
     </svg>
   )
 }
-
-export default UserImg

@@ -2,7 +2,7 @@ import { styled } from 'styled-components'
 
 import { BREAKPOINTS } from '@/constants'
 
-const Container = styled.div`
+export const Container = styled.div`
   display: flex;
   width: 100%;
   border-top: solid ${({ theme: { SIZES } }) => SIZES.PROFILE_BORDER}px
@@ -10,7 +10,7 @@ const Container = styled.div`
   padding: ${({ theme: { SPACES } }) => SPACES.M}px;
 `
 
-const Img = styled.img`
+export const TweetImg = styled.img`
   width: ${({ theme: { SIZES } }) => SIZES.BIG_LOGO_WIDTH}px;
   height: ${({ theme: { SIZES } }) => SIZES.BIG_LOGO_WIDTH}px;
   margin-right: ${({ theme: { SPACES } }) => SPACES.M}px;
@@ -19,7 +19,7 @@ const Img = styled.img`
   }
 `
 
-const Info = styled.div`
+export const Info = styled.div`
   display: flex;
   align-items: center;
   @media (max-width: ${BREAKPOINTS.L}px) {
@@ -28,24 +28,24 @@ const Info = styled.div`
   }
 `
 
-const Content = styled.div`
+export const Content = styled.div`
   margin: 0 auto;
   width: 100%;
 `
 
-const Title = styled.p`
+export const Title = styled.p`
   font-size: ${({ theme: { FONT_SIZE } }) => FONT_SIZE.S}px;
-  font-family: ${({ theme: { FONTS } }) => FONTS.XL};
+  font-weight: ${({ theme: { FONTS } }) => FONTS.XL};
   color: ${({ theme: { COLOR_THEME } }) => COLOR_THEME.TEXT_COLOR};
   @media (max-width: ${BREAKPOINTS.L}px) {
     font-size: ${({ theme: { FONT_SIZE } }) => FONT_SIZE.S}px;
   }
 `
 
-const DateString = styled.p`
+export const DateString = styled.p`
   margin-left: ${({ theme: { SPACES } }) => SPACES.M}px;
   font-size: ${({ theme: { FONT_SIZE } }) => FONT_SIZE.S}px;
-  font-family: ${({ theme: { FONTS } }) => FONTS.S};
+  font-weight: ${({ theme: { FONTS } }) => FONTS.S};
   color: ${({ theme: { COLOR_THEME } }) => COLOR_THEME.TEXT_COLOR};
   opacity: ${({ theme: { OPACITIES } }) => OPACITIES.L};
   @media (max-width: ${BREAKPOINTS.L}px) {
@@ -54,18 +54,18 @@ const DateString = styled.p`
   }
 `
 
-const Text = styled.p`
+export const Text = styled.p`
   margin-top: ${({ theme: { SPACES } }) => SPACES.S}px;
   margin-bottom: ${({ theme: { SPACES } }) => SPACES.S}px;
   font-size: ${({ theme: { FONT_SIZE } }) => FONT_SIZE.S}px;
-  font-family: ${({ theme: { FONTS } }) => FONTS.S};
+  font-weight: ${({ theme: { FONTS } }) => FONTS.S};
   color: ${({ theme: { COLOR_THEME } }) => COLOR_THEME.TEXT_COLOR};
   @media (max-width: ${BREAKPOINTS.M}px) {
     font-size: ${({ theme: { FONT_SIZE } }) => FONT_SIZE.XS}px;
   }
 `
 
-const PostImg = styled.img`
+export const PostImg = styled.img`
   max-width: ${({ theme: { SIZES } }) => SIZES.POST_IMG_HEIGHT}px;
   border-radius: ${({ theme: { BORDER_RADIUS } }) => BORDER_RADIUS.M}px;
   margin: 0 auto;
@@ -75,29 +75,20 @@ const PostImg = styled.img`
   }
 `
 
-const Buttons = styled.div`
+export const Buttons = styled.div`
   margin-top: ${({ theme: { SPACES } }) => SPACES.S}px;
   display: flex;
   justify-content: space-between;
 `
-
-const ImgButton = styled.button`
-  display: flex;
-  align-items: center;
-  border: none;
-  background-color: ${({ theme: { COLOR_THEME } }) => COLOR_THEME.MAIN_COLOR};
-  cursor: pointer;
-`
-
-const Like = styled.div<{ $isLiked: boolean }>`
+export const Like = styled.div<{ $isLiked: boolean }>`
   margin-left: ${({ theme: { SPACES } }) => SPACES.XS}px;
   font-size: ${({ theme: { FONT_SIZE } }) => FONT_SIZE.S}px;
-  font-family: ${({ theme: { FONTS } }) => FONTS.M};
+  font-weight: ${({ theme: { FONTS } }) => FONTS.M};
   color: ${({ theme: { COLORS, COLOR_THEME }, $isLiked }) =>
     $isLiked ? COLORS.LIKE_COLOR : COLOR_THEME.TEXT_COLOR};
 `
 
-const LikeIcon = styled.div<{ $isLiked: boolean }>`
+export const LikeIcon = styled.div<{ $isLiked: boolean }>`
   display: flex;
   align-items: center;
   path {
@@ -106,17 +97,8 @@ const LikeIcon = styled.div<{ $isLiked: boolean }>`
   }
 `
 
-export {
-  Buttons,
-  Container,
-  Content,
-  DateString,
-  Img,
-  ImgButton,
-  Info,
-  Like,
-  LikeIcon,
-  PostImg,
-  Text,
-  Title,
-}
+export const ImgButton = styled.button`
+  border: none;
+  background-color: ${({ theme: { COLOR_THEME } }) => COLOR_THEME.MAIN_COLOR};
+  cursor: pointer;
+`

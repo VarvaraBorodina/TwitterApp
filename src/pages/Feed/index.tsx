@@ -1,20 +1,24 @@
-import React, { useEffect } from 'react'
+import { useEffect } from 'react'
 import { useNavigate } from 'react-router-dom'
 
 import { getAllTweets } from '@/api/tweets'
 import { searchUsers } from '@/api/user'
-import Layout from '@/components/Layout'
-import ToggleTheme from '@/components/ThemeToggle'
-import Tweets from '@/components/Tweets'
-import UserPreview from '@/components/UserPreview'
+import { Layout } from '@/components/Layout'
+import { Tweets } from '@/components/Tweets'
+import { UserPreview } from '@/components/UserPreview'
 import { ROUTES_NAMES, TEXT } from '@/constants'
+import { Theme } from '@/constants/theme'
 import { useTypedDispatch, useTypedSelector } from '@/hooks'
+import { themeSelector, toggleTheme } from '@/store/slices/themeSlice'
 import { resetError } from '@/store/slices/tweetsSlice'
 import { User } from '@/types'
 
-import { Header, Title, TweetError } from './styled'
+import { Ellipse, Header, Title, TweetError } from './styled'
 
-const Feed: React.FC = () => {
+const { HOME } = ROUTES_NAMES
+const { SEARCH_USER, HOME_PAGE_HEADER } = TEXT
+
+export const Feed = () => {
   const navigate = useNavigate()
 
   const user = useTypedSelector(({ user }) => user.user) as User
@@ -26,21 +30,29 @@ const Feed: React.FC = () => {
   useEffect(() => {
     dispath(getAllTweets())
     if (!user) {
-      navigate(ROUTES_NAMES.HOME)
+      navigate(HOME)
     }
     dispath(resetError())
   }, [])
+
+  const dispatch = useTypedDispatch()
+  const theme: Theme = useTypedSelector(themeSelector)
 
   return (
     <Layout
       getSearchData={searchUsers}
       renderSearchItem={UserPreview}
-      searchPlaceholder={TEXT.SEARCH_USER}
+      searchPlaceholder={SEARCH_USER}
     >
       <>
         <Header>
-          <Title>{TEXT.HOME_PAGE_HEADER}</Title>
-          <ToggleTheme />
+          <Title>{HOME_PAGE_HEADER}</Title>
+          <Ellipse
+            onClick={() => dispatch(toggleTheme())}
+            $isLeft={theme === 'LIGHT'}
+            data-cy="toggle"
+            data-testid="toggle"
+          />
         </Header>
         <TweetError>{error}</TweetError>
         <Tweets tweets={tweets} />
@@ -48,5 +60,3 @@ const Feed: React.FC = () => {
     </Layout>
   )
 }
-
-export default Feed

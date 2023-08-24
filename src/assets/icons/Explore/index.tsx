@@ -1,4 +1,4 @@
-const Explore = () => {
+export const Explore = () => {
   return (
     <svg
       width="24"
@@ -14,5 +14,3 @@ const Explore = () => {
     </svg>
   )
 }
-
-export default Explore

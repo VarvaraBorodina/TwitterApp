@@ -1,6 +1,4 @@
-type loginFormType = {
+export type loginFormType = {
   login: string
   password: string
 }
-
-export type { loginFormType }

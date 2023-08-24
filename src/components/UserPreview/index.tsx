@@ -3,7 +3,7 @@ import { Searchable, User } from '@/types'
 
 import { Block, Name } from './styled'
 
-const UserPreview = ({ item }: PreviewType<Searchable>) => {
+export const UserPreview = ({ item }: PreviewType<Searchable>) => {
   const { name, lastName } = item as User
 
   return (
@@ -14,4 +14,3 @@ const UserPreview = ({ item }: PreviewType<Searchable>) => {
     </>
   )
 }
-export default UserPreview

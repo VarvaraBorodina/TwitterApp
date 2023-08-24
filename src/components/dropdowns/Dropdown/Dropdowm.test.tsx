@@ -2,8 +2,9 @@ import 'jest-styled-components'
 
 import { fireEvent, render as RTLrender, screen } from '@testing-library/react'
 
-import MockWrapper from '../MockWrapper'
-import Dropdown from '.'
+import { MockWrapper } from '@/components/MockWrapper'
+
+import { Dropdown } from '.'
 
 const setTitleMock = jest.fn()
 const options = ['qw', 'er', 'ty', 'ui']
@@ -18,6 +19,7 @@ describe('Check Dropdown', () => {
         title="Dropdown"
         changeOption={setTitleMock}
         options={options}
+        name={'test'}
       />
     )
 
@@ -33,6 +35,7 @@ describe('Check Dropdown', () => {
         title="Dropdown"
         changeOption={setTitleMock}
         options={options}
+        name={'test'}
       />
     )
 

@@ -1,7 +1,7 @@
 import { Container, Content } from './styled'
 import { ModalTypes } from './types'
 
-const Modal = ({ setIsActive, children }: ModalTypes) => {
+export const Modal = ({ setIsActive, children }: ModalTypes) => {
   if (!children) {
     setIsActive(false)
   }
@@ -19,5 +19,3 @@ const Modal = ({ setIsActive, children }: ModalTypes) => {
     </Container>
   )
 }
-
-export default Modal

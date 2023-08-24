@@ -1,9 +1,9 @@
-enum Gender {
+export enum Gender {
   Man = 'Man',
   Woman = 'Woman',
 }
 
-interface User {
+export interface User {
   id: string
   email: string
   name: string
@@ -14,7 +14,7 @@ interface User {
   dateOfBirth?: string
 }
 
-interface Tweet {
+export interface Tweet {
   id: string
   content: string
   user: string
@@ -24,18 +24,15 @@ interface Tweet {
   imgUrl?: string
 }
 
-type UserDataToSignUp = {
+export type UserDataToSignUp = {
   user: User
   password: string
 }
 
-type ToggleShowProps = {
+export type ToggleShowProps = {
   toggle?: () => void
   show: boolean
   showModal?: () => void
 }
 
-type Searchable = User | Tweet
-
-export { Gender }
-export type { Searchable, ToggleShowProps, Tweet, User, UserDataToSignUp }
+export type Searchable = User | Tweet
