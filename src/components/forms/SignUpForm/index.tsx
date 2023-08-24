@@ -4,9 +4,9 @@ import { useForm } from 'react-hook-form'
 import { useNavigate } from 'react-router-dom'
 
 import { signUp } from '@/api/auth'
-import { Dropdown } from '@/components/Dropdown'
+import { Dropdown } from '@/components/dropdowns/Dropdown'
+import { PortalDropdown } from '@/components/dropdowns/PortalDropdown'
 import { Loader } from '@/components/Loader'
-import { PortalDropdown } from '@/components/PortalDropdown'
 import {
   ALT,
   DAYS,
@@ -101,76 +101,78 @@ export const SignUpForm = () => {
     )
   }
 
-  if (loading) {
-    return <Loader />
-  }
-
   return (
     <Form onSubmit={handleSubmit(submit)}>
-      <LogoImg src={IMG_LOGO} alt={ALT_LOGO} />
-      <Title>{CREATE_ACCOUNT}</Title>
-      <Error>{authError || Object.values(errors)[0]?.message}</Error>
-      <Inputs>
-        <Input
-          placeholder={NAME_PLACEHOLDER}
-          type="text"
-          {...register('name')}
-        />
-        <Input
-          placeholder={LASTNAME_PLACEHOLDER}
-          type="text"
-          {...register('lastName')}
-        />
-      </Inputs>
-      <Inputs>
-        <Input
-          placeholder={EMAIL_PLACEHOLDER}
-          type="email"
-          {...register('email')}
-        />
-        <Input
-          placeholder={PHONE_PLACEHOLDER}
-          type="text"
-          {...register('phone')}
-        />
-      </Inputs>
-      <Inputs>
-        <Input
-          placeholder={PASSWORD_PLACEHOLDER}
-          type="password"
-          {...register('password')}
-        />
-        <PortalDropdown
-          title={GENDER_PLACEHOLDER}
-          options={Object.values(Gender)}
-          changeOption={handleDropdownChange}
-          name={'gender'}
-        />
-      </Inputs>
-      <SignUp to={HOME}>{USE_EMAIL}</SignUp>
-      <SubTitle>{BIRTH}</SubTitle>
-      <Info>{BIRTH_TEXT}</Info>
-      <Inputs>
-        <Dropdown
-          title={DATE_PLACEHOLDER[0]}
-          options={DAYS}
-          changeOption={handleDropdownChange}
-          name={'day'}
-        />
-        <Dropdown
-          title={DATE_PLACEHOLDER[1]}
-          options={MONTH_NAMES}
-          changeOption={handleDropdownChange}
-          name={'month'}
-        />
-        <Dropdown
-          title={DATE_PLACEHOLDER[2]}
-          options={YEARS}
-          changeOption={handleDropdownChange}
-          name={'year'}
-        />
-      </Inputs>
-      <Button>{SIGN_UP}</Button>
+      {loading ? (
+        <Loader />
+      ) : (
+        <>
+          <LogoImg src={IMG_LOGO} alt={ALT_LOGO} />
+          <Title>{CREATE_ACCOUNT}</Title>
+          <Error>{authError || Object.values(errors)[0]?.message}</Error>
+          <Inputs>
+            <Input
+              placeholder={NAME_PLACEHOLDER}
+              type="text"
+              {...register('name')}
+            />
+            <Input
+              placeholder={LASTNAME_PLACEHOLDER}
+              type="text"
+              {...register('lastName')}
+            />
+          </Inputs>
+          <Inputs>
+            <Input
+              placeholder={EMAIL_PLACEHOLDER}
+              type="email"
+              {...register('email')}
+            />
+            <Input
+              placeholder={PHONE_PLACEHOLDER}
+              type="text"
+              {...register('phone')}
+            />
+          </Inputs>
+          <Inputs>
+            <Input
+              placeholder={PASSWORD_PLACEHOLDER}
+              type="password"
+              {...register('password')}
+            />
+            <PortalDropdown
+              title={GENDER_PLACEHOLDER}
+              options={Object.values(Gender)}
+              changeOption={handleDropdownChange}
+              name={'gender'}
+            />
+          </Inputs>
+          <SignUp to={HOME}>{USE_EMAIL}</SignUp>
+          <SubTitle>{BIRTH}</SubTitle>
+          <Info>{BIRTH_TEXT}</Info>
+          <Inputs>
+            <Dropdown
+              title={DATE_PLACEHOLDER[0]}
+              options={DAYS}
+              changeOption={handleDropdownChange}
+              name={'day'}
+            />
+            <Dropdown
+              title={DATE_PLACEHOLDER[1]}
+              options={MONTH_NAMES}
+              changeOption={handleDropdownChange}
+              name={'month'}
+            />
+            <Dropdown
+              title={DATE_PLACEHOLDER[2]}
+              options={YEARS}
+              changeOption={handleDropdownChange}
+              name={'year'}
+            />
+          </Inputs>
+          <Button>{SIGN_UP}</Button>
+        </>
+      )}
     </Form>
   )
 }

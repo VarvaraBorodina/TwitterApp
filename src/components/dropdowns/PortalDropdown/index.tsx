@@ -2,9 +2,14 @@ import { useRef, useState } from 'react'
 import { createPortal } from 'react-dom'
 
 import { Arrow } from '@/assets/icons/Arrow'
-import { DropdownType } from '@/components/Dropdown/types'
-
-import { Container, Input, Option, OptionContainer, Title } from './styled'
+import {
+  Container,
+  Input,
+  Option,
+  OptionContainer,
+  Title,
+} from '@/components/dropdowns/styled'
+import { DropdownType } from '@/components/dropdowns/types'
 
 export const PortalDropdown = <T,>({
   title,

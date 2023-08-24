@@ -4,7 +4,7 @@ import { useForm } from 'react-hook-form'
 import { useNavigate } from 'react-router-dom'
 
 import { changePassword, changeUser } from '@/api/user'
-import { Dropdown } from '@/components/Dropdown'
+import { Dropdown } from '@/components/dropdowns/Dropdown'
 import { Loader } from '@/components/Loader'
 import { DAYS, MONTH_NAMES, ROUTES_NAMES, TEXT, YEARS } from '@/constants'
 import { useTypedDispatch, useTypedSelector } from '@/hooks'

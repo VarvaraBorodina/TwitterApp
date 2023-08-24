@@ -1,9 +1,14 @@
 import { useState } from 'react'
 
 import { Arrow } from '@/assets/icons/Arrow'
-
-import { Container, Input, Option, OptionContainer, Title } from './styled'
-import { DropdownType } from './types'
+import {
+  Container,
+  Input,
+  Option,
+  OptionContainer,
+  Title,
+} from '@/components/dropdowns/styled'
+import { DropdownType } from '@/components/dropdowns/types'
 
 export const Dropdown = <T,>({
   title,
